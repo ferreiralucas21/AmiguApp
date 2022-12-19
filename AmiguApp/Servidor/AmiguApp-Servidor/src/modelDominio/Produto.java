@@ -31,6 +31,13 @@ public class Produto implements Serializable {
         this.imagem = imagem;
     }
 
+    public Produto(int idProduto, String nome) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+    }
+    
+    
+
     public int getIdProduto() {
         return idProduto;
     }
