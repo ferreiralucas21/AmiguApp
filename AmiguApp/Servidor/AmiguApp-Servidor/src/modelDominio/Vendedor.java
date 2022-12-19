@@ -19,10 +19,10 @@ public class Vendedor implements Serializable {
     private String nome;
     private String email;
     private int telefone;
-    private int senha;
+    private String senha;
     private byte[] imagem;
 
-    public Vendedor(int idVendedor, String nome, String email, int telefone, int senha, byte[] imagem) {
+    public Vendedor(int idVendedor, String nome, String email, int telefone, String senha, byte[] imagem) {
         this.idVendedor = idVendedor;
         this.nome = nome;
         this.email = email;
@@ -63,11 +63,11 @@ public class Vendedor implements Serializable {
         this.telefone = telefone;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
