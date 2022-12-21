@@ -63,8 +63,20 @@ public class VendedorDAO {
             
             //Percorrendo o resultado - res
             while (res.next()) {
-                
+                vendselecionado = new Vendedor(res.getInt("idvendedor"),
+                                  res.getString("nome"),
+                                  res.getString("email"),
+                                  res.getInt("telefone"),
+                                  res.getString("senha"),
+                                  res.getBytes("imagem"));
             }
+            res.close();//fechando o resultado
+            stmt.close();//fechando o statement
+            con.close();//fechando a conexão com o banco
+            return vendselecionado;//retornando a lista de
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " - " + e.getMessage());
+            return null;
         }
     }
     

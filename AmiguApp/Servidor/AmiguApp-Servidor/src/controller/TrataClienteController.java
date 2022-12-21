@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import model.VendedorDAO;
+import modelDominio.Vendedor;
 
 
 /**
@@ -42,7 +44,15 @@ public class TrataClienteController extends Thread {
             while (!comando.equalsIgnoreCase("fim")) {
                 System.out.println("Cliente " + idUnico + " enviou o comando: " + comando );
                 //Qual é o comando que o cliente quer que o servidor execute?
-                
+                if (comando.equalsIgnoreCase("VendedorEfetuarLogin")) {
+                    out.writeObject("ok");
+                    Vendedor vendedor = (Vendedor) in.readObject();
+                    
+                    VendedorDAO dao = new VendedorDAO();
+                    Vendedor vendSelecionado = dao.efetuarLogin(vendedor);
+                    
+                    out.writeObject(vendSelecionado);
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
