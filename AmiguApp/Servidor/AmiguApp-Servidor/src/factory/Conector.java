@@ -21,7 +21,7 @@ public class Conector {
     public static Connection getConnection() {
         try {
            //String que armazena a url de conexão com o banco
-           String url = "jdbc:mysql://lucas:3306/"; //Caminho do banco e porta
+           String url = "jdbc:mysql://localhost:3306/"; //Caminho do banco e porta
            String banco = "amiguapp";                   // Nome da base
            String usuario = "root";                     // Usuário para acesso
            String senha = "";                           // Senha para acesso
