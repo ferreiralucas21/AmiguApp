@@ -38,6 +38,13 @@ public class Vendedor implements Serializable {
         this.telefone = telefone;
         this.senha = senha;
     }
+
+    public Vendedor(String nome, String email, int telefone, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
     
     public Vendedor(String email, String senha) {
         this.email = email;

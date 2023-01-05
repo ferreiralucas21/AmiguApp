@@ -52,6 +52,17 @@ public class TrataClienteController extends Thread {
                     Vendedor vendedorSelecionado = dao.efetuarLogin(vendedor);
                     
                     out.writeObject(vendedorSelecionado);
+                    
+                } else if (comando.equalsIgnoreCase("InserirVendedor")) {
+                    out.writeObject("ok");
+                    Vendedor vendedor = (Vendedor) in.readObject();
+                    
+                    VendedorDAO dao = new VendedorDAO();
+                    if (dao.inserirVendedor(vendedor) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");
+                    }
                 }
             }
         } catch (IOException | ClassNotFoundException e) {

@@ -65,6 +65,11 @@ public class FormLogin extends javax.swing.JFrame {
         jlErro.setText("Usuário ou senha inválida!");
 
         jbtCadastrar.setText("Cadastrar nova conta");
+        jbtCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,6 +155,11 @@ public class FormLogin extends javax.swing.JFrame {
             jlErro.setVisible(true);
         }
     }//GEN-LAST:event_jbtLoginActionPerformed
+
+    private void jbtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCadastrarActionPerformed
+        FormCadastroVendedor formCadastroVendedor = new FormCadastroVendedor();
+        formCadastroVendedor.setVisible(true);
+    }//GEN-LAST:event_jbtCadastrarActionPerformed
 
     /**
      * @param args the command line arguments

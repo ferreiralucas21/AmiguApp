@@ -41,4 +41,20 @@ public class ConexaoController {
         }
     }
     
+    public String inserirVendedor(Vendedor vendedor) {
+        String msg;
+        try {
+            out.writeObject("InserirVendedor");
+            msg = (String) in.readObject();
+            if (msg.equals("ok")) {
+                out.writeObject(vendedor);
+                return (String) in.readObject();
+            } else {
+                return "nok";
+            }
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
 }

@@ -80,4 +80,28 @@ public class VendedorDAO {
         }
     }
     
+    public int inserirVendedor(Vendedor vend) {
+        PreparedStatement stmt = null; //usado para rodar SQL
+        try {
+            try {
+                con.setAutoCommit(false);
+                String sql = "insert into Vendedor (nome,email,telefone,senha,imagem) values(?,?,?,?,?)";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, vend.getNome());
+                stmt.setString(2, vend.getEmail());
+                stmt.setInt(3, vend.getTelefone());
+                stmt.setString(4, vend.getSenha());
+                stmt.setBytes(5, vend.getImagem());
+                stmt.execute();
+                con.commit();
+                return -1;
+                
+            } catch (SQLException e) {
+                return e.getErrorCode();
+            }
+            
+            } finally {
+        }
+    }
+    
 }
