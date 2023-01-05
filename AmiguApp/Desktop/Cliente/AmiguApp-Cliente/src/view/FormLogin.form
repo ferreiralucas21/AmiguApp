@@ -38,13 +38,6 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jbtLogin" min="-2" pref="73" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jbtSair" min="-2" pref="73" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -54,13 +47,22 @@
                               <Component id="jlLogin" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtfLogin" min="-2" pref="172" max="-2" attributes="0"/>
-                              <Component id="jpfSenha" min="-2" pref="112" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jbtLogin" min="-2" pref="73" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jbtSair" min="-2" pref="73" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jtfLogin" pref="172" max="32767" attributes="0"/>
+                              <Component id="jpfSenha" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                          <Component id="jbtCadastrar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                           <Component id="jlErro" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -88,7 +90,9 @@
                       <Component id="jbtLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtSair" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jbtCadastrar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -127,6 +131,11 @@
         <Component class="javax.swing.JLabel" name="jlErro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio ou senha inv&#xe1;lida!"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbtCadastrar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastrar nova conta"/>
           </Properties>
         </Component>
       </SubComponents>
