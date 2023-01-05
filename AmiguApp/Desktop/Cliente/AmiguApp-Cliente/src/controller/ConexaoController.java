@@ -34,8 +34,8 @@ public class ConexaoController {
             out.writeObject("VendedorEfetuarLogin");
             msg = (String) in.readObject();
             out.writeObject(vendedor);
-            Vendedor vendSelecionado = (Vendedor) in.readObject();
-            return vendSelecionado;
+            Vendedor vendedorSelecionado = (Vendedor) in.readObject();
+            return vendedorSelecionado;
         } catch (Exception e) {
             return null;
         }

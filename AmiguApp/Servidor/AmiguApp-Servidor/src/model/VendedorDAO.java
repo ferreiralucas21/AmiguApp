@@ -26,7 +26,7 @@ public class VendedorDAO {
         con = Conector.getConnection();
     }
     
-    public ArrayList<Vendedor> getLista() {
+    /*public ArrayList<Vendedor> getLista() {
         Statement stmt = null;
         ArrayList<Vendedor> listaVendedores = new ArrayList<>();
         try {
@@ -44,11 +44,11 @@ public class VendedorDAO {
             System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
         }
-    }
+    }*/
     
     public Vendedor efetuarLogin(Vendedor vend) {
         PreparedStatement stmt = null; //usado para rodar SQL
-        Vendedor vendselecionado = null;
+        Vendedor vendedorSelecionado = null;
         
         try {
             //passando a string SQL que faz o SELECT
@@ -63,7 +63,7 @@ public class VendedorDAO {
             
             //Percorrendo o resultado - res
             while (res.next()) {
-                vendselecionado = new Vendedor(res.getInt("idvendedor"),
+                vendedorSelecionado = new Vendedor(res.getInt("idvendedor"),
                                   res.getString("nome"),
                                   res.getString("email"),
                                   res.getInt("telefone"),
@@ -73,7 +73,7 @@ public class VendedorDAO {
             res.close();//fechando o resultado
             stmt.close();//fechando o statement
             con.close();//fechando a conexão com o banco
-            return vendselecionado;//retornando a lista de
+            return vendedorSelecionado;//retornando a lista de
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
