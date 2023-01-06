@@ -142,7 +142,7 @@ public class FormLogin extends javax.swing.JFrame {
     private void jbtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLoginActionPerformed
         String email = jtfLogin.getText();
         String senha = jpfSenha.getText();
-        Vendedor vendedor = new Vendedor(email,senha);
+        Vendedor vendedor = new Vendedor(email, senha);
         Vendedor vendedorSelecionado = AmiguAppCliente.ccont.efetuarLogin(vendedor);
         System.out.println(vendedorSelecionado);
         if (vendedorSelecionado != null) {

@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/Users/ADMIN/OneDrive/Documentos/GitHub/AmiguApp/AmiguApp/Servidor/AmiguApp-Servidor/src/view/Principal.java</file>
             <file>file:/C:/Users/ADMIN/OneDrive/Documentos/GitHub/AmiguApp/AmiguApp/Servidor/AmiguApp-Servidor/src/model/VendedorDAO.java</file>
+            <file>file:/C:/Users/ADMIN/OneDrive/Documentos/GitHub/AmiguApp/AmiguApp/Servidor/AmiguApp-Servidor/src/modelDominio/Vendedor.java</file>
             <file>file:/C:/Users/ADMIN/OneDrive/Documentos/GitHub/AmiguApp/AmiguApp/Servidor/AmiguApp-Servidor/src/controller/TrataClienteController.java</file>
+            <file>file:/C:/Users/ADMIN/OneDrive/Documentos/GitHub/AmiguApp/AmiguApp/Servidor/AmiguApp-Servidor/src/factory/Conector.java</file>
         </group>
     </open-files>
 </project-private>

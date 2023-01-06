@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Connection;
+import modelDominio.Vendedor;
 
 /**
  *
@@ -40,33 +41,32 @@ public class Principal {
 }
 
 class ConectaServidor extends Thread {
-
+    
     private ServerSocket servidor;
-    private int idUnico; // Nº para identificar o cliente que está conectando...
+    private int idUnico;
     private Connection con;
-
+    
     public ConectaServidor(ServerSocket servidor, Connection con) {
         this.servidor = servidor;
         this.con = con;
         this.start();
     }
-
+    
     public void run() {
         try {
-            while (true) {   
-                Socket cliente = this.servidor.accept();//essa linha não está funcionando
-                System.out.println("Erro aqui!!");//O CLIENTE NÃO CONSEGUE SE CONECTAR AP SERVIDOR 
-                System.out.println("Um novo cliente conectou : " + cliente);
-
-                // Criando um objeto de streaming para receber e enviar os dados
+            while (true) {
+                Socket cliente = this.servidor.accept();
+                System.out.println("Um novo cliente conectou :" + cliente);
+                
+                //Crinado um objeto de streaming para receber e enviar os dados
                 ObjectInputStream in = new ObjectInputStream(cliente.getInputStream());
                 ObjectOutputStream out = new ObjectOutputStream(cliente.getOutputStream());
-                idUnico++; // incrementanto a conexão deste cliente.
+                idUnico++;
                 System.out.println("Iniciando uma nova Thread para o Cliente " + idUnico);
                 TrataClienteController tratacliente = new TrataClienteController(cliente, in, out, idUnico);
             }
-        } catch (IOException ex) { 
-            ex.printStackTrace();          
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-    }  
+    }
 }

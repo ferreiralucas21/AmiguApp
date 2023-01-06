@@ -33,7 +33,7 @@ public class AmiguAppCliente {
         }
         // Criando o controller geral e a tela principal
         ccont = new ConexaoController(in,out,idUnico);
-
+        
         // Aqui vai o comando que chama a primeira tela ***********************
         FormLogin fl = new FormLogin();
         fl.setVisible(true);
