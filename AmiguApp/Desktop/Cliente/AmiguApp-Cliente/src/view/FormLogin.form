@@ -53,7 +53,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jbtSair" min="-2" pref="73" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jtfLogin" pref="172" max="32767" attributes="0"/>
+                              <Component id="jtfEmail" pref="172" max="32767" attributes="0"/>
                               <Component id="jpfSenha" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -78,7 +78,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -100,7 +100,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jlLogin">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Login:"/>
+            <Property name="text" type="java.lang.String" value="E-mail:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlSenha">
@@ -108,7 +108,7 @@
             <Property name="text" type="java.lang.String" value="Senha: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfLogin">
+        <Component class="javax.swing.JTextField" name="jtfEmail">
         </Component>
         <Component class="javax.swing.JButton" name="jbtLogin">
           <Properties>

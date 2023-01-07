@@ -35,7 +35,7 @@ public class FormLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jlLogin = new javax.swing.JLabel();
         jlSenha = new javax.swing.JLabel();
-        jtfLogin = new javax.swing.JTextField();
+        jtfEmail = new javax.swing.JTextField();
         jbtLogin = new javax.swing.JButton();
         jbtSair = new javax.swing.JButton();
         jpfSenha = new javax.swing.JPasswordField();
@@ -44,7 +44,7 @@ public class FormLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jlLogin.setText("Login:");
+        jlLogin.setText("E-mail:");
 
         jlSenha.setText("Senha: ");
 
@@ -88,7 +88,7 @@ public class FormLogin extends javax.swing.JFrame {
                                 .addComponent(jbtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtfLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(jtfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(jpfSenha)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
@@ -106,7 +106,7 @@ public class FormLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlLogin)
-                    .addComponent(jtfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlSenha)
@@ -140,15 +140,17 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtSairActionPerformed
 
     private void jbtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLoginActionPerformed
-        String email = jtfLogin.getText();
+        String email = jtfEmail.getText();
         String senha = jpfSenha.getText();
         Vendedor vendedor = new Vendedor(email, senha);
         Vendedor vendedorSelecionado = AmiguAppCliente.ccont.efetuarLogin(vendedor);
         System.out.println(vendedorSelecionado);
-        if (vendedorSelecionado != null) {
-            jlErro.setVisible(true);
+        if (vendedorSelecionado != null) {           
             
             AmiguAppCliente.ccont.vendedor = vendedorSelecionado;
+            
+            FormPrincipal formPrincipal = new FormPrincipal();
+            formPrincipal.setVisible(true);
             
             System.out.println("LOGIN EFETUADO COM SUCESSO!");
         } else {
@@ -205,6 +207,6 @@ public class FormLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jlLogin;
     private javax.swing.JLabel jlSenha;
     private javax.swing.JPasswordField jpfSenha;
-    private javax.swing.JTextField jtfLogin;
+    private javax.swing.JTextField jtfEmail;
     // End of variables declaration//GEN-END:variables
 }
