@@ -10,7 +10,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import model.ProdutoDAO;
 import model.VendedorDAO;
+import modelDominio.Produto;
 import modelDominio.Vendedor;
 
 
@@ -53,7 +55,7 @@ public class TrataClienteController extends Thread {
                     
                     out.writeObject(vendedorSelecionado);
                     
-                } else if (comando.equalsIgnoreCase("InserirVendedor")) {
+                } else if (comando.equalsIgnoreCase("VendedorInserir")) {
                     out.writeObject("ok");
                     Vendedor vendedor = (Vendedor) in.readObject();
                     
@@ -63,7 +65,22 @@ public class TrataClienteController extends Thread {
                     } else {
                         out.writeObject("nok");
                     }
+                } else if (comando.equalsIgnoreCase("ProdutoInserir")) {
+                    out.writeObject("ok");
+                    Produto produto = (Produto) in.readObject();
+                    
+                    ProdutoDAO dao = new ProdutoDAO();
+                    if(dao.inserirProduto(produto) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");                       
+                    }
+                } else {
+                    //Comando inválido e não reconhecido!
+                    //Cliente pediu um comando que o servidor não conhece.
+                    out.writeObject("nok");
                 }
+                comando = (String) in.readObject();
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

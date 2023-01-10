@@ -10,8 +10,10 @@ import java.sql.Connection;
 import factory.Conector;
 import java.util.ArrayList;
 import modelDominio.Produto;
+import modelDominio.Vendedor;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -25,7 +27,7 @@ public class ProdutoDAO {
         con = Conector.getConnection();
     }
     
-    public ArrayList<Produto> getLista() {
+    /*public ArrayList<Produto> getLista() {
         Statement stmt = null;
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         try {
@@ -43,6 +45,32 @@ public class ProdutoDAO {
             System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
         }
+    }*/
+    
+    public int inserirProduto(Produto produto) {
+        PreparedStatement stmt = null;
+        try {
+            try {
+                con.setAutoCommit(false);
+                String sql = "insert into Produto (nome,preco,tamanho,descricao,fkIdVendedor) values(?,?,?,?,?)";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, produto.getNome());
+                stmt.setFloat(2, produto.getPreco());
+                stmt.setFloat(3, produto.getTamanho());
+                stmt.setString(4, produto.getDescricao());
+                stmt.setInt(5, produto.getFkIdVendedor());
+                stmt.execute();
+                con.commit();
+                return -1;
+                
+            } catch (SQLException e ) {
+                return e.getErrorCode();
+            }
+            
+        } finally {
+            
+        }
+        
     }
     
 }

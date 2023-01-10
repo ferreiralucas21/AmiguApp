@@ -8,6 +8,7 @@ package controller;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import modelDominio.Produto;
 import modelDominio.Vendedor;
 
 /**
@@ -44,7 +45,7 @@ public class ConexaoController {
     public String inserirVendedor(Vendedor vendedor) {
         String msg;
         try {
-            out.writeObject("InserirVendedor");
+            out.writeObject("VendedorInserir");
             msg = (String) in.readObject();
             if (msg.equals("ok")) {
                 out.writeObject(vendedor);
@@ -54,6 +55,22 @@ public class ConexaoController {
             }
         } catch (Exception e) {
             return null;
+        }
+    }
+    
+    public String inserirProduto(Produto produto) {
+        String msg;
+        try {
+            out.writeObject("ProdutoInserir");
+            msg = (String) in.readObject();
+            if (msg.equals("ok")) {
+                out.writeObject(produto);
+                return (String) in.readObject();
+            } else {
+                return "nok";
+            }
+        } catch (Exception e) {
+            return null;           
         }
     }
     

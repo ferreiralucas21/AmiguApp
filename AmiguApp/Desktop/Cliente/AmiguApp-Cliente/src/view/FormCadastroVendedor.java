@@ -42,6 +42,7 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
         jbtCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro");
 
         jLabel1.setText("Nome Completo");
 

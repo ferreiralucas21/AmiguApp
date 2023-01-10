@@ -98,6 +98,8 @@ public class Vendedor implements Serializable {
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
+    
+    
 
     @Override
     public String toString() {

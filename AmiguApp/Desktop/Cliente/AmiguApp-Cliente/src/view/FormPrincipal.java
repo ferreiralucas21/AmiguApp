@@ -37,6 +37,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jbtSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Inicial");
 
         jlNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlNome.setText("Bem Vindo Usuário!");
@@ -128,8 +129,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtSairActionPerformed
 
     private void jbtProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtProdutosActionPerformed
-        FormConsultaProdutos formConsultaProdutos = new FormConsultaProdutos();
-        formConsultaProdutos.setVisible(true);
+        FormCadastroProduto formCadastroProdutos = new FormCadastroProduto();
+        formCadastroProdutos.setVisible(true);
     }//GEN-LAST:event_jbtProdutosActionPerformed
 
     private void jbtEncomendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEncomendasActionPerformed
