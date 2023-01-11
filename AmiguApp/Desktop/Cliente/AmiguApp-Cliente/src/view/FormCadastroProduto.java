@@ -117,6 +117,11 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         });
 
         jbtExcluir.setText("EXCLUIR");
+        jbtExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,8 +205,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                     if (!jtfDescricao.getText().equals("")) {
                         
                             int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                            //int idProduto = AmiguAppCliente.ccont.produto.getIdProduto();
-                            Produto produto = new Produto(jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(),codVendedor);
+                            Produto produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(),codVendedor);
                             System.out.println(produto);
                             
                             String msg;
@@ -251,6 +255,21 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
         dispose();
     }//GEN-LAST:event_jbtVoltarActionPerformed
+
+    private void jbtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcluirActionPerformed
+        int retorno = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir?", this.getTitle(), JOptionPane.YES_NO_OPTION);
+        // Se o vendedor respondeu SIM então EXCLUI
+        if (retorno == JOptionPane.YES_OPTION) {
+            Produto produto = new Produto(codigo);
+            String msg = AmiguAppCliente.ccont.excluirProduto(produto);
+            if (msg.equals("ok")) {
+                JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível excluir", this.getTitle(),JOptionPane.ERROR_MESSAGE);
+            }
+            dispose();
+        }
+    }//GEN-LAST:event_jbtExcluirActionPerformed
 
     /**
      * @param args the command line arguments

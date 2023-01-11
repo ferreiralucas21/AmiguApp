@@ -104,4 +104,18 @@ public class ConexaoController {
         }
     }
     
+    public String excluirProduto(Produto produto) {
+        String msg = "";
+        try {
+            out.writeObject("ProdutoExcluir");
+            msg = (String) in.readObject();
+            out.writeObject(produto);
+            msg = (String) in.readObject();
+            return msg;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
 }

@@ -23,6 +23,10 @@ public class Produto implements Serializable {
     private byte[] imagem;
     private int fkIdVendedor;
 
+    public Produto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+    
     public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, byte[] imagem, int fkIdVendedor) {
         this.idProduto = idProduto;
         this.nome = nome;

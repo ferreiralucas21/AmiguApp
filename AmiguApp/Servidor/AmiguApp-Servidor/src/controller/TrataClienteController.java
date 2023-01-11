@@ -94,6 +94,16 @@ public class TrataClienteController extends Thread {
                         out.writeObject("nok");
                     }
                     
+                } else if (comando.equalsIgnoreCase("ProdutoExcluir")) {
+                    out.writeObject("ok");
+                    Produto produto = (Produto) in.readObject();
+                    ProdutoDAO dao = new ProdutoDAO();
+                    if (dao.excluir(produto) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");
+                    }
+                    
                 } else {
                     //Comando inválido e não reconhecido!
                     //Cliente pediu um comando que o servidor não conhece.
