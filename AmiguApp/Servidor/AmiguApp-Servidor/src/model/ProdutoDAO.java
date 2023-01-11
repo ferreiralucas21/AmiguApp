@@ -46,6 +46,35 @@ public class ProdutoDAO {
         }
     }
     
+    // Método para consultar produtos pelo nome
+    public ArrayList<Produto> getListaProdutosNome(String nome) {
+        Statement stmt = null; // usado para rodar SQL
+        ArrayList<Produto> listprodutos = new ArrayList<>();
+
+        try {
+            // cria o objeto para rodar o SQL
+            stmt = con.createStatement();
+            // passando a string SQL que faz o SELECT
+            ResultSet res = stmt.executeQuery("select * from produto where nome like '%" + nome + "%'");
+
+            // Percorrendo o resultado - res
+            while (res.next()) {
+                // criando o objeto de marca pegando dados do res.
+                Produto rc = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"));
+                // adicionando na lista auxiliar
+                listprodutos.add(rc);
+            }
+            res.close();// fechando o resultado
+            stmt.close();// fechando statment
+            con.close(); // fechando conexão com o banco
+            return listprodutos; // retornando a lista de marcas
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + "-" + e.getMessage());
+            return null;
+        }
+
+    }
+    
     public int inserirProduto(Produto produto) {
         PreparedStatement stmt = null;
         try {

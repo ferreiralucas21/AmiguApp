@@ -118,4 +118,18 @@ public class ConexaoController {
         }
     }
     
+    public ArrayList<Produto> produtoListaNome(String nome) {
+        String msg;
+        try {
+            out.writeObject("ProdutoListaNome");
+            msg = (String) in.readObject();
+            out.writeObject(nome);
+            ArrayList<Produto> listaProdutos = (ArrayList<Produto>) in.readObject();
+            return listaProdutos;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
 }

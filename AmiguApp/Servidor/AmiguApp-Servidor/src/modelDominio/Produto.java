@@ -64,7 +64,17 @@ public class Produto implements Serializable {
         this.tamanho = tamanho;
         this.descricao = descricao;
         this.fkIdVendedor = fkIdVendedor;
-    }      
+    }
+
+    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
+    }
+    
+    
     
     public int getIdProduto() {
         return idProduto;
