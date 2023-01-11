@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Produto implements Serializable {
     
-    private final long serialVersionID = 123456789L;
+    private static final long serialVersionID = 123456789L;
     
     private int idProduto;
     private String nome;
@@ -45,6 +45,22 @@ public class Produto implements Serializable {
         this.descricao = descricao;
         this.fkIdVendedor = fkIdVendedor;
     }
+
+    public Produto(String nome, float preco, float tamanho, String descricao) {
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
+    }
+
+    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, int fkIdVendedor) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
+        this.fkIdVendedor = fkIdVendedor;
+    }   
     
     public int getIdProduto() {
         return idProduto;

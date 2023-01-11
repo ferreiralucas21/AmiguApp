@@ -22,6 +22,7 @@ public class ConexaoController {
     private int idUnico;
     
     public Vendedor vendedor;
+    public Produto produto;
     
     public ConexaoController(ObjectInputStream in, ObjectOutputStream out, int idUnico) {
         this.in = in;
@@ -71,6 +72,35 @@ public class ConexaoController {
             }
         } catch (Exception e) {
             return null;           
+        }
+    }
+    
+    public ArrayList<Produto> produtoLista() {
+        String msg;
+        try {
+            out.writeObject("ProdutoLista");
+            msg = (String) in.readObject();
+            if (msg.equals("ok")) {
+                return (ArrayList<Produto>) in.readObject();
+            } else {
+                return null;
+            }          
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public String alterarProduto(Produto produto){
+        String msg = "";
+        try {
+            out.writeObject("ProdutoAlterar");
+            msg = (String) in.readObject();
+            out.writeObject(produto);
+            msg = (String) in.readObject();
+            return msg;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
     

@@ -7,7 +7,6 @@ package view;
 
 import javax.swing.JOptionPane;
 import modelDominio.Produto;
-import modelDominio.Vendedor;
 
 /**
  *
@@ -15,11 +14,23 @@ import modelDominio.Vendedor;
  */
 public class FormCadastroProduto extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FormCadastroProduto
-     */
-    public FormCadastroProduto() {
+    // Quando o código for -1 significa CADASTRO NOVO
+    // Quando for diferente de -1 é ALTERAÇÃO
+    private int codigo = -1;
+    
+    public FormCadastroProduto(Produto produto) {
         initComponents();
+        
+        if (produto == null) {
+            codigo = -1;
+            jbtExcluir.setEnabled(true);
+        } else {
+            codigo = produto.getIdProduto();
+            jtfNome.setText(produto.getNome());
+            jtfPreco.setText(Float.toString(produto.getPreco()));
+            jtfTamanho.setText(Float.toString(produto.getTamanho()));
+            jtfDescricao.setText(produto.getDescricao());
+        }
     }
 
     /**
@@ -188,20 +199,25 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                 if (!jtfTamanho.getText().equals("")) {                   
                     if (!jtfDescricao.getText().equals("")) {
                         
-                            int codVendedor;
-                            codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
+                            int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
+                            //int idProduto = AmiguAppCliente.ccont.produto.getIdProduto();
                             Produto produto = new Produto(jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(),codVendedor);
                             System.out.println(produto);
                             
                             String msg;
-                            msg = AmiguAppCliente.ccont.inserirProduto(produto); //chama a conexão controller para ter acesso ao método inserirVendedor
-                            if (msg.equals("ok")) {
-                                dispose();
+                            if (codigo == -1) {
+                                msg = AmiguAppCliente.ccont.inserirProduto(produto); //chama a conexão controller para ter acesso ao método inserirVendedor
+                            } else {
+                                produto.setIdProduto(codigo);
+                                msg = AmiguAppCliente.ccont.alterarProduto(produto);
+                                if (msg.equals("ok")) {
+                                    dispose(); // Se deu certo a alteração, a janela pode ser fechada.
+                                }
                             }
-                            
+            
                             //se retornar o ok o vendedor será inserido com sucesso
                             if (msg.equals("ok")) {
-                                JOptionPane.showMessageDialog(this, "Produto inserdo com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
                                 jtfNome.setText("");
                                 jtfPreco.setText("");
                                 jtfTamanho.setText("");

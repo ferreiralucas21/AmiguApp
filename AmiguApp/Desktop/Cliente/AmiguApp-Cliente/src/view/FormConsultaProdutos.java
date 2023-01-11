@@ -5,17 +5,20 @@
  */
 package view;
 
+import modelDominio.Produto;
+import view.tableModel.ProdutoTableModel;
+
 /**
  *
  * @author ADMIN
  */
-public class FormConsultaProdutos extends javax.swing.JFrame {
+public class FormConsultaProdutos extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FormConsultaProdutos
-     */
+    private ProdutoTableModel produtoModel;
+    
     public FormConsultaProdutos() {
         initComponents();
+        atualizaTabela();
     }
 
     /**
@@ -27,31 +30,40 @@ public class FormConsultaProdutos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbtAdicionarProduto = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jbtVoltar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jtProdutos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jbtCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jbtAdicionarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jbtAdicionarProduto.setText("Adicionar novo produto");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Meus Produtos");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Produtos");
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        jbtVoltar.setText("VOLTAR");
+        jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jbtVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jbtVoltar)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
@@ -65,7 +77,23 @@ public class FormConsultaProdutos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jtProdutos);
+        jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtProdutos);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Meus Produtos");
+
+        jbtCadastrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbtCadastrar.setText("Adicionar novo produto");
+        jbtCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,34 +101,66 @@ public class FormConsultaProdutos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(274, 274, 274)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(323, 323, 323)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(jbtAdicionarProduto)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtCadastrar)
+                        .addGap(215, 215, 215))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(7, 7, 7)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jbtAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jbtCadastrar)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCadastrarActionPerformed
+       FormCadastroProduto formCadastroProduto = new FormCadastroProduto(null);
+       formCadastroProduto.setModal(true);
+       formCadastroProduto.setVisible(true);
+       atualizaTabela();
+    }//GEN-LAST:event_jbtCadastrarActionPerformed
+
+    private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbtVoltarActionPerformed
+
+    private void jtProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProdutosMouseClicked
+        //Criando o formulário de cadastro passando o Produto selecionado como parâmetro
+        //O formulário de cadastro recebe uma Raça como parâmetro, quando for para editar 
+        // um registro. Note que o método getProduto foi implementado anteriormente no 
+        // TableModelo
+        Produto produto = produtoModel.getProduto(jtProdutos.getSelectedRow());
+        FormCadastroProduto formCadastroProduto = new FormCadastroProduto(produto);
+        // abrindo formulario modal (Só é possível quando o formulário for do tipo JDialog
+        formCadastroProduto.setModal(true);
+        formCadastroProduto.setVisible(true);
+        atualizaTabela();
+    }//GEN-LAST:event_jtProdutosMouseClicked
+
+    public void atualizaTabela() {
+                         
+        produtoModel = new ProdutoTableModel(AmiguAppCliente.ccont.produtoLista());
+        jtProdutos.setModel(produtoModel);              
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -128,7 +188,7 @@ public class FormConsultaProdutos extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormConsultaProdutos().setVisible(true);
@@ -139,8 +199,9 @@ public class FormConsultaProdutos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton jbtAdicionarProduto;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtCadastrar;
+    private javax.swing.JButton jbtVoltar;
     private javax.swing.JTable jtProdutos;
     // End of variables declaration//GEN-END:variables
 }

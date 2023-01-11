@@ -186,7 +186,8 @@ public class FormLogin extends javax.swing.JFrame {
 
     private void jbtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCadastrarActionPerformed
         FormCadastroVendedor formCadastroVendedor = new FormCadastroVendedor();
-        formCadastroVendedor.setVisible(true);
+        formCadastroVendedor.setModal(true);
+        formCadastroVendedor.setVisible(true);       
     }//GEN-LAST:event_jbtCadastrarActionPerformed
 
     /**

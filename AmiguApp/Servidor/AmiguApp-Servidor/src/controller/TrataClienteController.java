@@ -75,6 +75,25 @@ public class TrataClienteController extends Thread {
                     } else {
                         out.writeObject("nok");                       
                     }
+                    
+                } else if (comando.equalsIgnoreCase("ProdutoLista")) {
+                    out.writeObject("ok");
+                    
+                    ProdutoDAO dao = new ProdutoDAO();
+                    out.writeObject(dao.getLista());
+                
+                } else if (comando.equalsIgnoreCase("ProdutoAlterar")) {
+                    out.writeObject("ok");                   
+                    // Esperando o objeto Produtou vir do cliente
+                    Produto produto = (Produto) in.readObject();
+                    // Crinado um DAO para armazenar no bano
+                    ProdutoDAO dao = new ProdutoDAO();
+                    if (dao.alterar(produto) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");
+                    }
+                    
                 } else {
                     //Comando inválido e não reconhecido!
                     //Cliente pediu um comando que o servidor não conhece.
