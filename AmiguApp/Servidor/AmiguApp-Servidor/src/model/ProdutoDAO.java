@@ -34,7 +34,7 @@ public class ProdutoDAO {
             ResultSet res = stmt.executeQuery("select * from produto");
             
             while (res.next()){
-                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getInt("fkIdVendedor"));
+                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor"));
                 
                 listaProdutos.add(produto);
             }
@@ -80,13 +80,14 @@ public class ProdutoDAO {
         try {
             try {
                 con.setAutoCommit(false);
-                String sql = "insert into Produto (nome,preco,tamanho,descricao,fkIdVendedor) values(?,?,?,?,?)";
+                String sql = "insert into Produto (nome,preco,tamanho,descricao,imagem,fkIdVendedor) values(?,?,?,?,?,?)";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, produto.getNome());
                 stmt.setFloat(2, produto.getPreco());
                 stmt.setFloat(3, produto.getTamanho());
                 stmt.setString(4, produto.getDescricao());
-                stmt.setInt(5, produto.getFkIdVendedor());
+                stmt.setBytes(5, produto.getImagem());
+                stmt.setInt(6, produto.getFkIdVendedor());
                 stmt.execute();
                 con.commit();
                 return -1;
@@ -107,14 +108,15 @@ public class ProdutoDAO {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
                 //O ? será substituído pelo valor
-                String sql = "update produto set nome = ?, preco = ?, tamanho = ?, descricao = ? where idproduto = ?";
+                String sql = "update produto set nome = ?, preco = ?, tamanho = ?, descricao = ?, imagem = ? where idproduto = ?";
                 stmt = con.prepareStatement(sql);
                 //Substituir os ? do script SQL
                 stmt.setString(1, produto.getNome());
                 stmt.setFloat(2, produto.getPreco());
                 stmt.setFloat(3, produto.getTamanho());
                 stmt.setString(4, produto.getDescricao());
-                stmt.setInt(5, produto.getIdProduto());
+                stmt.setBytes(5, produto.getImagem());
+                stmt.setInt(6, produto.getIdProduto());
                 stmt.execute();
                 con.commit();
                 return -1; // <- indica que deu tudo certo                

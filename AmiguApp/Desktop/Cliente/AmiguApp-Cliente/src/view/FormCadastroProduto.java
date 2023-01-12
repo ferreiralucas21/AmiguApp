@@ -5,8 +5,12 @@
  */
 package view;
 
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import modelDominio.Produto;
+import view.util.Imagem;
 
 /**
  *
@@ -30,6 +34,10 @@ public class FormCadastroProduto extends javax.swing.JDialog {
             jtfPreco.setText(Float.toString(produto.getPreco()));
             jtfTamanho.setText(Float.toString(produto.getTamanho()));
             jtfDescricao.setText(produto.getDescricao());
+            if (produto.getImagem() != null) {
+                Imagem imagem = new Imagem(produto.getImagem());
+                jlImagem.setIcon(imagem.getImageIcon());
+            }           
         }
     }
 
@@ -42,9 +50,9 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jbtVoltar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jbtUploadImagem = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -56,6 +64,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         jtfDescricao = new javax.swing.JTextField();
         jbtSalvar = new javax.swing.JButton();
         jbtExcluir = new javax.swing.JButton();
+        jlImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produto");
@@ -86,20 +95,12 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         jbtUploadImagem.setText("UPLOAD DE IMAGEM");
+        jbtUploadImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtUploadImagemActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome");
 
@@ -123,22 +124,22 @@ public class FormCadastroProduto extends javax.swing.JDialog {
             }
         });
 
+        jlImagem.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtUploadImagem)
+                    .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jbtUploadImagem)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addGap(87, 87, 87)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
@@ -147,7 +148,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                             .addComponent(jtfNome)
                             .addComponent(jtfPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
@@ -176,12 +177,12 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jtfTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbtUploadImagem)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -191,7 +192,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtSalvar)
                     .addComponent(jbtExcluir))
-                .addGap(0, 64, Short.MAX_VALUE))
+                .addGap(0, 59, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,13 +200,16 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
+        Imagem imagem = new Imagem(jFileChooser1.getSelectedFile());
+        
         if (!jtfNome.getText().equals("")) {           
             if (!jtfPreco.getText().equals("")) {              
                 if (!jtfTamanho.getText().equals("")) {                   
                     if (!jtfDescricao.getText().equals("")) {
+                        if (imagem != null) { // Mesma coisa que nada, if só pra representar que deve haver uma verificação da imagem, que ainda não sei fazer
                         
                             int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                            Produto produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(),codVendedor);
+                            Produto produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),codVendedor);
                             System.out.println(produto);
                             
                             String msg;
@@ -226,11 +230,16 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                                 jtfPreco.setText("");
                                 jtfTamanho.setText("");
                                 jtfDescricao.setText("");
+                                jlImagem.setIcon(null);
+                                imagem = null;
                             } else {
                                 JOptionPane.showMessageDialog(this, "Erro ao cadastrar produto!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
                             }
                            
-                            
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Preencha o campo de imagem!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+                            jlImagem.requestFocus();
+                        }    
                         
                     } else {
                        JOptionPane.showMessageDialog(this, "Preencha o campo descrição!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
@@ -271,6 +280,15 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jbtExcluirActionPerformed
 
+    private void jbtUploadImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtUploadImagemActionPerformed
+        FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        jFileChooser1.addChoosableFileFilter(imageFilter);
+        if (jFileChooser1.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+           Imagem imagem = new Imagem(jFileChooser1.getSelectedFile());
+           jlImagem.setIcon(imagem.getImageIcon());
+        }
+    }//GEN-LAST:event_jbtUploadImagemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -307,16 +325,17 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbtExcluir;
     private javax.swing.JButton jbtSalvar;
     private javax.swing.JButton jbtUploadImagem;
     private javax.swing.JButton jbtVoltar;
+    private javax.swing.JLabel jlImagem;
     private javax.swing.JTextField jtfDescricao;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfPreco;
