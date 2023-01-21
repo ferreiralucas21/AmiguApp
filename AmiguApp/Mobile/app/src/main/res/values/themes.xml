@@ -13,4 +13,29 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Button" parent="@android:style/Widget.Button">
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/fundo_branco</item>
+        <item name="android:background">@drawable/button</item>
+    </style>
+
+    <style name="SearchView">
+        <item name="android:background">@drawable/searchview</item>
+    </style>
+
+    <style name="ButtonProdutos">
+        <item name="android:background">@drawable/button_produtos</item>
+        <item name="android:textSize">12dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/rosa_escuro</item>
+    </style>
+
+    <style name="ButtonLojas">
+        <item name="android:background">@drawable/button_lojas</item>
+        <item name="android:textSize">12dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/rosa_escuro</item>
+    </style>
 </resources>

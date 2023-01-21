@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="40dp"
     tools:context=".LoginActivity">
 
     <TextView
@@ -11,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="AmiguApp"
-        android:textColor="@android:color/holo_orange_light"
+        android:textColor="@color/rosa_escuro"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,10 +26,10 @@
         android:id="@+id/etLoginActivityEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
-        android:layout_marginRight="20dp"
+        android:background="@drawable/edit_text_border"
         android:hint="Email"
+        android:textSize="14dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvLoginActivityLogo" />
@@ -36,32 +38,34 @@
         android:id="@+id/etLoginActivitySenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="20dp"
+        android:background="@drawable/edit_text_border"
         android:hint="Senha"
+        android:textSize="14dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etLoginActivityEmail" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bLoginActivityLogin"
+        style="@style/Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
+        android:minHeight="0dp"
         android:text="Login"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etLoginActivitySenha" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bLoginActivityCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
         android:text="Cadastrar nova conta"
-        android:textColor="@android:color/holo_orange_dark"
+        android:textColor="@color/laranja_principal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bLoginActivityLogin" />
