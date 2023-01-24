@@ -27,7 +27,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         
         if (produto == null) {
             codigo = -1;
-            jbtExcluir.setEnabled(true);
+            jbtExcluir.setEnabled(false);
         } else {
             codigo = produto.getIdProduto();
             jtfNome.setText(produto.getNome());
@@ -84,7 +84,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jbtVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,10 +136,9 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jbtUploadImagem)
                     .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
+                        .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
@@ -148,16 +147,16 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                             .addComponent(jtfNome)
                             .addComponent(jtfPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
+                        .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jbtExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jbtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jtfTamanho)
                                 .addComponent(jtfDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))))
@@ -206,7 +205,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
             if (!jtfPreco.getText().equals("")) {              
                 if (!jtfTamanho.getText().equals("")) {                   
                     if (!jtfDescricao.getText().equals("")) {
-                        if (imagem != null) { // Mesma coisa que nada, if só pra representar que deve haver uma verificação da imagem, que ainda não sei fazer
+                        //if (imagem != null) { // Mesma coisa que nada, if só pra representar que deve haver uma verificação da imagem, que ainda não sei fazer
                         
                             int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
                             Produto produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),codVendedor);
@@ -231,15 +230,15 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                                 jtfTamanho.setText("");
                                 jtfDescricao.setText("");
                                 jlImagem.setIcon(null);
-                                imagem = null;
+                                //imagem = null;
                             } else {
                                 JOptionPane.showMessageDialog(this, "Erro ao cadastrar produto!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
                             }
                            
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Preencha o campo de imagem!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                            jlImagem.requestFocus();
-                        }    
+                        //} else {
+                            //JOptionPane.showMessageDialog(this, "Preencha o campo de imagem!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+                            //jlImagem.requestFocus();
+                       // }    
                         
                     } else {
                        JOptionPane.showMessageDialog(this, "Preencha o campo descrição!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
@@ -319,7 +318,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormCadastroVendedor().setVisible(true);
+                new FormCadastroProduto(null).setVisible(true);
             }
         });
     }

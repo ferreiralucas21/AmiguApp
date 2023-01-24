@@ -140,8 +140,9 @@ public class FormPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtEncomendasActionPerformed
 
     private void jbtPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPerfilActionPerformed
-        //FormConsultaPerfil formConsultaPerfil = new FormConsultaPerfil();
-        //formConsultaPerfil.setVisible(true);
+        FormPerfilVendedor formPerfilVendedor = new FormPerfilVendedor(null);
+        formPerfilVendedor.setModal(true);
+        formPerfilVendedor.setVisible(true);
     }//GEN-LAST:event_jbtPerfilActionPerformed
 
     /**

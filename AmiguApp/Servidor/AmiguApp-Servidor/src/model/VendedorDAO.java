@@ -103,4 +103,38 @@ public class VendedorDAO {
         }
     }
     
+    public int alterarVendedor (Vendedor vendedor) {
+        PreparedStatement stmt = null;
+        try {
+            try {
+                con.setAutoCommit(false);
+                String sql = "update vendedor set nome = ?, email = ?, telefone = ?, imagem = ? where idvendedor = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setString(1, vendedor.getNome());
+                stmt.setString(2, vendedor.getEmail());
+                stmt.setInt(3, vendedor.getTelefone());
+                stmt.setBytes(4, vendedor.getImagem());
+                stmt.setInt(5, vendedor.getIdVendedor());
+                stmt.execute();
+                con.commit();
+                return -1;
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException e) {
+                return e.getErrorCode();
+            }
+        }
+    }
+    
 }

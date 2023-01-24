@@ -132,4 +132,18 @@ public class ConexaoController {
         }
     }
     
+    public String alterarVendedor (Vendedor vendedor) {
+        String msg = "";
+        try {
+            out.writeObject("VendedorAlterar");
+            msg = (String) in.readObject();
+            out.writeObject(vendedor);
+            msg = (String) in.readObject();
+            return msg;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    
 }

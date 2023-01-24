@@ -45,10 +45,42 @@ public class Vendedor implements Serializable {
         this.telefone = telefone;
         this.senha = senha;
     }
+
+    public Vendedor(String nome, String email, int telefone) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
+    public Vendedor(int idVendedor, String nome, String email, int telefone) {
+        this.idVendedor = idVendedor;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
+    public Vendedor(int idVendedor, String nome, String email, int telefone, byte[] imagem) {
+        this.idVendedor = idVendedor;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.imagem = imagem;
+    }
+    
+    
+    
+    
     
     public Vendedor(String email, String senha) {
         this.email = email;
         this.senha = senha;
+    }
+
+    public Vendedor(String nome, String email, int telefone, byte[] imagem) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.imagem = imagem;
     }
     
     public int getIdVendedor() {
