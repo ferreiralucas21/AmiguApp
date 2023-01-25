@@ -125,7 +125,7 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
                 if (!jtfTelefone.getText().equals("")) {                   
                     if (!jtfSenha.getText().equals("")) {
                         
-                            Vendedor vendedor = new Vendedor(jtfNome.getText(),jtfEmail.getText(),Integer.parseInt(jtfTelefone.getText()),jtfSenha.getText());
+                            Vendedor vendedor = new Vendedor(jtfNome.getText(),jtfEmail.getText(),(jtfTelefone.getText()),jtfSenha.getText());
                             System.out.println(vendedor);
                             
                             String msg;

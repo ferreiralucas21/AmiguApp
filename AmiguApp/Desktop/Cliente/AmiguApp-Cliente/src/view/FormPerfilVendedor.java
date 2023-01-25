@@ -18,23 +18,13 @@ import view.util.Imagem;
  */
 public class FormPerfilVendedor extends javax.swing.JDialog {
     
-
+    
     
     public FormPerfilVendedor(Vendedor vendedor) {
         initComponents();
-               
-        int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-        jtfNome.setText(AmiguAppCliente.ccont.vendedor.getNome());
-        jtfEmail.setText(AmiguAppCliente.ccont.vendedor.getEmail());
-        jtfTelefone.setText(String.valueOf(AmiguAppCliente.ccont.vendedor.getTelefone())); 
-        if (AmiguAppCliente.ccont.vendedor.getImagem() != null) {
-            Imagem imagem = new Imagem(AmiguAppCliente.ccont.vendedor.getImagem());
-            jlImagem.setIcon(imagem.getImageIcon());
-        }
-              
+        atualizaCampos();           
     }
-
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +48,14 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         jlImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -189,7 +187,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                     //if(imagem != null) { // Mesma coisa que nada, if só pra representar que deve haver uma verificação da imagem, que ainda não sei fazer
                         
                         int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                        Vendedor vendedor = new Vendedor(codigo, jtfNome.getText(),jtfEmail.getText(),Integer.parseInt(jtfTelefone.getText()), imagem.getImagem());
+                        Vendedor vendedor = new Vendedor(codigo, jtfNome.getText(),jtfEmail.getText(),(jtfTelefone.getText()), imagem.getImagem());
                         System.out.println(vendedor);
         
                         String msg;
@@ -206,6 +204,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                             jtfTelefone.setText("");
                             jlImagem.setIcon(null);
                             imagem = null;
+                            atualizaCampos();
                         
                         } else {
                             JOptionPane.showMessageDialog(this, "Erro ao realizar as alteraçõs", this.getTitle(), JOptionPane.ERROR_MESSAGE);
@@ -228,7 +227,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Preencha o campo de nome!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
             jtfNome.requestFocus();
-        }  
+        }
     }//GEN-LAST:event_jbtSalvarActionPerformed
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -244,6 +243,26 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jbtUploadActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        //IGNORAR
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //IGNORAR
+    }//GEN-LAST:event_formWindowOpened
+
+    public void atualizaCampos() {
+        int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
+        jtfNome.setText(AmiguAppCliente.ccont.vendedor.getNome());
+        jtfEmail.setText(AmiguAppCliente.ccont.vendedor.getEmail());
+        jtfTelefone.setText(String.valueOf(AmiguAppCliente.ccont.vendedor.getTelefone())); 
+        if (AmiguAppCliente.ccont.vendedor.getImagem() != null) {
+            Imagem imagem = new Imagem(AmiguAppCliente.ccont.vendedor.getImagem());
+            jlImagem.setIcon(imagem.getImageIcon());
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

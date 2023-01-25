@@ -18,11 +18,11 @@ public class Vendedor implements Serializable {
     private int idVendedor;
     private String nome;
     private String email;
-    private int telefone;
+    private String telefone;
     private String senha;
     private byte[] imagem;
 
-    public Vendedor(int idVendedor, String nome, String email, int telefone, String senha, byte[] imagem) {
+    public Vendedor(int idVendedor, String nome, String email, String telefone, String senha, byte[] imagem) {
         this.idVendedor = idVendedor;
         this.nome = nome;
         this.email = email;
@@ -31,7 +31,7 @@ public class Vendedor implements Serializable {
         this.imagem = imagem;
     }
 
-    public Vendedor(int idVendedor, String nome, String email, int telefone, String senha) {
+    public Vendedor(int idVendedor, String nome, String email, String telefone, String senha) {
         this.idVendedor = idVendedor;
         this.nome = nome;
         this.email = email;
@@ -39,27 +39,27 @@ public class Vendedor implements Serializable {
         this.senha = senha;
     }
 
-    public Vendedor(String nome, String email, int telefone, String senha) {
+    public Vendedor(String nome, String email, String telefone, String senha) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
     }
 
-    public Vendedor(String nome, String email, int telefone) {
+    public Vendedor(String nome, String email, String telefone) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
     }
 
-    public Vendedor(int idVendedor, String nome, String email, int telefone) {
+    public Vendedor(int idVendedor, String nome, String email, String telefone) {
         this.idVendedor = idVendedor;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
     }
 
-    public Vendedor(int idVendedor, String nome, String email, int telefone, byte[] imagem) {
+    public Vendedor(int idVendedor, String nome, String email, String telefone, byte[] imagem) {
         this.idVendedor = idVendedor;
         this.nome = nome;
         this.email = email;
@@ -76,13 +76,13 @@ public class Vendedor implements Serializable {
         this.senha = senha;
     }
 
-    public Vendedor(String nome, String email, int telefone, byte[] imagem) {
+    public Vendedor(String nome, String email, String telefone, byte[] imagem) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.imagem = imagem;
-    }
-    
+    }   
+   
     public int getIdVendedor() {
         return idVendedor;
     }
@@ -107,11 +107,11 @@ public class Vendedor implements Serializable {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -130,6 +130,8 @@ public class Vendedor implements Serializable {
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
+    
+    
 
     @Override
     public String toString() {

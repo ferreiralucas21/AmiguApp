@@ -5,19 +5,18 @@
  */
 package view;
 
+import modelDominio.Vendedor;
+
 /**
  *
  * @author ADMIN
  */
 public class FormPrincipal extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FormPrincipal
-     */
+    
     public FormPrincipal() {
         initComponents();
         
-        jlNome.setText("Bem Vindo " + AmiguAppCliente.ccont.vendedor.getNome() + "!");       
+        jlNome.setText("Bem Vindo " + AmiguAppCliente.ccont.vendedor.getNome() + "!"); 
     }
 
     /**
@@ -143,8 +142,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         FormPerfilVendedor formPerfilVendedor = new FormPerfilVendedor(null);
         formPerfilVendedor.setModal(true);
         formPerfilVendedor.setVisible(true);
+        formPerfilVendedor.atualizaCampos();
     }//GEN-LAST:event_jbtPerfilActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
