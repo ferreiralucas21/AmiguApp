@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <color name="laranja_principal">#E2663F</color>
+    <color name="laranja_fraco">#ED9679</color>
+    <color name="cinza_hint">#999999</color>
+    <color name="fundo_branco">#FFFDFD</color>
+    <color name="rosa_claro">#FADADA</color>
+    <color name="cinza_escuro">#444444</color>
+    <color name="rosa_escuro">#E75B5B</color>
 </resources>
