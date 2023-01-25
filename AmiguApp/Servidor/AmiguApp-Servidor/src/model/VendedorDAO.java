@@ -66,7 +66,7 @@ public class VendedorDAO {
                 vendedorSelecionado = new Vendedor(res.getInt("idvendedor"),
                                   res.getString("nome"),
                                   res.getString("email"),
-                                  res.getInt("telefone"),
+                                  res.getString("telefone"),
                                   res.getString("senha"),
                                   res.getBytes("imagem"));
             }
@@ -89,7 +89,7 @@ public class VendedorDAO {
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, vend.getNome());
                 stmt.setString(2, vend.getEmail());
-                stmt.setInt(3, vend.getTelefone());
+                stmt.setString(3, vend.getTelefone());
                 stmt.setString(4, vend.getSenha());
                 stmt.execute();
                 con.commit();
@@ -113,7 +113,7 @@ public class VendedorDAO {
                 System.out.println(vendedor.getImagem());
                 stmt.setString(1, vendedor.getNome());
                 stmt.setString(2, vendedor.getEmail());
-                stmt.setInt(3, vendedor.getTelefone());
+                stmt.setString(3, vendedor.getTelefone());
                 stmt.setBytes(4, vendedor.getImagem());
                 stmt.setInt(5, vendedor.getIdVendedor());
                 stmt.execute();
