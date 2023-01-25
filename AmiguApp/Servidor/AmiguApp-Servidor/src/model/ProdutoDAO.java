@@ -13,6 +13,7 @@ import modelDominio.Produto;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import modelDominio.Vendedor;
 
 /**
  *
@@ -26,12 +27,12 @@ public class ProdutoDAO {
         con = Conector.getConnection();
     }
     
-    public ArrayList<Produto> getLista() {
+    public ArrayList<Produto> getLista(Vendedor vendedor) {
         Statement stmt = null;
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         try {
             stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from produto");
+            ResultSet res = stmt.executeQuery("select * from produto where fkIdVendedor = " + vendedor.getIdVendedor());
             
             while (res.next()){
                 Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor"));

@@ -78,9 +78,11 @@ public class ConexaoController {
     public ArrayList<Produto> produtoLista() {
         String msg;
         try {
-            out.writeObject("ProdutoLista");
+            out.writeObject("ProdutoLista");          
             msg = (String) in.readObject();
             if (msg.equals("ok")) {
+                out.writeObject(vendedor);
+                System.out.println("Produto lista " + vendedor);
                 return (ArrayList<Produto>) in.readObject();
             } else {
                 return null;

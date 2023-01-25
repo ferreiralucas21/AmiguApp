@@ -181,6 +181,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
 
     private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
         Imagem imagem = new Imagem(jFileChooser1.getSelectedFile());
+        System.out.println("Imagem no cliente: " + imagem.getImagem());
         
         if (!jtfNome.getText().equals("")) {
             if(!jtfEmail.getText().equals("")) {

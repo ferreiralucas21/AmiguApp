@@ -110,6 +110,7 @@ public class VendedorDAO {
                 con.setAutoCommit(false);
                 String sql = "update vendedor set nome = ?, email = ?, telefone = ?, imagem = ? where idvendedor = ?";
                 stmt = con.prepareStatement(sql);
+                System.out.println(vendedor.getImagem());
                 stmt.setString(1, vendedor.getNome());
                 stmt.setString(2, vendedor.getEmail());
                 stmt.setInt(3, vendedor.getTelefone());
