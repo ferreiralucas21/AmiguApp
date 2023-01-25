@@ -16,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
     SearchView searchView;
     Button bProdutos, bLojas;
     RecyclerView recyclerListaItens;
-    RecyclerAdapter recyclerAdapter;
-
-    ArrayList<>
 
     InformacoesApp informacoesApp;
 
@@ -38,6 +35,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
             }
-        })
+        });
     }
 }

@@ -1,5 +1,7 @@
 package br.com.amiguapp.controller;
 
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Cliente` (
   `rua` VARCHAR(45) NULL,
   `bairro` VARCHAR(45) NULL,
   `complemento` VARCHAR(10) NULL,
-  `cep` INT NULL,
+  `cep` VARCHAR(10) NULL,
   PRIMARY KEY (`idCliente`))
 ENGINE = InnoDB;
 

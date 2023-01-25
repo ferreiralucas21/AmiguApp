@@ -6,12 +6,12 @@ public class Cliente implements Serializable {
     private static final long serialVersionID = 12345678L;
     private String nome;
     private String email;
-    private int telefone;
+    private String telefone;
     private String senha;
     private String rua;
     private String bairro;
     private String complemento;
-    private int cep;
+    private String cep;
 
 
     public Cliente(String email, String senha) {
@@ -19,7 +19,7 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
-    public Cliente(String nome, int telefone, String rua, String bairro, String complemento, int cep) {
+    public Cliente(String nome, String telefone, String rua, String bairro, String complemento, String cep) {
         this.nome = nome;
         this.telefone = telefone;
         this.rua = rua;
@@ -44,11 +44,11 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -84,11 +84,11 @@ public class Cliente implements Serializable {
         this.complemento = complemento;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 }
