@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.amiguapp.controller.ConexaoSocketController;
-import br.com.amiguapp.modelDominio.Cliente;
+import br.com.amiguapp.controller.Cliente;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                                cliente = conexaoSocket.autenticaCliente(cliente);
+                                cliente = conexaoSocket.efetuarLogin(cliente);
 
                                 if (cliente != null) {
                                     // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades

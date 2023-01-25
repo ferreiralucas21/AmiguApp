@@ -54,13 +54,30 @@ public class TrataClienteController extends Thread {
                     Vendedor vendedorSelecionado = dao.efetuarLogin(vendedor);
                     
                     out.writeObject(vendedorSelecionado);
+                } else if (comando.equalsIgnoreCase("ClienteEfetuarLogin")) {
+                    out.writeObject("ok");
+                    Cliente cliente = (Cliente) in.readObject();
                     
+                    ClienteDAO dao = new ClienteDAO();
+                    Cliente clienteSelecionado = dao.efetuarLogin(cliente);
+                    
+                    out.writeObject(clienteSelecionado);
                 } else if (comando.equalsIgnoreCase("VendedorInserir")) {
                     out.writeObject("ok");
                     Vendedor vendedor = (Vendedor) in.readObject();
                     
                     VendedorDAO dao = new VendedorDAO();
                     if (dao.inserirVendedor(vendedor) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");
+                    }
+                } else if (comando.equalsIgnoreCase("ClienteInserir")) {
+                    out.writeObject("ok");
+                    Cliente cliente = (Cliente) in.readObject();
+                    
+                    ClienteDAO dao = new ClienteDAO();
+                    if (dao.inserirCliente(cliente) == -1) {
                         out.writeObject("ok");
                     } else {
                         out.writeObject("nok");

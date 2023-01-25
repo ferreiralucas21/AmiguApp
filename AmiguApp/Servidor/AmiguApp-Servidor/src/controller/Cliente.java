@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelDominio;
+package controller;
 
 import java.io.Serializable;
 
@@ -18,15 +18,15 @@ public class Cliente implements Serializable {
     private int idCliente;
     private String nome;
     private String email;
-    private int telefone;
-    private int senha;
-    private int cpf;
+    private String telefone;
+    private String senha;
+    private String cpf;
     private String rua;
     private String bairro;
     private String complemento;
-    private int cep;
+    private String cep;
 
-    public Cliente(int idCliente, String nome, String email, int telefone, int senha, int cpf, String rua, String bairro, String complemento, int cep) {
+    public Cliente(int idCliente, String nome, String email, String telefone, String senha, String cpf, String rua, String bairro, String complemento, String cep) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.email = email;
@@ -37,6 +37,51 @@ public class Cliente implements Serializable {
         this.bairro = bairro;
         this.complemento = complemento;
         this.cep = cep;
+    }
+
+    public Cliente(String nome, String email, String telefone, String senha, String cpf, String rua, String bairro, String complemento, String cep) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.complemento = complemento;
+        this.cep = cep;
+    }
+
+    public Cliente(String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public Cliente(int idCliente, String nome, String email, String senha) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public Cliente(String nome, String email, String telefone, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
+
+    public Cliente(int idCliente, String nome, String email, String telefone, String senha) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
+
+    public Cliente(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
     }
 
     public int getIdCliente() {
@@ -63,27 +108,27 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -111,11 +156,11 @@ public class Cliente implements Serializable {
         this.complemento = complemento;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

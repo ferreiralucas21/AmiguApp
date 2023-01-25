@@ -1,13 +1,14 @@
-package br.com.amiguapp.modelDominio;
+package br.com.amiguapp.controller;
 
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
-    private static final long serialVersionID = 12345678L;
+    private final long serialVersionID = 12345678L;
     private String nome;
     private String email;
     private String telefone;
     private String senha;
+    private String cpf;
     private String rua;
     private String bairro;
     private String complemento;
@@ -17,6 +18,18 @@ public class Cliente implements Serializable {
     public Cliente(String email, String senha) {
         this.email = email;
         this.senha = senha;
+    }
+
+    public Cliente(String nome, String email, String telefone, String senha, String cpf, String rua, String bairro, String complemento, String cep) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.complemento = complemento;
+        this.cep = cep;
     }
 
     public Cliente(String nome, String telefone, String rua, String bairro, String complemento, String cep) {

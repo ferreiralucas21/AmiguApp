@@ -1,14 +1,11 @@
 package br.com.amiguapp.controller;
 
-import android.widget.Toast;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import br.com.amiguapp.InformacoesApp;
-import br.com.amiguapp.modelDominio.Cliente;
 
 public class ConexaoSocketController {
     InformacoesApp informacoesApp;
@@ -33,10 +30,10 @@ public class ConexaoSocketController {
         return resultado;
     }
 
-    public Cliente autenticaCliente(Cliente cliente){
+    public Cliente efetuarLogin(Cliente cliente){
         Cliente clienteLogado = null;
         try{
-            informacoesApp.out.writeObject("autenticaCliente");
+            informacoesApp.out.writeObject("ClienteEfetuarLogin");
             String msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("ok")){
                 informacoesApp.out.writeObject(cliente);
