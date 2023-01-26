@@ -7,11 +7,9 @@ package model;
 
 import factory.Conector;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import modelDominio.Vendedor;
 
 /**
@@ -24,27 +22,7 @@ public class VendedorDAO {
     
     public VendedorDAO() {
         con = Conector.getConnection();
-    }
-    
-    /*public ArrayList<Vendedor> getLista() {
-        Statement stmt = null;
-        ArrayList<Vendedor> listaVendedores = new ArrayList<>();
-        try {
-            stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from vendedor");
-            
-            while (res.next()){
-                Vendedor vendedor = new Vendedor(res.getInt("idvendedor"), res.getString("nome"), res.getString("email"), res.getInt("telefone"), res.getString("senha"), res.getBytes("imagem"));
-                
-                listaVendedores.add(vendedor);
-            }
-            
-            return listaVendedores;
-        } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + " - " + e.getMessage());
-            return null;
-        }
-    }*/
+    }    
     
     public Vendedor efetuarLogin(Vendedor vend) {
         PreparedStatement stmt = null; //usado para rodar SQL
@@ -67,8 +45,7 @@ public class VendedorDAO {
                                   res.getString("nome"),
                                   res.getString("email"),
                                   res.getString("telefone"),
-                                  res.getString("senha"),
-                                  res.getBytes("imagem"));
+                                  res.getString("senha"));
             }
             res.close();//fechando o resultado
             stmt.close();//fechando o statement
@@ -108,13 +85,12 @@ public class VendedorDAO {
         try {
             try {
                 con.setAutoCommit(false);
-                String sql = "update vendedor set nome = ?, email = ?, telefone = ?, imagem = ? where idvendedor = ?";
+                String sql = "update vendedor set nome = ?, email = ?, telefone = ?, senha = ? where idvendedor = ?";
                 stmt = con.prepareStatement(sql);
-                System.out.println(vendedor.getImagem());
                 stmt.setString(1, vendedor.getNome());
                 stmt.setString(2, vendedor.getEmail());
                 stmt.setString(3, vendedor.getTelefone());
-                stmt.setBytes(4, vendedor.getImagem());
+                stmt.setString(4, vendedor.getSenha());
                 stmt.setInt(5, vendedor.getIdVendedor());
                 stmt.execute();
                 con.commit();

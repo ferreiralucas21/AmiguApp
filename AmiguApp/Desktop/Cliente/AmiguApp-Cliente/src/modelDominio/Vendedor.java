@@ -20,16 +20,6 @@ public class Vendedor implements Serializable {
     private String email;
     private String telefone;
     private String senha;
-    private byte[] imagem;
-
-    public Vendedor(int idVendedor, String nome, String email, String telefone, String senha, byte[] imagem) {
-        this.idVendedor = idVendedor;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
-        this.imagem = imagem;
-    }
 
     public Vendedor(int idVendedor, String nome, String email, String telefone, String senha) {
         this.idVendedor = idVendedor;
@@ -58,30 +48,11 @@ public class Vendedor implements Serializable {
         this.email = email;
         this.telefone = telefone;
     }
-
-    public Vendedor(int idVendedor, String nome, String email, String telefone, byte[] imagem) {
-        this.idVendedor = idVendedor;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.imagem = imagem;
-    }
-    
-    
-    
-    
-    
+       
     public Vendedor(String email, String senha) {
         this.email = email;
         this.senha = senha;
-    }
-
-    public Vendedor(String nome, String email, String telefone, byte[] imagem) {
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.imagem = imagem;
-    }   
+    }  
    
     public int getIdVendedor() {
         return idVendedor;
@@ -122,22 +93,9 @@ public class Vendedor implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public byte[] getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(byte[] imagem) {
-        this.imagem = imagem;
-    }
     
-    
-
     @Override
     public String toString() {
-        return "Vendedor{" + "serialVersionID=" + serialVersionID + ", idVendedor=" + idVendedor + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", senha=" + senha + ", imagem=" + imagem + '}';
-    }
-    
-    
-    
+        return "Vendedor{" + "serialVersionID=" + serialVersionID + ", idVendedor=" + idVendedor + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + '}';
+    }    
 }

@@ -5,12 +5,10 @@
  */
 package view;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
+
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import modelDominio.Vendedor;
-import view.util.Imagem;
+
 
 /**
  *
@@ -37,7 +35,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         jFileChooser1 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jbtVoltar = new javax.swing.JButton();
-        jbtUpload = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -45,9 +42,11 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         jtfTelefone = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
         jbtSalvar = new javax.swing.JButton();
-        jlImagem = new javax.swing.JLabel();
+        jtfSenha = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Perfil");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -83,13 +82,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                 .addGap(36, 36, 36))
         );
 
-        jbtUpload.setText("UPLOAD DE IMAGEM");
-        jbtUpload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtUploadActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Nome");
 
         jLabel3.setText("Telefone");
@@ -109,7 +101,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
             }
         });
 
-        jlImagem.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel1.setText("Senha");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,56 +109,62 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbtUpload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(244, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(126, 126, 126)
+                                .addComponent(jLabel1)
+                                .addGap(20, 20, 20)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addComponent(jtfSenha))))
+                .addContainerGap(177, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbtSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(191, 191, 191))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
+                        .addGap(156, 156, 156)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)))
+                            .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addComponent(jbtUpload)
-                .addGap(36, 36, 36)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jbtSalvar)
-                .addGap(0, 82, Short.MAX_VALUE))
+                .addGap(61, 61, 61))
         );
 
         pack();
@@ -178,16 +176,13 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
     }//GEN-LAST:event_jtfTelefoneActionPerformed
 
     private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
-        Imagem imagem = new Imagem(jFileChooser1.getSelectedFile());
-        System.out.println("Imagem no cliente: " + imagem.getImagem());
-        
         if (!jtfNome.getText().equals("")) {
             if(!jtfEmail.getText().equals("")) {
                 if(!jtfTelefone.getText().equals("")) {
-                    //if(imagem != null) { // Mesma coisa que nada, if só pra representar que deve haver uma verificação da imagem, que ainda não sei fazer
+                    if(!jtfSenha.getText().equals("")) {
                         
                         int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                        Vendedor vendedor = new Vendedor(codigo, jtfNome.getText(),jtfEmail.getText(),(jtfTelefone.getText()), imagem.getImagem());
+                        Vendedor vendedor = new Vendedor(codigo, jtfNome.getText(),jtfEmail.getText(),(jtfTelefone.getText()),jtfSenha.getText());
                         System.out.println(vendedor);
         
                         String msg;
@@ -202,21 +197,19 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                             jtfNome.setText("");
                             jtfEmail.setText("");
                             jtfTelefone.setText("");
-                            jlImagem.setIcon(null);
-                            imagem = null;
                             atualizaCampos();
                         
                         } else {
                             JOptionPane.showMessageDialog(this, "Erro ao realizar as alteraçõs", this.getTitle(), JOptionPane.ERROR_MESSAGE);
                         }
                         
-                    /*} else {
-                        JOptionPane.showMessageDialog(this, "Preencha com a imagem!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                        jlImagem.requestFocus();
-                    }*/
-
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Preencha o campo de senha!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+                        jtfSenha.requestFocus();
+                    }
+                        
                 } else {
-                    JOptionPane.showMessageDialog(this, "Preencha o campo de teleone!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Preencha o campo de telefone!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
                     jtfTelefone.requestFocus();
                 }
 
@@ -224,6 +217,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Preencha o campo de E-mail!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
                 jtfEmail.requestFocus();
             }
+            
         } else {
             JOptionPane.showMessageDialog(this, "Preencha o campo de nome!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
             jtfNome.requestFocus();
@@ -233,15 +227,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
         dispose();
     }//GEN-LAST:event_jbtVoltarActionPerformed
-
-    private void jbtUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtUploadActionPerformed
-        FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-        jFileChooser1.addChoosableFileFilter(imageFilter);
-        if (jFileChooser1.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
-           Imagem imagem = new Imagem(jFileChooser1.getSelectedFile());
-           jlImagem.setIcon(imagem.getImageIcon());
-        }
-    }//GEN-LAST:event_jbtUploadActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         //IGNORAR
@@ -255,11 +240,8 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
         jtfNome.setText(AmiguAppCliente.ccont.vendedor.getNome());
         jtfEmail.setText(AmiguAppCliente.ccont.vendedor.getEmail());
-        jtfTelefone.setText(String.valueOf(AmiguAppCliente.ccont.vendedor.getTelefone())); 
-        if (AmiguAppCliente.ccont.vendedor.getImagem() != null) {
-            Imagem imagem = new Imagem(AmiguAppCliente.ccont.vendedor.getImagem());
-            jlImagem.setIcon(imagem.getImageIcon());
-        }
+        jtfTelefone.setText(AmiguAppCliente.ccont.vendedor.getTelefone()); 
+        jtfSenha.setText(AmiguAppCliente.ccont.vendedor.getSenha());
     }
     
     
@@ -300,16 +282,16 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtSalvar;
-    private javax.swing.JButton jbtUpload;
     private javax.swing.JButton jbtVoltar;
-    private javax.swing.JLabel jlImagem;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfNome;
+    private javax.swing.JTextField jtfSenha;
     private javax.swing.JTextField jtfTelefone;
     // End of variables declaration//GEN-END:variables
 }

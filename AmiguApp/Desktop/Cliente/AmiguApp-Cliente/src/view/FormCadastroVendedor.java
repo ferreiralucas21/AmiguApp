@@ -136,7 +136,7 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
                             
                             //se retornar o ok o vendedor será inserido com sucesso
                             if (msg.equals("ok")) {
-                                JOptionPane.showMessageDialog(this, "Vendedor inserdo com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(this, "Cadastro concluído com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
                                 jtfNome.setText("");
                                 jtfEmail.setText("");
                                 jtfTelefone.setText("");
