@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import br.com.amiguapp.controller.ConexaoSocketController;
+import controller.ConexaoSocketController;
 
 public class MainActivity extends AppCompatActivity {
 

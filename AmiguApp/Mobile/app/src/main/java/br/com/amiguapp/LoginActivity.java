@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import br.com.amiguapp.controller.ConexaoSocketController;
-import br.com.amiguapp.controller.Cliente;
+import controller.ConexaoSocketController;
+import modelDominio.Cliente;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,9 +42,9 @@ public class LoginActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (resultadoConexao == true){
+                        if (resultadoConexao == true) {
                             Toast.makeText(informacoesApp, "Conexão estabelecida com sucesso!", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             Toast.makeText(informacoesApp, "Erro: não foi possível estabelexer a conexão com o servidor.", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -57,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         bLoginEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!etLoginEmail.getText().toString().equals("")){
-                    if (!etLoginSenha.getText().toString().equals("")){
+                if (!etLoginEmail.getText().toString().equals("")) {
+                    if (!etLoginSenha.getText().toString().equals("")) {
                         String email = etLoginEmail.getText().toString();
                         String senha = etLoginSenha.getText().toString();
 
@@ -90,11 +89,11 @@ public class LoginActivity extends AppCompatActivity {
                         });
                         thread1.start();
 
-                    }else {
+                    } else {
                         etLoginSenha.setError("Informe a senha");
                         etLoginSenha.requestFocus();
                     }
-                }else {
+                } else {
                     etLoginEmail.setError("Informe o email");
                     etLoginEmail.requestFocus();
                 }
@@ -102,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
     public void limpaCampos() {
         etLoginEmail.setText("");
         etLoginSenha.setText("");

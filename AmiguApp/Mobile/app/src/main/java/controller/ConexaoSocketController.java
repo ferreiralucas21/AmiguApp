@@ -1,12 +1,11 @@
-package br.com.amiguapp.controller;
+package controller;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
 import br.com.amiguapp.InformacoesApp;
-import br.com.amiguapp.modelDominio.Cliente;
+import modelDominio.Cliente;
 
 public class ConexaoSocketController {
     InformacoesApp informacoesApp;
@@ -15,47 +14,47 @@ public class ConexaoSocketController {
         this.informacoesApp = informacoesApp;
     }
 
-    public boolean criaConexao(){
+    public boolean criaConexao() {
         boolean resultado;
-        try{
+        try {
             informacoesApp.socket = new Socket("10.0.2.2", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
             resultado = true;
 
-        }catch(IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             resultado = false;
         }
         return resultado;
     }
 
-    public Cliente autenticaCliente(Cliente cliente){
+    public Cliente efetuarLogin(Cliente cliente) {
         Cliente clienteLogado = null;
-        try{
-            informacoesApp.out.writeObject("autenticaCliente");
+        try {
+            informacoesApp.out.writeObject("ClienteEfetuarLogin");
             String msgRecebida = (String) informacoesApp.in.readObject();
-            if (msgRecebida.equals("ok")){
+            if (msgRecebida.equals("ok")) {
                 informacoesApp.out.writeObject(cliente);
                 clienteLogado = (Cliente) informacoesApp.in.readObject();
             }
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        }catch (ClassNotFoundException classe){
+        } catch (ClassNotFoundException classe) {
             classe.printStackTrace();
         }
         return clienteLogado;
     }
 
-    public String enviaRecebeString(String msgEnviar){
+    public String enviaRecebeString(String msgEnviar) {
         String msgRecebida = "";
-        try{
+        try {
             informacoesApp.out.writeObject(msgEnviar);
             msgRecebida = (String) informacoesApp.in.readObject();
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        }catch (ClassNotFoundException classe){
+        } catch (ClassNotFoundException classe) {
             classe.printStackTrace();
         }
         return msgRecebida;

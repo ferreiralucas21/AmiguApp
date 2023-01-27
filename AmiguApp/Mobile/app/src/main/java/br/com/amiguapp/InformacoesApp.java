@@ -6,7 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import br.com.amiguapp.controller.Cliente;
+import modelDominio.Cliente;
 
 public class InformacoesApp extends Application {
     public Socket socket;
