@@ -3,7 +3,7 @@ package modelDominio;
 import java.io.Serializable;
 
 public class Produto implements Serializable {
-    private final long serialVersionID = 123L;
+    private final long serialVersionID = 123456789L;
 
     private int idProduto;
     private String nome;

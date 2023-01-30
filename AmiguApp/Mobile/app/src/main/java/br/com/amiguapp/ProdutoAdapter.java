@@ -44,11 +44,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
         private final TextView nomeLoja;
         private final TextView nomeProduto;
+        private final TextView precoProduto;
 
         public ProdutoViewHolder(View itemView) {
             super(itemView);
             nomeLoja = itemView.findViewById(R.id.tvNomeLoja);
             nomeProduto = itemView.findViewById(R.id.tvNomeProduto);
+            precoProduto = itemView.findViewById(R.id.tvPrecoProduto);
         }
 
         public void vincula(Produto produto) {
@@ -58,6 +60,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         private void preencheCampo(Produto produto) {
             nomeLoja.setText(produto.getFkIdVendedor());
             nomeProduto.setText(produto.getNome());
+            precoProduto.setText((int) produto.getPreco());
         }
     }
 

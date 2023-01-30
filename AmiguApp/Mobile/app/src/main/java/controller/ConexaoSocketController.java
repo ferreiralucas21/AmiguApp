@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+
 import br.com.amiguapp.InformacoesApp;
 import modelDominio.Cliente;
+import modelDominio.Produto;
 
 public class ConexaoSocketController {
     InformacoesApp informacoesApp;
@@ -58,5 +61,20 @@ public class ConexaoSocketController {
             classe.printStackTrace();
         }
         return msgRecebida;
+    }
+
+    public ArrayList<Produto> listaProdutos() {
+        ArrayList<Produto> listaProdutos;
+        try {
+            informacoesApp.out.writeObject("ListaProdutos");
+            listaProdutos = (ArrayList<Produto>) informacoesApp.in.readObject();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaProdutos = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaProdutos = null;
+        }
+        return listaProdutos;
     }
 }
