@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import modelDominio.Vendedor;
 
@@ -171,17 +174,29 @@ public class FormLogin extends javax.swing.JFrame {
         Vendedor vendedor = new Vendedor(email, senha);
         Vendedor vendedorSelecionado = AmiguAppCliente.ccont.efetuarLogin(vendedor);
         System.out.println(vendedorSelecionado);
-        if (vendedorSelecionado != null) {           
+                                                 
+        try {
+        
+            MessageDigest md = MessageDigest.getInstance("MD5"); // MD5, SHA-1, SHA-256
+        
+            BigInteger senhaHashDigitada = new BigInteger(1, md.digest(vendedor.getSenha().getBytes()));
+        
+            if (vendedorSelecionado.getEmail().equals(email) && vendedorSelecionado.getSenha().compareTo(senhaHashDigitada.toString()) == 0) {
+                System.out.println("Login realizado com sucesso.");
+                AmiguAppCliente.ccont.vendedor = vendedorSelecionado;
             
-            AmiguAppCliente.ccont.vendedor = vendedorSelecionado;
-            
-            FormPrincipal formPrincipal = new FormPrincipal();
-            formPrincipal.setVisible(true);
-            
-            System.out.println("LOGIN EFETUADO COM SUCESSO!");
-        } else {
-            jlErro.setVisible(true);
+                FormPrincipal formPrincipal = new FormPrincipal();
+                formPrincipal.setVisible(true);
+                
+            } else {
+                System.out.println("Login ou senha incorretos.");
+                jlErro.setVisible(true);
+            }
+        
+        } catch (NoSuchAlgorithmException e) {
+             System.out.println("Erro ao carregar o MessageDigest");
         }
+        
     }//GEN-LAST:event_jbtLoginActionPerformed
 
     private void jbtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCadastrarActionPerformed

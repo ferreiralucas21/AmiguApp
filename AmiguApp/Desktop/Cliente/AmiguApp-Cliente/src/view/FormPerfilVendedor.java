@@ -16,11 +16,25 @@ import modelDominio.Vendedor;
  */
 public class FormPerfilVendedor extends javax.swing.JDialog {
     
+    private Vendedor vendedor = null;
     
-    
-    public FormPerfilVendedor(Vendedor vendedor) {
-        initComponents();
-        atualizaCampos();           
+        public FormPerfilVendedor() {  
+            initComponents();   
+        
+        }
+        
+        public FormPerfilVendedor(Vendedor vendedor) {
+            this.vendedor = vendedor;
+            initComponents();
+            atualizaCampos();  
+        
+        }
+        
+        public void atualizaCampos() {
+        jtfNome.setText(this.vendedor.getNome());
+        jtfEmail.setText(this.vendedor.getEmail());
+        jtfTelefone.setText(this.vendedor.getTelefone()); 
+        jtfSenha.setText(this.vendedor.getSenha());
     }
     
     /**
@@ -236,13 +250,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         //IGNORAR
     }//GEN-LAST:event_formWindowOpened
 
-    public void atualizaCampos() {
-        int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-        jtfNome.setText(AmiguAppCliente.ccont.vendedor.getNome());
-        jtfEmail.setText(AmiguAppCliente.ccont.vendedor.getEmail());
-        jtfTelefone.setText(AmiguAppCliente.ccont.vendedor.getTelefone()); 
-        jtfSenha.setText(AmiguAppCliente.ccont.vendedor.getSenha());
-    }
+    
     
     
     /**
@@ -275,7 +283,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormPerfilVendedor(null).setVisible(true);
+                new FormPerfilVendedor().setVisible(true);
             }
         });
     }

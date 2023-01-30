@@ -6,6 +6,9 @@
 package model;
 
 import factory.Conector;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
@@ -31,7 +34,7 @@ public class VendedorDAO {
         try {
             //passando a string SQL que faz o SELECT
             String sql = " select * from vendedor " + " where email = ? and senha = ?";
-            stmt = con.prepareStatement(sql);
+            stmt = con.prepareStatement(sql);                     
             //substituir os ? do script SQL
             stmt.setString(1, vend.getEmail());
             stmt.setString(2, vend.getSenha());
@@ -64,6 +67,21 @@ public class VendedorDAO {
                 con.setAutoCommit(false);
                 String sql = "insert into Vendedor (nome,email,telefone,senha) values(?,?,?,?)";
                 stmt = con.prepareStatement(sql);
+                
+                try {
+
+                    MessageDigest md = MessageDigest.getInstance("MD5"); // MD5, SHA-1, SHA-256
+
+                    BigInteger senhaHashCadastrada = new BigInteger(1, md.digest(vend.getSenha().getBytes()));
+
+                    System.out.println(senhaHashCadastrada);
+
+                    Vendedor vendedor = new Vendedor(vend.getEmail(), senhaHashCadastrada.toString());
+
+                    } catch (NoSuchAlgorithmException e) {
+                        System.out.println("Erro ao carregar o MessageDigest");
+                    }
+                
                 stmt.setString(1, vend.getNome());
                 stmt.setString(2, vend.getEmail());
                 stmt.setString(3, vend.getTelefone());
