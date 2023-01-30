@@ -101,6 +101,11 @@ public class TrataClienteController extends Thread {
                     ProdutoDAO dao = new ProdutoDAO();
                     out.writeObject(dao.getLista(vendedor));
                     
+                } else if (comando.equalsIgnoreCase("ListaProdutos")) {
+                    out.writeObject("ok");
+                    ProdutoDAO dao = new ProdutoDAO();
+                    out.writeObject(dao.getLista());
+                    
                 } else if (comando.equalsIgnoreCase("ProdutoListaNome")) {
                     out.writeObject("ok");
                     // Nessa consulta eu preciso esperar o nome para realizar um filtro

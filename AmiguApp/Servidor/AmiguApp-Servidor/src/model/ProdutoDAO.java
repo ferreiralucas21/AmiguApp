@@ -47,6 +47,26 @@ public class ProdutoDAO {
         }
     }
     
+    public ArrayList<Produto> getLista() {
+        Statement stmt = null;
+        ArrayList<Produto> listaProdutos = new ArrayList<>();
+        try {
+            stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery("select * from produto");
+            
+            while (res.next()){
+                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor"));
+                
+                listaProdutos.add(produto);
+            }
+            
+            return listaProdutos;
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " - " + e.getMessage());
+            return null;
+        }
+    }
+    
     // Método para consultar produtos pelo nome
     public ArrayList<Produto> getListaProdutosNome(String nome) {
         Statement stmt = null; // usado para rodar SQL
