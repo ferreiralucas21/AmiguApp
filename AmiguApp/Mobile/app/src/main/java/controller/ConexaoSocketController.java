@@ -64,10 +64,14 @@ public class ConexaoSocketController {
     }
 
     public ArrayList<Produto> listaProdutos() {
-        ArrayList<Produto> listaProdutos;
+        ArrayList<Produto> listaProdutos = null;
         try {
             informacoesApp.out.writeObject("ListaProdutos");
-            listaProdutos = (ArrayList<Produto>) informacoesApp.in.readObject();
+            String msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("ok")) {
+                informacoesApp.out.writeObject(listaProdutos);
+                listaProdutos = (ArrayList<Produto>) informacoesApp.in.readObject();
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
             listaProdutos = null;

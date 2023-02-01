@@ -1,6 +1,5 @@
 package br.com.amiguapp;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,27 +11,39 @@ import java.util.List;
 
 import modelDominio.Produto;
 
-public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder> {
+public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHolder> {
+    private List<Produto> listaProdutos;
+    private ProdutoOnClickListener produtoOnClickListener;
 
-    private final List<Produto> listaProdutos;
-    private final Context context;
-
-    public ProdutoAdapter(Context context, List<Produto> listaProdutos) {
-        this.context = context;
+    public ProdutoAdapter(List<Produto> listaProdutos, ProdutoOnClickListener produtoOnClickListener) {
         this.listaProdutos = listaProdutos;
+        this.produtoOnClickListener = produtoOnClickListener;
     }
 
     @Override
-    public ProdutoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View viewCriada = LayoutInflater.from(context)
+    public ProdutoAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_produtos, parent, false);
-        return new ProdutoViewHolder(viewCriada);
+
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ProdutoViewHolder holder, int position) {
-        Produto produto = listaProdutos.get(position);
-        holder.vincula(produto);
+    public void onBindViewHolder(final ProdutoAdapter.MyViewHolder holder, final int position) {
+        Produto meuProduto = listaProdutos.get(position);
+        holder.tvNomeLoja.setText(meuProduto.getFkIdVendedor());
+        holder.tvNomeProduto.setText(meuProduto.getNome());
+        holder.tvPrecoProduto.setText(String.valueOf(meuProduto.getPreco()));
+
+        // clique no item do cliente
+        if (produtoOnClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    produtoOnClickListener.onClickProduto(holder.itemView,position);
+                }
+            });
+        }
     }
 
     @Override
@@ -40,28 +51,20 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
         return listaProdutos.size();
     }
 
-    class ProdutoViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView nomeLoja;
-        private final TextView nomeProduto;
-        private final TextView precoProduto;
 
-        public ProdutoViewHolder(View itemView) {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView tvNomeLoja, tvNomeProduto, tvPrecoProduto;
+        public MyViewHolder(View itemView) {
             super(itemView);
-            nomeLoja = itemView.findViewById(R.id.tvNomeLoja);
-            nomeProduto = itemView.findViewById(R.id.tvNomeProduto);
-            precoProduto = itemView.findViewById(R.id.tvPrecoProduto);
+            tvNomeLoja = itemView.findViewById(R.id.tvNomeLoja);
+            tvNomeProduto = itemView.findViewById(R.id.tvNomeProduto);
+            tvPrecoProduto = itemView.findViewById(R.id.tvPrecoProduto);
         }
+    }
 
-        public void vincula(Produto produto) {
-            preencheCampo(produto);
-        }
-
-        private void preencheCampo(Produto produto) {
-            nomeLoja.setText(produto.getFkIdVendedor());
-            nomeProduto.setText(produto.getNome());
-            precoProduto.setText((int) produto.getPreco());
-        }
+    public interface ProdutoOnClickListener {
+        public void onClickProduto(View view, int position);
     }
 
 }

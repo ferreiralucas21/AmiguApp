@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.ConexaoSocketController;
 import modelDominio.Produto;
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            produtoAdapter = new ProdutoAdapter(context, listaProdutos);
+                            System.out.println(listaProdutos.size());
+
+                            produtoAdapter = new ProdutoAdapter(listaProdutos, trataCliqueItem);
                             recyclerListaItens.setLayoutManager(new GridLayoutManager(context, 2));
                             recyclerListaItens.setItemAnimator(new DefaultItemAnimator());
                             recyclerListaItens.setAdapter(produtoAdapter);
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
                             Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista dos produtos!", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -64,4 +68,12 @@ public class MainActivity extends AppCompatActivity {
         });
         thread.start();
     }
+
+    ProdutoAdapter.ProdutoOnClickListener trataCliqueItem = new ProdutoAdapter.ProdutoOnClickListener() {
+        @Override
+        public void onClickProduto(View view, int position) {
+            Produto meuProduto = listaProdutos.get(position);
+            Toast.makeText(informacoesApp, "Produto clicado", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
