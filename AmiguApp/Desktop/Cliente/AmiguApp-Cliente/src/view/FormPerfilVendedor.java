@@ -16,12 +16,7 @@ import modelDominio.Vendedor;
  */
 public class FormPerfilVendedor extends javax.swing.JDialog {
     
-    private Vendedor vendedor = null;
-    
-        public FormPerfilVendedor() {  
-            initComponents();   
-        
-        }
+    private Vendedor vendedor = null;            
         
         public FormPerfilVendedor(Vendedor vendedor) {
             this.vendedor = vendedor;
@@ -31,10 +26,13 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         }
         
         public void atualizaCampos() {
-        jtfNome.setText(this.vendedor.getNome());
-        jtfEmail.setText(this.vendedor.getEmail());
-        jtfTelefone.setText(this.vendedor.getTelefone()); 
-        jtfSenha.setText(this.vendedor.getSenha());
+        
+            int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
+            vendedor = AmiguAppCliente.ccont.perfilVendedor(codigo);
+            jtfNome.setText(vendedor.getNome());
+            jtfEmail.setText(vendedor.getEmail());
+            jtfTelefone.setText(vendedor.getTelefone()); 
+            jtfSenha.setText(vendedor.getSenha());
     }
     
     /**
@@ -283,7 +281,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormPerfilVendedor().setVisible(true);
+                new FormPerfilVendedor(null).setVisible(true);
             }
         });
     }

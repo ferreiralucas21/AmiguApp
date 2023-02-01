@@ -56,6 +56,7 @@ public class TrataClienteController extends Thread {
                     Vendedor vendedorSelecionado = dao.efetuarLogin(vendedor);
                     
                     out.writeObject(vendedorSelecionado);
+                    
                 } else if (comando.equalsIgnoreCase("ClienteEfetuarLogin")) {
                     out.writeObject("ok");
                     Cliente cliente = (Cliente) in.readObject();
@@ -64,6 +65,7 @@ public class TrataClienteController extends Thread {
                     Cliente clienteSelecionado = dao.efetuarLogin(cliente);
                     
                     out.writeObject(clienteSelecionado);
+                    
                 } else if (comando.equalsIgnoreCase("VendedorInserir")) {
                     out.writeObject("ok");
                     Vendedor vendedor = (Vendedor) in.readObject();
@@ -74,6 +76,7 @@ public class TrataClienteController extends Thread {
                     } else {
                         out.writeObject("nok");
                     }
+                                                     
                 } else if (comando.equalsIgnoreCase("ClienteInserir")) {
                     out.writeObject("ok");
                     Cliente cliente = (Cliente) in.readObject();
@@ -84,6 +87,7 @@ public class TrataClienteController extends Thread {
                     } else {
                         out.writeObject("nok");
                     }
+                    
                 } else if (comando.equalsIgnoreCase("ProdutoInserir")) {
                     out.writeObject("ok");
                     Produto produto = (Produto) in.readObject();
@@ -95,24 +99,30 @@ public class TrataClienteController extends Thread {
                         out.writeObject("nok");                       
                     }
                     
-                } else if (comando.equalsIgnoreCase("ProdutoLista")) {
+                } else if (comando.equalsIgnoreCase("ProdutoLista")) { //Listagem para o desktop
                     out.writeObject("ok");
                     Vendedor vendedor = (Vendedor) in.readObject();
                     ProdutoDAO dao = new ProdutoDAO();
                     out.writeObject(dao.getLista(vendedor));
                     
-                } else if (comando.equalsIgnoreCase("ListaProdutos")) {
+                } else if (comando.equalsIgnoreCase("ListaProdutos")) { //Listagem para o mobile
                     out.writeObject("ok");
                     ProdutoDAO dao = new ProdutoDAO();
                     out.writeObject(dao.getLista());
                     
-                } else if (comando.equalsIgnoreCase("ProdutoListaNome")) {
+                } else if (comando.equalsIgnoreCase("ProdutoListaNome")) { //Listagem para o filtro de pesquisa do desktop
                     out.writeObject("ok");
                     // Nessa consulta eu preciso esperar o nome para realizar um filtro
                     String nome = (String) in.readObject();
                     ProdutoDAO dao = new ProdutoDAO();
                     ArrayList<Produto> listaProdutos = dao.getListaProdutosNome(nome);
                     out.writeObject(listaProdutos);
+                    
+                } else if (comando.equalsIgnoreCase("VendedorPerfil")) { //Atualização dos campos do pefil do vendedor 
+                    out.writeObject("ok");
+                    int codigo = (int) in.readObject();
+                    VendedorDAO dao = new VendedorDAO();
+                    out.writeObject(dao.perfilVendedor(codigo));
                 
                 } else if (comando.equalsIgnoreCase("ProdutoAlterar")) {
                     out.writeObject("ok");                   
@@ -121,16 +131,6 @@ public class TrataClienteController extends Thread {
                     // Crinado um DAO para armazenar no bano
                     ProdutoDAO dao = new ProdutoDAO();
                     if (dao.alterar(produto) == -1) {
-                        out.writeObject("ok");
-                    } else {
-                        out.writeObject("nok");
-                    }
-                    
-                } else if (comando.equalsIgnoreCase("ProdutoExcluir")) {
-                    out.writeObject("ok");
-                    Produto produto = (Produto) in.readObject();
-                    ProdutoDAO dao = new ProdutoDAO();
-                    if (dao.excluir(produto) == -1) {
                         out.writeObject("ok");
                     } else {
                         out.writeObject("nok");
@@ -148,6 +148,16 @@ public class TrataClienteController extends Thread {
                         out.writeObject("nok");
                     }
                     
+                } else if (comando.equalsIgnoreCase("ProdutoExcluir")) {
+                    out.writeObject("ok");
+                    Produto produto = (Produto) in.readObject();
+                    ProdutoDAO dao = new ProdutoDAO();
+                    if (dao.excluir(produto) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");
+                    }
+                                                    
                 } else {
                     //Comando inválido e não reconhecido!
                     //Cliente pediu um comando que o servidor não conhece.

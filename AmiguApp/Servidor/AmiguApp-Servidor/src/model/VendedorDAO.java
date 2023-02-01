@@ -13,6 +13,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import modelDominio.Produto;
 import modelDominio.Vendedor;
 
 /**
@@ -60,6 +63,59 @@ public class VendedorDAO {
         }
     }
     
+       public Vendedor perfilVendedor(int codigo) {
+        PreparedStatement stmt = null; //usado para rodar SQL
+        Vendedor vendedorSelecionado = null;
+        
+        try {
+            //passando a string SQL que faz o SELECT
+            String sql = " select * from vendedor where idVendedor = ? ";
+            stmt = con.prepareStatement(sql);                     
+            //substituir os ? do script SQL
+            stmt.setInt(1, codigo);
+         
+            
+            //Executando o select
+            ResultSet res = stmt.executeQuery();
+            
+            //Percorrendo o resultado - res
+            while (res.next()) {
+                vendedorSelecionado = new Vendedor(res.getInt("idvendedor"),
+                                  res.getString("nome"),
+                                  res.getString("email"),
+                                  res.getString("telefone"),
+                                  res.getString("senha"));
+            }
+            res.close();//fechando o resultado
+            stmt.close();//fechando o statement
+            con.close();//fechando a conexão com o banco
+            return vendedorSelecionado;//retornando a lista de
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " - " + e.getMessage());
+            return null;
+        }
+    }
+    
+    /*public ArrayList<Vendedor> getLista() {
+        Statement stmt = null;
+        ArrayList<Vendedor> listaVendedores = new ArrayList<>();
+        try {
+            stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery("select * from vendedor");
+            
+            while (res.next()){
+                Vendedor vendedor = new Vendedor(res.getInt("idVendedor"),res.getString("nome"),res.getString("email"),res.getString("telefone"),res.getString("senha"));
+                
+                listaVendedores.add(vendedor);
+            }
+            
+            return listaVendedores;
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " - " + e.getMessage());
+            return null;
+        }
+    }*/
+    
     public int inserirVendedor(Vendedor vend) {
         PreparedStatement stmt = null; //usado para rodar SQL
         try {
@@ -68,7 +124,7 @@ public class VendedorDAO {
                 String sql = "insert into Vendedor (nome,email,telefone,senha) values(?,?,?,?)";
                 stmt = con.prepareStatement(sql);
                 
-                try {
+                /*try {
 
                     MessageDigest md = MessageDigest.getInstance("MD5"); // MD5, SHA-1, SHA-256
 
@@ -80,7 +136,7 @@ public class VendedorDAO {
 
                     } catch (NoSuchAlgorithmException e) {
                         System.out.println("Erro ao carregar o MessageDigest");
-                    }
+                    }*/
                 
                 stmt.setString(1, vend.getNome());
                 stmt.setString(2, vend.getEmail());
