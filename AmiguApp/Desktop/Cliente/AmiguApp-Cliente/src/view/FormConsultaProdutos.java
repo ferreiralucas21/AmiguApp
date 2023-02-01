@@ -30,6 +30,7 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jbtVoltar = new javax.swing.JButton();
         jtfFiltro = new javax.swing.JTextField();
@@ -39,6 +40,8 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
         jtProdutos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jbtCadastrar = new javax.swing.JButton();
+        jrbProcessamento = new javax.swing.JRadioButton();
+        jrbFinalizado = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produtos");
@@ -123,6 +126,12 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(jrbProcessamento);
+        jrbProcessamento.setText("Em processamento");
+
+        buttonGroup1.add(jrbFinalizado);
+        jrbFinalizado.setText("Finalizado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,24 +144,31 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jLabel1))
+                        .addGap(238, 238, 238)
+                        .addComponent(jLabel1)
+                        .addGap(35, 35, 35)
+                        .addComponent(jrbProcessamento)
+                        .addGap(13, 13, 13)
+                        .addComponent(jrbFinalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(222, 222, 222)
                         .addComponent(jbtCadastrar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jrbProcessamento)
+                    .addComponent(jrbFinalizado))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(jbtCadastrar)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,6 +253,7 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -244,6 +261,8 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
     private javax.swing.JButton jbtCadastrar;
     private javax.swing.JButton jbtVoltar;
     private javax.swing.JComboBox<String> jcbFiltro;
+    private javax.swing.JRadioButton jrbFinalizado;
+    private javax.swing.JRadioButton jrbProcessamento;
     private javax.swing.JTable jtProdutos;
     private javax.swing.JTextField jtfFiltro;
     // End of variables declaration//GEN-END:variables
