@@ -21,10 +21,11 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     // Quando o código for -1 significa CADASTRO NOVO
     // Quando for diferente de -1 é ALTERAÇÃO
     private int codigo = -1;
+    private Imagem imagem = null;
     
     public FormCadastroProduto(Produto produto) {
         initComponents();
-        
+                     
         if (produto == null) {
             codigo = -1;
             jbtExcluir.setEnabled(false);
@@ -35,10 +36,10 @@ public class FormCadastroProduto extends javax.swing.JDialog {
             jtfTamanho.setText(Float.toString(produto.getTamanho()));
             jtfDescricao.setText(produto.getDescricao());
             if (produto.getImagem() != null) {
-                Imagem imagem = new Imagem(produto.getImagem());
+                imagem = new Imagem(produto.getImagem());
                 jlImagem.setIcon(imagem.getImageIcon());
             }           
-        }
+        }       
     }
 
     /**
@@ -199,16 +200,16 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
-        Imagem imagem = new Imagem(jFileChooser1.getSelectedFile());
+        Produto produto; 
         
         if (!jtfNome.getText().equals("")) {           
             if (!jtfPreco.getText().equals("")) {              
                 if (!jtfTamanho.getText().equals("")) {                   
-                    if (!jtfDescricao.getText().equals("")) {
-                        //if (imagem != null) { // Mesma coisa que nada, if só pra representar que deve haver uma verificação da imagem, que ainda não sei fazer
+                    if (!jtfDescricao.getText().equals("")) {                                             
+                        if (imagem != null) { 
                         
                             int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                            Produto produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),codVendedor);
+                            produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),codVendedor);
                             System.out.println(produto);
                             
                             String msg;
@@ -230,16 +231,16 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                                 jtfTamanho.setText("");
                                 jtfDescricao.setText("");
                                 jlImagem.setIcon(null);
-                                //imagem = null;
+                                imagem = null;
                             } else {
                                 JOptionPane.showMessageDialog(this, "Erro ao cadastrar produto!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
                             }
-                           
-                        //} else {
-                            //JOptionPane.showMessageDialog(this, "Preencha o campo de imagem!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                            //jlImagem.requestFocus();
-                       // }    
                         
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Preencha o campo de imagem!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+                            jlImagem.requestFocus(); 
+                        }    
+                                                     
                     } else {
                        JOptionPane.showMessageDialog(this, "Preencha o campo descrição!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
                        jtfDescricao.requestFocus(); 
@@ -283,7 +284,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         FileNameExtensionFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
         jFileChooser1.addChoosableFileFilter(imageFilter);
         if (jFileChooser1.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
-           Imagem imagem = new Imagem(jFileChooser1.getSelectedFile());
+            imagem = new Imagem(jFileChooser1.getSelectedFile());
            jlImagem.setIcon(imagem.getImageIcon());
         }
     }//GEN-LAST:event_jbtUploadImagemActionPerformed
