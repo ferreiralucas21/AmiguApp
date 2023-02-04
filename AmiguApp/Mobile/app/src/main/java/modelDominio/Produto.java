@@ -1,9 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package modelDominio;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author ADMIN
+ */
 public class Produto implements Serializable {
-    private final long serialVersionID = 123456789L;
+
+    private static final long serialVersionID = 123456789L;
 
     private int idProduto;
     private String nome;
@@ -13,8 +23,12 @@ public class Produto implements Serializable {
     private byte[] imagem;
     private int fkIdVendedor;
 
-    public Produto(int idCliente, String nome, float preco, float tamanho, String descricao, byte[] imagem, int fkIdVendedor) {
-        this.idProduto = idCliente;
+    public Produto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, byte[] imagem, int fkIdVendedor) {
+        this.idProduto = idProduto;
         this.nome = nome;
         this.preco = preco;
         this.tamanho = tamanho;
@@ -23,15 +37,50 @@ public class Produto implements Serializable {
         this.fkIdVendedor = fkIdVendedor;
     }
 
-    public Produto(String nome, float preco, byte[] imagem, int fkIdVendedor) {
+    public Produto(String nome, float preco, float tamanho, String descricao, byte[] imagem, int fkIdVendedor) {
         this.nome = nome;
         this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
         this.imagem = imagem;
         this.fkIdVendedor = fkIdVendedor;
     }
 
-    public long getSerialVersionID() {
-        return serialVersionID;
+    public Produto(int idProduto, String nome) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+    }
+
+    public Produto(String nome, float preco, float tamanho, String descricao, int fkIdVendedor) {
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
+        this.fkIdVendedor = fkIdVendedor;
+    }
+
+    public Produto(String nome, float preco, float tamanho, String descricao) {
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
+    }
+
+    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, int fkIdVendedor) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
+        this.fkIdVendedor = fkIdVendedor;
+    }
+
+    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao) {
+        this.idProduto = idProduto;
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.descricao = descricao;
     }
 
     public int getIdProduto() {
@@ -90,8 +139,15 @@ public class Produto implements Serializable {
         this.fkIdVendedor = fkIdVendedor;
     }
 
+
+
+
+
     @Override
     public String toString() {
         return "Produto{" + "serialVersionID=" + serialVersionID + ", idProduto=" + idProduto + ", nome=" + nome + ", preco=" + preco + ", tamanho=" + tamanho + ", descricao=" + descricao + ", imagem=" + imagem + '}';
     }
+
+
+
 }

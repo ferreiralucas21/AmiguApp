@@ -96,7 +96,7 @@ public class VendedorDAO {
         }
     }
     
-    /*public ArrayList<Vendedor> getLista() {
+    public ArrayList<Vendedor> getLista() {
         Statement stmt = null;
         ArrayList<Vendedor> listaVendedores = new ArrayList<>();
         try {
@@ -114,7 +114,7 @@ public class VendedorDAO {
             System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
         }
-    }*/
+    }
     
     public int inserirVendedor(Vendedor vend) {
         PreparedStatement stmt = null; //usado para rodar SQL

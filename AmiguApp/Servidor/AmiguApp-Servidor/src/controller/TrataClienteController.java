@@ -105,6 +105,11 @@ public class TrataClienteController extends Thread {
                     ProdutoDAO dao = new ProdutoDAO();
                     out.writeObject(dao.getLista(vendedor));
                     
+                } else if (comando.equalsIgnoreCase("ListaVendedores")) { //Listagem para o mobile
+                    out.writeObject("ok");
+                    VendedorDAO dao = new VendedorDAO();
+                    out.writeObject(dao.getLista());
+                    
                 } else if (comando.equalsIgnoreCase("ListaProdutos")) { //Listagem para o mobile
                     out.writeObject("ok");
                     ProdutoDAO dao = new ProdutoDAO();

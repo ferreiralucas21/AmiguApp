@@ -18,6 +18,7 @@ import java.util.List;
 
 import controller.ConexaoSocketController;
 import modelDominio.Produto;
+import modelDominio.Vendedor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     InformacoesApp informacoesApp;
 
     ArrayList<Produto> listaProdutos;
+    ArrayList<Vendedor> listaVendedores;
     Context context;
 
     @Override
@@ -41,14 +43,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+                listaVendedores = conexaoSocket.listaVendedores();
                 listaProdutos = conexaoSocket.listaProdutos();
                 if (listaProdutos != null) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            System.out.println(listaProdutos.size());
+                            System.out.println(listaVendedores.size());
 
-                            produtoAdapter = new ProdutoAdapter(listaProdutos, trataCliqueItem);
+                            produtoAdapter = new ProdutoAdapter(listaProdutos, trataCliqueItem, listaVendedores);
                             recyclerListaItens.setLayoutManager(new GridLayoutManager(context, 2));
                             recyclerListaItens.setItemAnimator(new DefaultItemAnimator());
                             recyclerListaItens.setAdapter(produtoAdapter);
@@ -59,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
                             Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista dos produtos!", Toast.LENGTH_SHORT).show();
                         }
                     });

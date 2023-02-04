@@ -46,6 +46,7 @@
         android:background="@drawable/edit_text_border"
         android:hint="Senha"
         android:textSize="14dp"
+        android:inputType="textPassword"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etLoginEmail" />

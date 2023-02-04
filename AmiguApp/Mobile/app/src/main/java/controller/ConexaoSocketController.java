@@ -1,5 +1,8 @@
 package controller;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 import br.com.amiguapp.InformacoesApp;
 import modelDominio.Cliente;
 import modelDominio.Produto;
+import modelDominio.Vendedor;
 
 public class ConexaoSocketController {
     InformacoesApp informacoesApp;
@@ -69,16 +73,41 @@ public class ConexaoSocketController {
             informacoesApp.out.writeObject("ListaProdutos");
             String msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("ok")) {
-                informacoesApp.out.writeObject(listaProdutos);
                 listaProdutos = (ArrayList<Produto>) informacoesApp.in.readObject();
+                Log.i("listProd", "listaProdutos: "+listaProdutos.size());
             }
         } catch (IOException ioe) {
+            Log.i("listProd", "listaProdutos: "+ioe.getLocalizedMessage());
             ioe.printStackTrace();
             listaProdutos = null;
         } catch (ClassNotFoundException classe) {
+            Log.i("listProd", "listaProdutos: "+classe.getLocalizedMessage());
             classe.printStackTrace();
             listaProdutos = null;
         }
         return listaProdutos;
+    }
+
+    public ArrayList<Vendedor> listaVendedores() {
+        ArrayList<Vendedor> listaVendedores = null;
+        try {
+            informacoesApp.out.writeObject("ListaVendedores");
+            String msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("ok")) {
+                listaVendedores = (ArrayList<Vendedor>) informacoesApp.in.readObject();
+                Log.i("listVend", "listaProdutos: "+listaVendedores.size());
+            }else{
+                Log.i("listVend", "listaProdutos:");
+            }
+        } catch (IOException ioe) {
+            Log.i("listVend", "listaProdutos: "+ioe.getLocalizedMessage());
+            ioe.printStackTrace();
+            listaVendedores = null;
+        } catch (ClassNotFoundException classe) {
+            Log.i("listVend", "listaProdutos: "+classe.getLocalizedMessage());
+            classe.printStackTrace();
+            listaVendedores = null;
+        }
+        return listaVendedores;
     }
 }
