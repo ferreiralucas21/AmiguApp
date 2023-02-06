@@ -33,6 +33,19 @@ public class VendedorDAO {
     public Vendedor efetuarLogin(Vendedor vend) {
         PreparedStatement stmt = null; //usado para rodar SQL
         Vendedor vendedorSelecionado = null;
+        String senhaHash = null;
+        
+        try {
+        
+            MessageDigest md = MessageDigest.getInstance("MD5"); // MD5, SHA-1, SHA-256
+        
+            BigInteger senhaHashDigitada = new BigInteger(1, md.digest(vend.getSenha().getBytes()));
+            senhaHash = senhaHashDigitada.toString();          
+            
+        } catch (NoSuchAlgorithmException e) {
+             System.out.println("Erro ao carregar o MessageDigest");
+        }
+        
         
         try {
             //passando a string SQL que faz o SELECT
@@ -40,23 +53,28 @@ public class VendedorDAO {
             stmt = con.prepareStatement(sql);                     
             //substituir os ? do script SQL
             stmt.setString(1, vend.getEmail());
-            stmt.setString(2, vend.getSenha());
+            stmt.setString(2, senhaHash);
             
             //Executando o select
             ResultSet res = stmt.executeQuery();
             
+            
+            
             //Percorrendo o resultado - res
             while (res.next()) {
-                vendedorSelecionado = new Vendedor(res.getInt("idvendedor"),
+                vendedorSelecionado = new Vendedor(res.getInt("idVendedor"),
                                   res.getString("nome"),
                                   res.getString("email"),
                                   res.getString("telefone"),
                                   res.getString("senha"));
+           
+
             }
             res.close();//fechando o resultado
             stmt.close();//fechando o statement
             con.close();//fechando a conexão com o banco
             return vendedorSelecionado;//retornando a lista de
+            
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
@@ -123,25 +141,25 @@ public class VendedorDAO {
                 con.setAutoCommit(false);
                 String sql = "insert into Vendedor (nome,email,telefone,senha) values(?,?,?,?)";
                 stmt = con.prepareStatement(sql);
-                
-                /*try {
+                String senhaHash = null;
+                try {
 
                     MessageDigest md = MessageDigest.getInstance("MD5"); // MD5, SHA-1, SHA-256
 
                     BigInteger senhaHashCadastrada = new BigInteger(1, md.digest(vend.getSenha().getBytes()));
-
+                    senhaHash = senhaHashCadastrada.toString();
                     System.out.println(senhaHashCadastrada);
 
-                    Vendedor vendedor = new Vendedor(vend.getEmail(), senhaHashCadastrada.toString());
+                    Vendedor vendedor = new Vendedor(vend.getEmail(), senhaHash);
 
                     } catch (NoSuchAlgorithmException e) {
                         System.out.println("Erro ao carregar o MessageDigest");
-                    }*/
+                    }
                 
                 stmt.setString(1, vend.getNome());
                 stmt.setString(2, vend.getEmail());
                 stmt.setString(3, vend.getTelefone());
-                stmt.setString(4, vend.getSenha());
+                stmt.setString(4, senhaHash);
                 stmt.execute();
                 con.commit();
                 return -1;
