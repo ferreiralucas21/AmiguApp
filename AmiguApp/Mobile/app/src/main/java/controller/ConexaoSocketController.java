@@ -54,6 +54,23 @@ public class ConexaoSocketController {
         return clienteLogado;
     }
 
+    public Cliente inserirCliente(Cliente cliente) {
+        Cliente clienteInserido = null;
+        try {
+            informacoesApp.out.writeObject("ClienteInserir");
+            String msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("ok")) {
+                informacoesApp.out.writeObject(cliente);
+                clienteInserido = (Cliente) informacoesApp.in.readObject();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+        }
+        return clienteInserido;
+    }
+
     public String enviaRecebeString(String msgEnviar) {
         String msgRecebida = "";
         try {
@@ -74,14 +91,11 @@ public class ConexaoSocketController {
             String msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("ok")) {
                 listaProdutos = (ArrayList<Produto>) informacoesApp.in.readObject();
-                Log.i("listProd", "listaProdutos: "+listaProdutos.size());
             }
         } catch (IOException ioe) {
-            Log.i("listProd", "listaProdutos: "+ioe.getLocalizedMessage());
             ioe.printStackTrace();
             listaProdutos = null;
         } catch (ClassNotFoundException classe) {
-            Log.i("listProd", "listaProdutos: "+classe.getLocalizedMessage());
             classe.printStackTrace();
             listaProdutos = null;
         }
@@ -95,16 +109,12 @@ public class ConexaoSocketController {
             String msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("ok")) {
                 listaVendedores = (ArrayList<Vendedor>) informacoesApp.in.readObject();
-                Log.i("listVend", "listaProdutos: "+listaVendedores.size());
             }else{
-                Log.i("listVend", "listaProdutos:");
             }
         } catch (IOException ioe) {
-            Log.i("listVend", "listaProdutos: "+ioe.getLocalizedMessage());
             ioe.printStackTrace();
             listaVendedores = null;
         } catch (ClassNotFoundException classe) {
-            Log.i("listVend", "listaProdutos: "+classe.getLocalizedMessage());
             classe.printStackTrace();
             listaVendedores = null;
         }

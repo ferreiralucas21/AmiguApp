@@ -85,17 +85,13 @@ public class ClienteDAO {
         try {
             try {
                 con.setAutoCommit(false);
-                String sql = "insert into Cliente (nome,email,telefone,senha) values(?,?,?,?)";
+                String sql = "insert into Cliente (nome,email,telefone,senha,cpf) values(?,?,?,?)";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, cliente.getNome());
                 stmt.setString(2, cliente.getEmail());
                 stmt.setString(3, cliente.getTelefone());
                 stmt.setString(4, cliente.getSenha());
                 stmt.setString(4, cliente.getCpf());
-                stmt.setString(4, cliente.getRua());
-                stmt.setString(4, cliente.getBairro());
-                stmt.setString(4, cliente.getComplemento());
-                stmt.setString(4, cliente.getCep());
                 stmt.execute();
                 con.commit();
                 return -1;

@@ -9,7 +9,7 @@
     android:layout_marginBottom="30dp">
 
     <TextView
-        android:id="@+id/tvLojaNome"
+        android:id="@+id/tvProdutoLojaNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/rosa_escuro"
@@ -19,14 +19,14 @@
         tools:text="Nome da loja" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardImagem"
+        android:id="@+id/cardProdutoImagem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
-        app:layout_constraintStart_toStartOf="@id/tvLojaNome"
-        app:layout_constraintTop_toBottomOf="@id/tvLojaNome">
+        app:layout_constraintStart_toStartOf="@id/tvProdutoLojaNome"
+        app:layout_constraintTop_toBottomOf="@id/tvProdutoLojaNome">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,12 +52,12 @@
         android:textColor="@color/cinza_escuro"
         android:textSize="14dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/cardImagem"
-        app:layout_constraintTop_toBottomOf="@id/cardImagem"
+        app:layout_constraintStart_toStartOf="@id/cardProdutoImagem"
+        app:layout_constraintTop_toBottomOf="@id/cardProdutoImagem"
         tools:text="Nome do produto" />
 
     <TextView
-        android:id="@+id/tvCifrao"
+        android:id="@+id/tvProdutoCifrao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="R$ "
@@ -67,12 +67,12 @@
         app:layout_constraintTop_toBottomOf="@id/tvProdutoNome" />
 
     <TextView
-        android:id="@+id/tvPrecoProduto"
+        android:id="@+id/tvProdutoPreco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/cinza_escuro"
         android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@id/tvCifrao"
+        app:layout_constraintStart_toEndOf="@id/tvProdutoCifrao"
         app:layout_constraintTop_toBottomOf="@id/tvProdutoNome"
         tools:text="0,00" />
 

@@ -67,6 +67,12 @@ public class FormLogin extends javax.swing.JFrame {
             }
         });
 
+        jpfSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpfSenhaActionPerformed(evt);
+            }
+        });
+
         jlErro.setText("Usuário ou senha inválida!");
 
         jbtCadastrar.setText("Cadastrar nova conta");

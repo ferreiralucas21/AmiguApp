@@ -67,14 +67,13 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNomeProduto, tvPrecoProduto, tvLojaNome, imageViewProduto;
+        TextView tvNomeProduto, tvPrecoProduto, tvLojaNome;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvNomeProduto = itemView.findViewById(R.id.tvProdutoNome);
-            tvPrecoProduto = itemView.findViewById(R.id.tvPrecoProduto);
-            tvLojaNome = itemView.findViewById(R.id.tvLojaNome);
-            imageViewProduto = itemView.findViewById(R.id.imageViewProduto);
+            tvPrecoProduto = itemView.findViewById(R.id.tvProdutoPreco);
+            tvLojaNome = itemView.findViewById(R.id.tvProdutoLojaNome);
         }
     }
 

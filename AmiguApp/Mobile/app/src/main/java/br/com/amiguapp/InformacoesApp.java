@@ -14,15 +14,23 @@ public class InformacoesApp extends Application {
     public ObjectInputStream in;
 
     private Cliente clienteLogado;
+    private Cliente clienteInserido;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
     }
 
     public Cliente getClienteLogado() {
         return clienteLogado;
+    }
+
+    public Cliente getClienteInserido() {
+        return clienteInserido;
+    }
+
+    public void setClienteInserido(Cliente clienteInserido) {
+        this.clienteInserido = clienteInserido;
     }
 
     public void setClienteLogado(Cliente clienteLogado) {

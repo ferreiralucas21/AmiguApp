@@ -7,7 +7,7 @@
     tools:context=".ProdutoDetalhadoActivity">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/appbarCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,11 +20,11 @@
             android:background="@drawable/toolbar">
 
             <ImageView
-                android:id="@+id/iconSeta"
+                android:id="@+id/appbarIconSeta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/searchView"
+                app:layout_constraintEnd_toStartOf="@+id/appbarSearchView"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
+                android:id="@+id/appbarSearchView"
                 style="@style/SearchView"
                 android:layout_width="250dp"
                 android:layout_height="30dp"
@@ -41,9 +41,9 @@
                 android:layout_marginBottom="10dp"
                 app:iconifiedByDefault="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/iconCarrinho"
+                app:layout_constraintEnd_toStartOf="@+id/appbarIconCarrinho"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/iconSeta"
+                app:layout_constraintStart_toEndOf="@+id/appbarIconSeta"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
                 app:queryHint="Pesquisar">
@@ -52,25 +52,25 @@
 
 
             <ImageView
-                android:id="@+id/iconCarrinho"
+                android:id="@+id/appbarIconCarrinho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/iconPerfil"
+                app:layout_constraintEnd_toStartOf="@+id/appbarIconPerfil"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/searchView"
+                app:layout_constraintStart_toEndOf="@+id/appbarSearchView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
                 app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 
             <ImageView
-                android:id="@+id/iconPerfil"
+                android:id="@+id/appbarIconPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/iconCarrinho"
+                app:layout_constraintStart_toEndOf="@+id/appbarIconCarrinho"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
                 app:srcCompat="@drawable/ic_baseline_person_24" />
@@ -78,275 +78,350 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tvProdutoNomeLoja"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="50dp"
-        android:textColor="@color/rosa_escuro"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@id/produtoCardView"
-        app:layout_constraintTop_toBottomOf="@id/cardView"
-        tools:text="Nome da loja" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/produtoCardView"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="5dp"
-        android:elevation="10dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProdutoNomeLoja">
+        app:layout_constraintTop_toBottomOf="@id/appbarCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageProduto"
+            <TextView
+                android:id="@+id/tvProdutoDetalhadoNomeLoja"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/rosa_escuro"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="@id/produtoCardView"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Nome da loja" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/produtoCardView"
                 android:layout_width="230dp"
-                android:layout_height="230dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@id/tvProdutoDetalhadoNomeLoja">
 
-    <TextView
-        android:id="@+id/tvLojaNome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/cinza_escuro"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/produtoCardView"
-        app:layout_constraintTop_toBottomOf="@id/produtoCardView"
-        tools:text="Nome do produto" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/cifrao"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="R$ "
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintStart_toStartOf="@id/tvLojaNome"
-        app:layout_constraintTop_toBottomOf="@id/tvLojaNome" />
-
-    <TextView
-        android:id="@+id/tvProdutoNome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintStart_toEndOf="@id/cifrao"
-        app:layout_constraintTop_toBottomOf="@id/tvLojaNome"
-        tools:text="0,00" />
-
-    <TextView
-        android:id="@+id/tamanho"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Tamanho:"
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintStart_toStartOf="@id/cifrao"
-        app:layout_constraintTop_toBottomOf="@id/cifrao" />
-
-    <TextView
-        android:id="@+id/tvProdutoTamanho"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintBottom_toBottomOf="@+id/tamanho"
-        app:layout_constraintStart_toEndOf="@id/tamanho"
-        app:layout_constraintTop_toTopOf="@+id/tamanho"
-        tools:text="18cm" />
-
-    <TextView
-        android:id="@+id/descricao"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="Descrição:"
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintStart_toStartOf="@id/tamanho"
-        app:layout_constraintTop_toBottomOf="@id/tamanho" />
-
-    <TextView
-        android:id="@+id/tvProdutoDescricao"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintEnd_toEndOf="@id/produtoCardView"
-        app:layout_constraintStart_toEndOf="@id/descricao"
-        app:layout_constraintTop_toTopOf="@id/descricao"
-        tools:text="Amigurumi de ovelhinha com fio de pelúcia na cor branca e soft em bege, com 18 cm desde o topo do chapéu até o fim do corpo." />
-
-    <TextView
-        android:id="@+id/contato"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="Contato:"
-        android:textColor="@color/rosa_escuro"
-        app:layout_constraintStart_toStartOf="@id/descricao"
-        app:layout_constraintTop_toBottomOf="@id/tvProdutoDescricao" />
-
-    <TextView
-        android:id="@+id/tvProdutoContato"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintBottom_toBottomOf="@id/contato"
-        app:layout_constraintStart_toEndOf="@id/contato"
-        app:layout_constraintTop_toTopOf="@id/contato"
-        tools:text="(51) 99999-9999" />
-
-    <View
-        android:id="@+id/viewLinha1"
-        android:layout_width="100dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/laranja_principal"
-        app:layout_constraintEnd_toStartOf="@+id/tvCompreAbaixo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contato" />
-
-    <TextView
-        android:id="@+id/tvCompreAbaixo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Compre abaixo"
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintBottom_toBottomOf="@+id/viewLinha1"
-        app:layout_constraintEnd_toStartOf="@+id/viewLinha2"
-        app:layout_constraintStart_toEndOf="@+id/viewLinha1"
-        app:layout_constraintTop_toTopOf="@+id/viewLinha1" />
-
-    <View
-        android:id="@+id/viewLinha2"
-        android:layout_width="100dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="30dp"
-        android:background="@color/laranja_principal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvCompreAbaixo"
-        app:layout_constraintTop_toBottomOf="@id/contato" />
-
-    <TextView
-        android:id="@+id/tvProdutoConfirmarEndereco"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Confirme o endereço de entrega: "
-        android:textColor="@color/cinza_escuro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCompreAbaixo" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvProdutoConfirmarEndereco">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/rosa_claro"
-            android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/imgProdutoDetalhado"
+                        android:layout_width="230dp"
+                        android:layout_height="230dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@tools:sample/avatars" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/rua"
+                android:id="@+id/tvProdutoDetalhadoNome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Rua: "
+                android:layout_marginTop="5dp"
+                android:textColor="@color/cinza_escuro"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/produtoCardView"
+                app:layout_constraintTop_toBottomOf="@id/produtoCardView"
+                tools:text="Nome do produto" />
+
+            <TextView
+                android:id="@+id/cifrao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="R$ "
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintStart_toStartOf="@id/tvProdutoDetalhadoNome"
+                app:layout_constraintTop_toBottomOf="@id/tvProdutoDetalhadoNome" />
+
+            <TextView
+                android:id="@+id/tvProdutoDetalhadoPreco"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintBottom_toBottomOf="@id/cifrao"
+                app:layout_constraintStart_toEndOf="@id/cifrao"
+                app:layout_constraintTop_toTopOf="@id/cifrao"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/tamanho"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Tamanho:"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintStart_toStartOf="@id/cifrao"
+                app:layout_constraintTop_toBottomOf="@id/cifrao" />
+
+            <TextView
+                android:id="@+id/tvProdutoDetalhadoTamanho"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintBottom_toBottomOf="@+id/tamanho"
+                app:layout_constraintStart_toEndOf="@id/tamanho"
+                app:layout_constraintTop_toTopOf="@+id/tamanho"
+                tools:text="18cm" />
+
+            <TextView
+                android:id="@+id/descricao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Descrição:"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintStart_toStartOf="@id/tamanho"
+                app:layout_constraintTop_toBottomOf="@id/tamanho" />
+
+            <TextView
+                android:id="@+id/tvProdutoDetalhadoDescricao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintEnd_toEndOf="@id/produtoCardView"
+                app:layout_constraintStart_toEndOf="@id/descricao"
+                app:layout_constraintTop_toTopOf="@id/descricao"
+                tools:text="Amigurumi de ovelhinha com fio de pelúcia na cor branca e soft em bege, com 18 cm desde o topo do chapéu até o fim do corpo." />
+
+            <TextView
+                android:id="@+id/contato"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Contato:"
                 android:textColor="@color/rosa_escuro"
+                app:layout_constraintStart_toStartOf="@id/descricao"
+                app:layout_constraintTop_toBottomOf="@id/tvProdutoDetalhadoDescricao" />
+
+            <TextView
+                android:id="@+id/tvProdutoDetalhadoContato"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintBottom_toBottomOf="@id/contato"
+                app:layout_constraintStart_toEndOf="@id/contato"
+                app:layout_constraintTop_toTopOf="@id/contato"
+                tools:text="(51) 99999-9999" />
+
+            <View
+                android:id="@+id/viewLinha1"
+                android:layout_width="120dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/laranja_principal"
+                app:layout_constraintEnd_toStartOf="@+id/tvCompreAbaixo"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/contato" />
 
             <TextView
-                android:id="@+id/tvEndereçoRua"
+                android:id="@+id/tvCompreAbaixo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:textColor="@color/rosa_escuro"
-                app:layout_constraintStart_toEndOf="@id/rua"
-                app:layout_constraintTop_toTopOf="@id/rua"
-                tools:text="Nome da rua" />
+                android:gravity="center"
+                android:text="Compre abaixo"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintBottom_toBottomOf="@+id/viewLinha1"
+                app:layout_constraintEnd_toStartOf="@+id/viewLinha2"
+                app:layout_constraintStart_toEndOf="@+id/viewLinha1"
+                app:layout_constraintTop_toTopOf="@+id/viewLinha1" />
+
+            <View
+                android:id="@+id/viewLinha2"
+                android:layout_width="120dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="30dp"
+                android:background="@color/laranja_principal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvCompreAbaixo"
+                app:layout_constraintTop_toBottomOf="@id/contato" />
 
             <TextView
-                android:id="@+id/complemento"
+                android:id="@+id/tvProdutoConfirmarEndereco"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Complemento: "
-                android:textColor="@color/rosa_escuro"
-                app:layout_constraintStart_toStartOf="@id/rua"
-                app:layout_constraintTop_toBottomOf="@id/rua" />
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:text="Confirme o endereço de entrega: "
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCompreAbaixo" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardConfirmarEndereco"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvProdutoConfirmarEndereco">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/rosa_claro">
+
+                    <TextView
+                        android:id="@+id/rua"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Rua: "
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvProdutoDetalhadoEndereco"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toEndOf="@id/rua"
+                        app:layout_constraintTop_toTopOf="@id/rua"
+                        tools:text="Nome da rua" />
+
+                    <TextView
+                        android:id="@+id/complemento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Complemento: "
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toStartOf="@id/rua"
+                        app:layout_constraintTop_toBottomOf="@id/rua" />
+
+                    <TextView
+                        android:id="@+id/tvProdutoDetalhadoComplemento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toEndOf="@id/complemento"
+                        app:layout_constraintTop_toTopOf="@id/complemento"
+                        tools:text="Ap. n 0" />
+
+                    <TextView
+                        android:id="@+id/bairro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Bairro: "
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toStartOf="@id/rua"
+                        app:layout_constraintTop_toBottomOf="@id/complemento" />
+
+                    <TextView
+                        android:id="@+id/tvProdutoDetalhadoBairo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toEndOf="@id/bairro"
+                        app:layout_constraintTop_toTopOf="@id/bairro"
+                        tools:text="Nome do bairro" />
+
+                    <TextView
+                        android:id="@+id/cep"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:paddingBottom="8dp"
+                        android:text="CEP: "
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toStartOf="@id/bairro"
+                        app:layout_constraintTop_toBottomOf="@id/bairro" />
+
+                    <TextView
+                        android:id="@+id/tvProdutoDetalhadoCep"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:textColor="@color/rosa_escuro"
+                        app:layout_constraintStart_toEndOf="@id/cep"
+                        app:layout_constraintTop_toTopOf="@id/cep"
+                        tools:text="Número do cep" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/ButtonAlterar"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:text="Alterar"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tvProdutoModoPagamento"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:textColor="@color/rosa_escuro"
-                app:layout_constraintStart_toEndOf="@id/complemento"
-                app:layout_constraintTop_toTopOf="@id/complemento"
-                tools:text="Ap. n 0" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:text="Escolha o modo de pagamento: "
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintStart_toStartOf="@id/tvProdutoConfirmarEndereco"
+                app:layout_constraintTop_toBottomOf="@id/cardConfirmarEndereco" />
 
-            <TextView
-                android:id="@+id/bairro"
+            <RadioGroup
+                android:id="@+id/rgPagamento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Bairro: "
-                android:textColor="@color/rosa_escuro"
-                app:layout_constraintStart_toStartOf="@id/rua"
-                app:layout_constraintTop_toBottomOf="@id/complemento" />
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvProdutoModoPagamento">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:textColor="@color/rosa_escuro"
-                app:layout_constraintStart_toEndOf="@id/bairro"
-                app:layout_constraintTop_toTopOf="@id/bairro"
-                tools:text="Nome do bairro" />
+                <RadioButton
+                    android:id="@+id/rbPagamentoPix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="Pix"
+                    android:textColor="@color/cinza_escuro" />
 
-            <TextView
-                android:id="@+id/cep"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Cep: "
-                android:textColor="@color/rosa_escuro"
-                app:layout_constraintStart_toStartOf="@id/bairro"
-                app:layout_constraintTop_toBottomOf="@id/bairro" />
+                <RadioButton
+                    android:id="@+id/rbPagamentoCartao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Cartão"
+                    android:textColor="@color/cinza_escuro" />
+            </RadioGroup>
 
-            <TextView
-                android:layout_width="0dp"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bProdutoFazerPedido"
+                style="@style/Button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:textColor="@color/rosa_escuro"
-                app:layout_constraintStart_toEndOf="@id/cep"
-                app:layout_constraintTop_toTopOf="@id/cep"
-                tools:text="Nome do cep" />
+                android:text="Fazer pedido"
+                app:layout_constraintTop_toBottomOf="@id/rgPagamento"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="30dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

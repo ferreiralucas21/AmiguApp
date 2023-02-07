@@ -38,6 +38,14 @@ public class Cliente implements Serializable {
         this.complemento = complemento;
         this.cep = cep;
     }
+    
+    public Cliente(String nome, String email, String telefone, String senha, String cpf) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.cpf = cpf;
+    }
 
     public Cliente(String nome, String email, String telefone, String senha, String cpf, String rua, String bairro, String complemento, String cep) {
         this.nome = nome;

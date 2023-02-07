@@ -18,9 +18,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Cliente cliente;
     String msgRecebida;
-
     InformacoesApp informacoesApp;
-
     Boolean resultadoConexao;
 
     @Override
@@ -33,6 +31,14 @@ public class LoginActivity extends AppCompatActivity {
         bLoginCadastrar = findViewById(R.id.bLoginCadastrar);
 
         informacoesApp = (InformacoesApp) getApplicationContext();
+
+        bLoginCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(LoginActivity.this, CadastroActivity.class);
+                startActivity(it);
+            }
+        });
 
         Thread thread = new Thread(new Runnable() {
             @Override
