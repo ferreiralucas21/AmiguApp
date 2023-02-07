@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Vendedor implements Serializable {
 
-    private final long serialVersionID = 123456789L;
+    private static final long serialVersionID = 123456789L;
 
     private int idVendedor;
     private String nome;
@@ -96,6 +96,6 @@ public class Vendedor implements Serializable {
 
     @Override
     public String toString() {
-        return "Vendedor{" + "serialVersionID=" + serialVersionID + ", idVendedor=" + idVendedor + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + '}';
+        return "Vendedor{" + ", idVendedor=" + idVendedor + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + '}';
     }
 }
