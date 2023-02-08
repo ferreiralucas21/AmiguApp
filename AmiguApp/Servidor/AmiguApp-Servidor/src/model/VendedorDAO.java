@@ -101,8 +101,7 @@ public class VendedorDAO {
                 vendedorSelecionado = new Vendedor(res.getInt("idvendedor"),
                                   res.getString("nome"),
                                   res.getString("email"),
-                                  res.getString("telefone"),
-                                  res.getString("senha"));
+                                  res.getString("telefone"));
             }
             res.close();//fechando o resultado
             stmt.close();//fechando o statement

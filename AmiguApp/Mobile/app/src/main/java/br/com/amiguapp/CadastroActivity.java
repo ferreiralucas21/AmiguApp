@@ -66,6 +66,8 @@ public class CadastroActivity extends AppCompatActivity {
 //        });
 //        thread.start();
 
+        informacoesApp = (InformacoesApp) getApplicationContext();
+
         bCadastroCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,19 +92,22 @@ public class CadastroActivity extends AppCompatActivity {
                                             cliente = conexaoSocket.inserirCliente(cliente); //para aqui
                                             Log.i("novoCliente", "novo cliente: " + cliente.getNome());
 
-                                            // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
-                                            informacoesApp.setClienteInserido(cliente);
+                                            if(cliente != null){
+                                                // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
+                                                informacoesApp.setClienteInserido(cliente);
 
-                                            Intent it = new Intent(CadastroActivity.this, MainActivity.class);
-                                            startActivity(it);
-//                                                runOnUiThread(new Runnable() {
-//                                                    @Override
-//                                                    public void run() {
-//                                                        Toast.makeText(informacoesApp, "ATENÇÃO: Usuário e senha não conferem!", Toast.LENGTH_SHORT).show();
-//                                                        limpaCampos();
-//                                                    }
-//                                                });
+                                                Intent it = new Intent(CadastroActivity.this, MainActivity.class);
+                                                startActivity(it);
+                                            } else {
 
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível realizar o cadastro!", Toast.LENGTH_SHORT).show();
+                                                        //limpaCampos();
+                                                    }
+                                                });
+                                            }
                                         }
                                     });
                                     thread1.start();

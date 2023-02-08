@@ -32,7 +32,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
             jtfNome.setText(vendedor.getNome());
             jtfEmail.setText(vendedor.getEmail());
             jtfTelefone.setText(vendedor.getTelefone()); 
-            jtfSenha.setText(vendedor.getSenha());
     }
     
     /**
@@ -54,8 +53,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         jtfTelefone = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
         jbtSalvar = new javax.swing.JButton();
-        jtfSenha = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Perfil");
@@ -113,8 +110,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Senha");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,18 +129,10 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(126, 126, 126)
-                                .addComponent(jLabel1)
-                                .addGap(20, 20, 20)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(jtfSenha))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(177, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -170,13 +157,9 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(jbtSalvar)
-                .addGap(61, 61, 61))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,10 +174,9 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
         if (!jtfNome.getText().equals("")) {
             if(!jtfEmail.getText().equals("")) {
                 if(!jtfTelefone.getText().equals("")) {
-                    if(!jtfSenha.getText().equals("")) {
                         
                         int codigo = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                        Vendedor vendedor = new Vendedor(codigo, jtfNome.getText(),jtfEmail.getText(),(jtfTelefone.getText()),jtfSenha.getText());
+                        Vendedor vendedor = new Vendedor(codigo, jtfNome.getText(),jtfEmail.getText(),(jtfTelefone.getText()));
                         System.out.println(vendedor);
         
                         String msg;
@@ -213,12 +195,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                         
                         } else {
                             JOptionPane.showMessageDialog(this, "Erro ao realizar as alteraçõs", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                        }
-                        
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Preencha o campo de senha!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                        jtfSenha.requestFocus();
-                    }
+                        }                      
                         
                 } else {
                     JOptionPane.showMessageDialog(this, "Preencha o campo de telefone!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
@@ -288,7 +265,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -297,7 +273,6 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
     private javax.swing.JButton jbtVoltar;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfSenha;
     private javax.swing.JTextField jtfTelefone;
     // End of variables declaration//GEN-END:variables
 }
