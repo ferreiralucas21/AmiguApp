@@ -1,9 +1,15 @@
 package br.com.amiguapp;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +43,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
         holder.tvNomeProduto.setText(meuProduto.getNome());
         holder.tvPrecoProduto.setText(String.valueOf(meuProduto.getPreco()));
         holder.tvLojaNome.setText(vendedor(meuProduto));
+        Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(),0, meuProduto.getImagem().length);
+        holder.imgViewProduto.setImageBitmap(bmp);
 
         // clique no item do cliente
         if (produtoOnClickListener != null) {
@@ -68,12 +76,14 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvNomeProduto, tvPrecoProduto, tvLojaNome;
+        ImageView imgViewProduto;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvNomeProduto = itemView.findViewById(R.id.tvProdutoNome);
             tvPrecoProduto = itemView.findViewById(R.id.tvProdutoPreco);
             tvLojaNome = itemView.findViewById(R.id.tvProdutoLojaNome);
+            imgViewProduto = itemView.findViewById(R.id.imageViewProduto);
         }
     }
 

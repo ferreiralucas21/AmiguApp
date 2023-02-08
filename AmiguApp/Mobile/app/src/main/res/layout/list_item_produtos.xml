@@ -20,7 +20,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardProdutoImagem"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         app:cardCornerRadius="8dp"
@@ -34,8 +34,9 @@
 
             <ImageView
                 android:id="@+id/imageViewProduto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />

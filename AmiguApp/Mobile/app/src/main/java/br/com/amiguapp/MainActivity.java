@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import modelDominio.Vendedor;
 public class MainActivity extends AppCompatActivity {
 
     SearchView searchView;
+    ImageView appbarIconPerfil;
     RecyclerView recyclerListaItens;
     ProdutoAdapter produtoAdapter;
     InformacoesApp informacoesApp;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         searchView = findViewById(R.id.appbarSearchView);
+        appbarIconPerfil = findViewById(R.id.appbarIconPerfil);
         recyclerListaItens = findViewById(R.id.recyclerListaItens);
         informacoesApp = (InformacoesApp) getApplicationContext();
 
@@ -72,7 +77,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClickProduto(View view, int position) {
             Produto meuProduto = listaProdutos.get(position);
-            Toast.makeText(informacoesApp, "Produto clicado", Toast.LENGTH_SHORT).show();
+            Intent it = new Intent(MainActivity.this, ProdutoDetalhadoActivity.class);
+            it.putExtra("produtoClicado", meuProduto);
+            it.putExtra("listaVendedores",listaVendedores);
+            startActivity(it);
         }
     };
 }

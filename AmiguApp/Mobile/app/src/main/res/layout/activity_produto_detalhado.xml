@@ -23,57 +23,49 @@
                 android:id="@+id/appbarIconSeta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/appbarSearchView"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/appbarSearchView"
                 style="@style/SearchView"
-                android:layout_width="250dp"
+                android:layout_width="280dp"
                 android:layout_height="30dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:iconifiedByDefault="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appbarIconCarrinho"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/appbarIconSeta"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 app:queryHint="Pesquisar">
 
             </androidx.appcompat.widget.SearchView>
-
-
-            <ImageView
-                android:id="@+id/appbarIconCarrinho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appbarIconPerfil"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/appbarSearchView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 
             <ImageView
                 android:id="@+id/appbarIconPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/appbarIconCarrinho"
+                app:layout_constraintEnd_toStartOf="@id/appbarIconHome"
+                app:layout_constraintStart_toEndOf="@id/appbarSearchView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5"
                 app:srcCompat="@drawable/ic_baseline_person_24" />
+
+            <ImageView
+                android:id="@+id/appbarIconHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/appbarIconPerfil"
+                app:layout_constraintTop_toTopOf="@id/appbarIconPerfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_baseline_home_24"
+                android:layout_marginEnd="8dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -101,7 +93,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/produtoCardView"
                 android:layout_width="230dp"
-                android:layout_height="1dp"
+                android:layout_height="230dp"
                 android:layout_marginTop="5dp"
                 android:elevation="10dp"
                 app:cardCornerRadius="10dp"
@@ -117,6 +109,7 @@
                         android:id="@+id/imgProdutoDetalhado"
                         android:layout_width="230dp"
                         android:layout_height="230dp"
+                        android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -291,7 +284,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvProdutoDetalhadoEndereco"
+                        android:id="@+id/tvProdutoDetalhadoRua"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -362,6 +355,7 @@
                         tools:text="Número do cep" />
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/bAlterar"
                         style="@style/ButtonAlterar"
                         android:layout_width="100dp"
                         android:layout_height="25dp"
@@ -414,11 +408,11 @@
                 style="@style/Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:text="Fazer pedido"
-                app:layout_constraintTop_toBottomOf="@id/rgPagamento"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="30dp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rgPagamento" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         etLoginSenha = findViewById(R.id.etLoginSenha);
         bLoginEntrar = findViewById(R.id.bLoginEntrar);
         bLoginCadastrar = findViewById(R.id.bLoginCadastrar);
-
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         bLoginCadastrar.setOnClickListener(new View.OnClickListener() {

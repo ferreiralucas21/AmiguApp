@@ -76,8 +76,7 @@ CREATE TABLE IF NOT EXISTS `Vendedor` (
   `nome` VARCHAR(60) NULL,
   `email` VARCHAR(100) NULL,
   `telefone` VARCHAR(20) NULL,
-  `senha` VARCHAR(20) NULL,
-  `imagem` LONGBLOB NULL,
+  `senha` VARCHAR(50) NULL,
   PRIMARY KEY (`idVendedor`))
 ENGINE = InnoDB;
 

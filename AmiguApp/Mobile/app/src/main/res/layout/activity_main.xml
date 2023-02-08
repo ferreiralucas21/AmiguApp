@@ -23,6 +23,8 @@
                 android:id="@+id/appbarIconSeta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/appbarSearchView"
                 app:layout_constraintHorizontal_chainStyle="spread"
@@ -33,29 +35,18 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/appbarSearchView"
                 style="@style/SearchView"
-                android:layout_width="250dp"
+                android:layout_width="280dp"
                 android:layout_height="30dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:iconifiedByDefault="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appbarIconCarrinho"
                 app:layout_constraintStart_toEndOf="@+id/appbarIconSeta"
                 app:layout_constraintTop_toTopOf="parent"
                 app:queryHint="Pesquisar">
 
             </androidx.appcompat.widget.SearchView>
-
-
-            <ImageView
-                android:id="@+id/appbarIconCarrinho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appbarIconPerfil"
-                app:layout_constraintStart_toEndOf="@+id/appbarSearchView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 
             <ImageView
                 android:id="@+id/appbarIconPerfil"
@@ -63,7 +54,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/appbarIconCarrinho"
+                app:layout_constraintStart_toEndOf="@id/appbarSearchView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_person_24" />
 
@@ -76,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appbarCardView"
