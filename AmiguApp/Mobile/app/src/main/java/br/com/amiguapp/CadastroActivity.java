@@ -89,7 +89,7 @@ public class CadastroActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                                            cliente = conexaoSocket.inserirCliente(cliente); //para aqui
+                                            msgRecebida = conexaoSocket.inserirCliente(cliente); //para aqui
                                             Log.i("novoCliente", "novo cliente: " + cliente.getNome());
 
                                             if(cliente != null){

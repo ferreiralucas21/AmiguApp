@@ -54,21 +54,21 @@ public class ConexaoSocketController {
         return clienteLogado;
     }
 
-    public Cliente inserirCliente(Cliente cliente) {
-        Cliente clienteInserido = null;
+    public String inserirCliente(Cliente cliente) {
+        String msgRecebida = "";
         try {
             informacoesApp.out.writeObject("ClienteInserir");
-            String msgRecebida = (String) informacoesApp.in.readObject();
+            msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("ok")) {
                 informacoesApp.out.writeObject(cliente);
-                clienteInserido = (Cliente) informacoesApp.in.readObject();
+                msgRecebida = (String) informacoesApp.in.readObject();
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (ClassNotFoundException classe) {
             classe.printStackTrace();
         }
-        return clienteInserido;
+        return msgRecebida;
     }
 
     public String enviaRecebeString(String msgEnviar) {
