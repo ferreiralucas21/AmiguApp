@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="30dp"
-    android:layout_marginStart="30dp"
-    android:layout_marginBottom="30dp">
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="25dp"
+    android:layout_marginStart="25dp">
 
     <TextView
         android:id="@+id/tvProdutoLojaNome"
@@ -47,15 +48,18 @@
 
     <TextView
         android:id="@+id/tvProdutoNome"
+        android:maxWidth="120dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:textColor="@color/cinza_escuro"
         android:textSize="14dp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/cardProdutoImagem"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/cardProdutoImagem"
         app:layout_constraintTop_toBottomOf="@id/cardProdutoImagem"
-        tools:text="Nome do produto" />
+        tools:text="Pelúcia de Dinossauro" />
 
     <TextView
         android:id="@+id/tvProdutoCifrao"

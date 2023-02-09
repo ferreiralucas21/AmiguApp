@@ -2,7 +2,6 @@ package br.com.amiguapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -25,6 +25,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
     TextView tvProdutoDetalhadoNomeLoja, tvProdutoDetalhadoNome, tvProdutoDetalhadoPreco, tvProdutoDetalhadoTamanho,
             tvProdutoDetalhadoDescricao, tvProdutoDetalhadoContato, tvProdutoDetalhadoRua, tvProdutoDetalhadoComplemento,
             tvProdutoDetalhadoBairo, tvProdutoDetalhadoCep;
+    EditText etProdutoDetalhadoQuantidade;
     Button bAlterar, bProdutoFazerPedido;
     ImageView imgProdutoDetalhado, appbarIconSeta, appbarIconHome;
     RadioButton rbPagamentoPix, rbPagamentoCartao;
@@ -52,6 +53,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         tvProdutoDetalhadoComplemento = findViewById(R.id.tvProdutoDetalhadoComplemento);
         tvProdutoDetalhadoBairo = findViewById(R.id.tvProdutoDetalhadoBairo);
         tvProdutoDetalhadoCep = findViewById(R.id.tvProdutoDetalhadoCep);
+        etProdutoDetalhadoQuantidade = findViewById(R.id.etProdutoDetalhadoQuantidade);
         bProdutoFazerPedido = findViewById(R.id.bProdutoFazerPedido);
         bAlterar = findViewById(R.id.bAlterar);
         imgProdutoDetalhado = findViewById(R.id.imgProdutoDetalhado);
@@ -77,30 +79,21 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        if (intent.hasExtra("produtoClicado") &&(intent.hasExtra("listaVendedores"))) {
+        if (intent.hasExtra("produtoClicado") &&(intent.hasExtra("vendedorDoProduto"))) {
             final Produto meuProduto = (Produto) intent.getSerializableExtra("produtoClicado");
-            listaVendedores = (ArrayList<Vendedor>) intent.getSerializableExtra("listaVendedores");
-            Log.i("produtoClique", "Nome do produto: "+meuProduto.getNome());
-            tvProdutoDetalhadoNomeLoja.setText(vendedor(meuProduto));
+            final Vendedor meuVendedor = (Vendedor) intent.getSerializableExtra("vendedorDoProduto");
+
+            tvProdutoDetalhadoNomeLoja.setText(meuVendedor.getNome());
             tvProdutoDetalhadoNome.setText(meuProduto.getNome());
             tvProdutoDetalhadoPreco.setText(String.valueOf(meuProduto.getPreco()));
             tvProdutoDetalhadoTamanho.setText(String.valueOf(meuProduto.getTamanho()));
             tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
+            tvProdutoDetalhadoContato.setText(meuVendedor.getTelefone());
             Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(),0, meuProduto.getImagem().length);
             imgProdutoDetalhado.setImageBitmap(bmp);
 
+
         }
 
-    }
-
-    private String vendedor(Produto meuProduto) {
-        String vendedorDoProduto = null;
-        for (int i = 0; i <= listaVendedores.size(); i++) {
-            if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
-                vendedorDoProduto = listaVendedores.get(i).getNome();
-                break;
-            }
-        }
-        return vendedorDoProduto;
     }
 }

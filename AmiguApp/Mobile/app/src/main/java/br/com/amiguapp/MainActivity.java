@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            System.out.println(listaVendedores.size());
 
                             produtoAdapter = new ProdutoAdapter(listaProdutos, trataCliqueItem, listaVendedores);
                             recyclerListaItens.setLayoutManager(new GridLayoutManager(context, 2));
@@ -77,9 +76,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClickProduto(View view, int position) {
             Produto meuProduto = listaProdutos.get(position);
+            Vendedor meuVendedor = null;
+            for (int i = 0; i <= listaVendedores.size(); i++) {
+                if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
+                    meuVendedor = listaVendedores.get(i);
+                    break;
+                }
+            }
             Intent it = new Intent(MainActivity.this, ProdutoDetalhadoActivity.class);
             it.putExtra("produtoClicado", meuProduto);
-            it.putExtra("listaVendedores",listaVendedores);
+            it.putExtra("vendedorDoProduto",meuVendedor);
             startActivity(it);
         }
     };

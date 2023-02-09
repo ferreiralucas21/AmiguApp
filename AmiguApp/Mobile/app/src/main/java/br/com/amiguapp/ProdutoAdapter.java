@@ -40,10 +40,20 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final ProdutoAdapter.MyViewHolder holder, final int position) {
         Produto meuProduto = listaProdutos.get(position);
+
+        Vendedor meuVendedor = null;
+        for (int i = 0; i <= listaVendedores.size(); i++) {
+            if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
+                meuVendedor = listaVendedores.get(i);
+                break;
+            }
+        }
+
         holder.tvNomeProduto.setText(meuProduto.getNome());
         holder.tvPrecoProduto.setText(String.valueOf(meuProduto.getPreco()));
-        holder.tvLojaNome.setText(vendedor(meuProduto));
-        Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(),0, meuProduto.getImagem().length);
+        holder.tvLojaNome.setText(meuVendedor.getNome());
+//        holder.tvLojaNome.setText(vendedor(meuProduto));
+        Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
         holder.imgViewProduto.setImageBitmap(bmp);
 
         // clique no item do cliente
@@ -57,16 +67,16 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
         }
     }
 
-    private String vendedor(Produto meuProduto) {
-        String vendedorDoProduto = null;
-        for (int i = 0; i <= listaVendedores.size(); i++) {
-            if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
-                vendedorDoProduto = listaVendedores.get(i).getNome();
-                break;
-            }
-        }
-        return vendedorDoProduto;
-    }
+//    private String vendedor(Produto meuProduto) {
+//        String vendedorDoProduto = null;
+//        for (int i = 0; i <= listaVendedores.size(); i++) {
+//            if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
+//                vendedorDoProduto = listaVendedores.get(i).getNome();
+//                break;
+//            }
+//        }
+//        return vendedorDoProduto;
+//    }
 
     @Override
     public int getItemCount() {
