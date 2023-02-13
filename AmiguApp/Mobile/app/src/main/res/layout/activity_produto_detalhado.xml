@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/appbarCardView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +73,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appbarCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,8 +113,10 @@
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
                         tools:srcCompat="@tools:sample/avatars" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -408,6 +411,7 @@
                     android:id="@+id/rbPagamentoPix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="20dp"
                     android:text="Pix"
                     android:textColor="@color/cinza_escuro" />
@@ -417,6 +421,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
                     android:text="Cartão"
                     android:textColor="@color/cinza_escuro" />
             </RadioGroup>
@@ -428,8 +433,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Fazer pedido"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rgPagamento" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -84,13 +84,16 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             final Vendedor meuVendedor = (Vendedor) intent.getSerializableExtra("vendedorDoProduto");
 
             tvProdutoDetalhadoNomeLoja.setText(meuVendedor.getNome());
+            Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(),0, meuProduto.getImagem().length);
+            imgProdutoDetalhado.setImageBitmap(bmp);
             tvProdutoDetalhadoNome.setText(meuProduto.getNome());
             tvProdutoDetalhadoPreco.setText(String.valueOf(meuProduto.getPreco()));
             tvProdutoDetalhadoTamanho.setText(String.valueOf(meuProduto.getTamanho()));
             tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
             tvProdutoDetalhadoContato.setText(meuVendedor.getTelefone());
-            Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(),0, meuProduto.getImagem().length);
-            imgProdutoDetalhado.setImageBitmap(bmp);
+            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")){
+                etProdutoDetalhadoQuantidade.getText().toString();
+            }
 
 
         }

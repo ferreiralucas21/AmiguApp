@@ -56,7 +56,6 @@
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/cardProdutoImagem"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/cardProdutoImagem"
         app:layout_constraintTop_toBottomOf="@id/cardProdutoImagem"
         tools:text="Pelúcia de Dinossauro" />

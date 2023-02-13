@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPedidoImagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewPedido"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvPedidoNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/cinza_escuro"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/cardPedidoImagem"
+        app:layout_constraintTop_toTopOf="@id/cardPedidoImagem"
+        tools:text="Pelúcia de Dinossauro" />
+
+    <TextView
+        android:id="@+id/cifrao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="R$ "
+        android:textColor="@color/cinza_escuro"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
+        app:layout_constraintTop_toBottomOf="@id/tvPedidoNome" />
+
+    <TextView
+        android:id="@+id/tvPedidoPreco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cinza_escuro"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/cifrao"
+        app:layout_constraintTop_toTopOf="@id/cifrao"
+        tools:text="0,00" />
+
+    <TextView
+        android:id="@+id/situacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Situação: "
+        android:textColor="@color/cinza_escuro"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
+        app:layout_constraintTop_toBottomOf="@id/cifrao" />
+
+    <TextView
+        android:id="@+id/tvPedidoSituacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cinza_escuro"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/situacao"
+        app:layout_constraintTop_toTopOf="@id/situacao"
+        tools:text="em processamento/enviado" />
+
+    <TextView
+        android:id="@+id/lojaPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="De: "
+        android:textColor="@color/rosa_escuro"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/cardPedidoImagem"
+        app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
+        app:layout_constraintTop_toBottomOf="@id/tvPedidoSituacao" />
+
+    <TextView
+        android:id="@+id/tvPedidoNomeLoja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/rosa_escuro"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/lojaPedido"
+        app:layout_constraintStart_toEndOf="@id/lojaPedido"
+        tools:text="nome da loja" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
