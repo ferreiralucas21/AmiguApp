@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClickProduto(View view, int position) {
             Produto meuProduto = listaProdutos.get(position);
             Vendedor meuVendedor = null;
+            informacoesApp.setProdutoSelecionado(meuProduto);
             for (int i = 0; i <= listaVendedores.size(); i++) {
                 if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
                     meuVendedor = listaVendedores.get(i);

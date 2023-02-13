@@ -83,6 +83,10 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
+    public Cliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     public int getIdCliente() {
         return idCliente;
     }

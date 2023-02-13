@@ -12,8 +12,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import model.EncomendaDAO;
 import model.ProdutoDAO;
 import model.VendedorDAO;
+import modelDominio.Encomenda;
 import modelDominio.Produto;
 import modelDominio.Vendedor;
 
@@ -161,6 +163,17 @@ public class TrataClienteController extends Thread {
                         out.writeObject("ok");
                     } else {
                         out.writeObject("nok");
+                    }
+                    
+                } else if (comando.equalsIgnoreCase("EncomendaInserir")) { //Adicionar encomenda para o mobile
+                    out.writeObject("ok");
+                    Encomenda encomenda = (Encomenda) in.readObject();
+                    
+                    EncomendaDAO dao = new EncomendaDAO();
+                    if(dao.inserirEncomenda(encomenda)== -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");                       
                     }
                                                     
                 } else {

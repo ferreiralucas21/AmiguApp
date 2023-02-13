@@ -31,7 +31,13 @@ public class Encomenda implements Serializable {
         this.fkIdCliente = fkIdCliente;
         this.produto = produto;
         this.cliente = cliente;
-    }    
+    } 
+    
+    public Encomenda(int quantidade, Produto produto, Cliente cliente) {
+        this.quantidade = quantidade;
+        this.produto = produto;
+        this.cliente = cliente;
+    }     
 
     public int getIdEncomenda() {
         return idEncomenda;

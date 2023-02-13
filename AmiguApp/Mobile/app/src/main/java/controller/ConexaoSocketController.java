@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import br.com.amiguapp.InformacoesApp;
 import modelDominio.Cliente;
+import modelDominio.Encomenda;
 import modelDominio.Produto;
 import modelDominio.Vendedor;
 
@@ -119,5 +120,22 @@ public class ConexaoSocketController {
             listaVendedores = null;
         }
         return listaVendedores;
+    }
+
+    public String inserirEncomenda(Encomenda encomenda) {
+        String msgRecebida = "";
+        try {
+            informacoesApp.out.writeObject("EncomendaInserir");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("ok")) {
+                informacoesApp.out.writeObject(encomenda);
+                msgRecebida = (String) informacoesApp.in.readObject();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+        }
+        return msgRecebida;
     }
 }

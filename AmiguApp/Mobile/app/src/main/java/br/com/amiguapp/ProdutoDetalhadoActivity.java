@@ -15,9 +15,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import controller.ConexaoSocketController;
+import modelDominio.Cliente;
+import modelDominio.Encomenda;
 import modelDominio.Produto;
 import modelDominio.Vendedor;
 
@@ -32,6 +36,9 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
 
     SearchView searchView;
     InformacoesApp informacoesApp;
+    String msgRecebida;
+    Encomenda encomenda;
+    int fkIdProduto, fkIdCliente;
     ArrayList<Produto> listaProdutos;
     ArrayList<Vendedor> listaVendedores;
     Context context;
@@ -94,9 +101,49 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")){
                 etProdutoDetalhadoQuantidade.getText().toString();
             }
-
-
         }
+
+        informacoesApp = (InformacoesApp) getApplicationContext();
+
+        bProdutoFazerPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!etProdutoDetalhadoQuantidade.getText().toString().equals("")){
+
+                    int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
+                    int fkIdProduto = informacoesApp.getProdutoSelecionado().getIdProduto();
+                    int fkIdCliente = informacoesApp.getClienteLogado().getIdCliente();
+                    System.out.println("ID do cliente logado "+ fkIdCliente);
+
+                    encomenda = new Encomenda(quantidade,new Produto(fkIdProduto),new Cliente(fkIdCliente));
+
+                    Thread thread1 = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+                            msgRecebida = conexaoSocket.inserirEncomenda(encomenda);
+
+                            if(encomenda != null){
+                                Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
+                                startActivity(it);
+                            } else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível realizar o pedido!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    thread1.start();
+
+                } else {
+                    etProdutoDetalhadoQuantidade.setError("Informe a quantidade");
+                    etProdutoDetalhadoQuantidade.requestFocus();
+                }
+            }
+        });
 
     }
 }

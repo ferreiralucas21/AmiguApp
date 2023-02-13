@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import modelDominio.Cliente;
+import modelDominio.Produto;
 
 public class InformacoesApp extends Application {
     public Socket socket;
@@ -15,6 +16,7 @@ public class InformacoesApp extends Application {
 
     private Cliente clienteLogado;
     private Cliente clienteInserido;
+    private Produto produtoSelecionado;
 
     @Override
     public void onCreate() {
@@ -35,5 +37,13 @@ public class InformacoesApp extends Application {
 
     public void setClienteLogado(Cliente clienteLogado) {
         this.clienteLogado = clienteLogado;
+    }
+
+    public Produto getProdutoSelecionado() {
+        return produtoSelecionado;
+    }
+
+    public void setProdutoSelecionado(Produto produtoSelecionado) {
+        this.produtoSelecionado = produtoSelecionado;
     }
 }
