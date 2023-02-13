@@ -14,8 +14,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
     /**
      * Creates new form FormEncomendaDatalhada
      */
-    public FormEncomendaDatalhada(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public FormEncomendaDatalhada() {
         initComponents();
     }
 
@@ -132,9 +131,9 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -505,14 +504,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FormEncomendaDatalhada dialog = new FormEncomendaDatalhada(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new FormEncomendaDatalhada().setVisible(true);
             }
         });
     }

@@ -14,8 +14,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
     /**
      * Creates new form FormConsultaEncomendas
      */
-    public FormConsultaEncomendas(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public FormConsultaEncomendas() {
         initComponents();
     }
 
@@ -124,7 +123,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
                         .addGap(23, 23, 23)
                         .addComponent(jbtVoltar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap())
@@ -256,14 +255,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FormConsultaEncomendas dialog = new FormConsultaEncomendas(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new FormConsultaEncomendas().setVisible(true);
             }
         });
     }

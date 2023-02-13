@@ -81,7 +81,7 @@ public class ProdutoDAO {
             // Percorrendo o resultado - res
             while (res.next()) {
                 // criando o objeto de marca pegando dados do res.
-                Produto rc = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"));
+                Produto rc = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor"));
                 // adicionando na lista auxiliar
                 listprodutos.add(rc);
             }
