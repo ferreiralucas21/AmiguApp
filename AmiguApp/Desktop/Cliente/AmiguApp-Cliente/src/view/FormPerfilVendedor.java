@@ -124,7 +124,7 @@ public class FormPerfilVendedor extends javax.swing.JDialog {
                 .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap())

@@ -175,6 +175,11 @@ public class TrataClienteController extends Thread {
                     } else {
                         out.writeObject("nok");                       
                     }
+                    
+                } else if (comando.equalsIgnoreCase("EncomendaLista")) { 
+                    out.writeObject("ok");
+                    EncomendaDAO dao = new EncomendaDAO();
+                    out.writeObject(dao.getListaEncomendas());
                                                     
                 } else {
                     //Comando inválido e não reconhecido!

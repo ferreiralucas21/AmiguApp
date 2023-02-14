@@ -176,8 +176,9 @@ public class FormPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtProdutosActionPerformed
 
     private void jbtEncomendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEncomendasActionPerformed
-        //FormConsultaEncomendas formConsultaEncomendas = new FormConsultaEncomendas();
-        //formConsultaEncomendas.setVisible(true);
+        FormConsultaEncomendas formConsultaEncomendas = new FormConsultaEncomendas();
+        formConsultaEncomendas.setVisible(true);
+        formConsultaEncomendas.setVisible(true);
     }//GEN-LAST:event_jbtEncomendasActionPerformed
 
     private void jbtPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPerfilActionPerformed

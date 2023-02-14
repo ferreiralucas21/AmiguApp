@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelDominio;
 
 import java.io.Serializable;
 
-/**
- *
- * @author ADMIN
- */
+
 public class Produto implements Serializable {
 
     private static final long serialVersionID = 123456789L;
@@ -139,15 +131,9 @@ public class Produto implements Serializable {
         this.fkIdVendedor = fkIdVendedor;
     }
 
-
-
-
-
     @Override
     public String toString() {
         return "Produto{" + "serialVersionID=" + serialVersionID + ", idProduto=" + idProduto + ", nome=" + nome + ", preco=" + preco + ", tamanho=" + tamanho + ", descricao=" + descricao + ", imagem=" + imagem + '}';
     }
-
-
 
 }

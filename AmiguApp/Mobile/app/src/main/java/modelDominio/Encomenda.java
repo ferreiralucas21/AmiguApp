@@ -30,6 +30,10 @@ public class Encomenda implements Serializable {
         this.cliente = cliente;
     }
 
+    public Encomenda(Produto produto) {
+        this.produto = produto;
+    }
+
     public int getIdEncomenda() {
         return idEncomenda;
     }

@@ -8,6 +8,7 @@ package controller;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import modelDominio.Encomenda;
 import modelDominio.Produto;
 import modelDominio.Vendedor;
 
@@ -23,6 +24,7 @@ public class ConexaoController {
     
     public Vendedor vendedor;
     public Produto produto;
+    public Encomenda encomenda;
     
     public ConexaoController(ObjectInputStream in, ObjectOutputStream out, int idUnico) {
         this.in = in;
@@ -176,6 +178,23 @@ public class ConexaoController {
                 return null;
             }          
         } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public ArrayList<Encomenda> encomendaLista() {
+        String msg;
+        try {
+            out.writeObject("EncomendaLista");          
+            msg = (String) in.readObject();
+            if (msg.equals("ok")) {
+                return (ArrayList<Encomenda>) in.readObject();
+            } else {
+                System.out.println("NULO AQUIIIIIIIIIIIIII");
+                return null;
+            }          
+        } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
     }

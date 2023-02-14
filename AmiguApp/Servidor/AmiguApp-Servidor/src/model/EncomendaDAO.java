@@ -52,36 +52,64 @@ public class EncomendaDAO {
         }
     }
     
-    /*public ArrayList<Encomenda> getListaEncomendas() {
+    public ArrayList<Encomenda> getListaEncomendas() {
         Statement stmt = null; // usado para rodar SQL
-        ArrayList<Encomenda> listaEncomendas = new ArrayList<Encomenda>();
+        ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
 
         try {
-            // cria o objeto para rodar o SQL
+
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery(" select encomenda.*, produto.idProduto from encomenda "+
-                                              " inner join produto on (produto.idProduto = encomenda.fkIdProduto) "+
-                                              " order by bike.codbike ");
+            ResultSet res = stmt.executeQuery(" select produto.nome,produto.preco,produto.tamanho,produto.descricao from produto "+
+                                             " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) ");
 
             // Pebkorrendo o resultado - res
             while (res.next()) {
                 // criando o objeto de gastomensal pegando dados do res.
-                Bike bk = new Bike(res.getInt("codbike"),
-                        res.getString("modelo"),
-                        new Marca(res.getInt("codmarca"),res.getString("nomemarca")),
-                        res.getFloat("preco"),
-                        res.getBytes("imagem"),
-                        res.getDate("datalancamento"));
-                // adicionando na lista auxiliar
-                listaBikes.add(bk);
+                Encomenda encomenda = new Encomenda(new Produto(res.getString("nome"),res.getFloat("preco"),res.getFloat("tamanho"),res.getString("descricao")));              
+                listaEncomendas.add(encomenda);
+                System.out.println(listaEncomendas);                
             }
             res.close();// fechando o resultado
             stmt.close();// fechando statment
             con.close(); // fechando conexão com o banco
-            return listaBikes; // retornando a lista de gastomensals
+            return listaEncomendas; // retornando a lista de gastomensals
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getErrorCode() + " - " + e.getMessage());
+            return null;
+        }
+    }
+    
+    
+    /*public Encomenda detalharEncomenda(int codigo) {
+        PreparedStatement stmt = null; //usado para rodar SQL
+        Encomenda encomendaSelecionada = null;
+        
+        try {
+            //passando a string SQL que faz o SELECT
+            String sql = " select produto.nome, produto.preco, produto.tamanho, cliente.nome, cliente.cpf, cliente.telefone, ";
+            stmt = con.prepareStatement(sql);                     
+            //substituir os ? do script SQL
+            stmt.setInt(1, codigo);
+         
+            
+            //Executando o select
+            ResultSet res = stmt.executeQuery();
+            
+            //Percorrendo o resultado - res
+            while (res.next()) {
+                vendedorSelecionado = new Vendedor(res.getInt("idvendedor"),
+                                  res.getString("nome"),
+                                  res.getString("email"),
+                                  res.getString("telefone"));
+            }
+            res.close();//fechando o resultado
+            stmt.close();//fechando o statement
+            con.close();//fechando a conexão com o banco
+            return vendedorSelecionado;//retornando a lista de
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
         }
     }*/

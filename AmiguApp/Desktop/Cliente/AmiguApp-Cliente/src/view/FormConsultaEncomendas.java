@@ -5,17 +5,19 @@
  */
 package view;
 
+import view.tableModel.EncomendaTableModel;
+import modelDominio.Encomenda;
 /**
  *
  * @author ADMIN
  */
 public class FormConsultaEncomendas extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FormConsultaEncomendas
-     */
+    private EncomendaTableModel encomendaModel;
+    
     public FormConsultaEncomendas() {
         initComponents();
+        atualizaTabela();
     }
 
     /**
@@ -40,7 +42,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
         jrbProcessamento = new javax.swing.JRadioButton();
         jrbFinalizado = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtEncomendas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -143,8 +145,8 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
         jrbFinalizado.setFont(new java.awt.Font("Source Sans Pro Light", 0, 12)); // NOI18N
         jrbFinalizado.setText("Finalizado");
 
-        jTable1.setBackground(new java.awt.Color(250, 218, 218));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtEncomendas.setBackground(new java.awt.Color(250, 218, 218));
+        jtEncomendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -155,7 +157,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtEncomendas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -207,6 +209,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -225,6 +228,16 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
         formPerfilVendedor.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void atualizaTabela() {
+        //if (jcbFiltro.getSelectedIndex() == 0) {
+            encomendaModel = new EncomendaTableModel(AmiguAppCliente.ccont.encomendaLista());
+        //} else {
+       //     encomendaModel = new EncomendaTableModel(AmiguAppCliente.ccont.encomendaLista());
+       // }
+        
+        jtEncomendas.setModel(encomendaModel);              
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -269,11 +282,11 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtVoltar;
     private javax.swing.JComboBox<String> jcbFiltro;
     private javax.swing.JRadioButton jrbFinalizado;
     private javax.swing.JRadioButton jrbProcessamento;
+    private javax.swing.JTable jtEncomendas;
     private javax.swing.JTextField jtfFiltro;
     // End of variables declaration//GEN-END:variables
 }

@@ -74,15 +74,5 @@ public class ProdutoTableModel extends AbstractTableModel {
     public Produto getProduto(int row) {
         return listaProdutos.get(row);
     }
-    
-    /*public Object meusProdutos(Produto produto) {
-        int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-        int codProduto = AmiguAppCliente.ccont.produto.getFkIdVendedor();
-        
-        while (codVendedor == codProduto){
-            
-        } return listaProdutos;
-    
-        }*/
-    
+           
 }
