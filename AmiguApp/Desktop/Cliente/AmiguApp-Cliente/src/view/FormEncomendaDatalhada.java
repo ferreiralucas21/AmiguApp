@@ -5,17 +5,39 @@
  */
 package view;
 
+import modelDominio.Encomenda;
+import view.util.Imagem;
+
 /**
  *
  * @author ADMIN
  */
 public class FormEncomendaDatalhada extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FormEncomendaDatalhada
-     */
-    public FormEncomendaDatalhada() {
+    private Encomenda encomenda = null;
+    private Imagem imagem = null;
+    
+    public FormEncomendaDatalhada(Encomenda encomenda) {
+        this.encomenda = encomenda;
         initComponents();
+        atualizaCampos();
+    }
+    
+    public void atualizaCampos() {
+        
+        encomenda = AmiguAppCliente.ccont.detalharEncomenda();
+        jlNomeProduto.setText(encomenda.getProduto().getNome());
+        jlPreco.setText(Float.toString(encomenda.getProduto().getPreco()));
+        jlTamanho.setText(Float.toString(encomenda.getProduto().getTamanho()));
+        jlNomeCliente.setText(encomenda.getCliente().getNome());
+        jlCpf.setText(encomenda.getCliente().getCpf());
+        jlTelefone.setText(encomenda.getCliente().getTelefone());
+        jlEmail.setText(encomenda.getCliente().getEmail());
+        jlQuantidade.setText(Integer.toString(encomenda.getQuantidade()));
+        if (encomenda.getProduto().getImagem() != null) {
+            imagem = new Imagem(encomenda.getProduto().getImagem());
+            jlImagem.setIcon(imagem.getImageIcon());
+        }
     }
 
     /**
@@ -456,6 +478,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -504,7 +527,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormEncomendaDatalhada().setVisible(true);
+                new FormEncomendaDatalhada(null).setVisible(true);
             }
         });
     }

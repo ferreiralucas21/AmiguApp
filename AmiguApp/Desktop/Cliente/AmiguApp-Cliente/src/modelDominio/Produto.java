@@ -73,7 +73,14 @@ public class Produto implements Serializable {
         this.preco = preco;
         this.tamanho = tamanho;
         this.descricao = descricao;
-    }    
+    }
+
+    public Produto(String nome, float preco, float tamanho, byte[] imagem) { //usado na encomenda detalhada
+        this.nome = nome;
+        this.preco = preco;
+        this.tamanho = tamanho;
+        this.imagem = imagem;
+    }
     
     public int getIdProduto() {
         return idProduto;

@@ -25,10 +25,17 @@ public class Encomenda implements Serializable {
         this.cliente = cliente;
     }
     
-    public Encomenda(int quantidade, Produto produto, Cliente cliente) {
-        this.quantidade = quantidade;
+    public Encomenda(Produto produto, Cliente cliente, int quantidade) {
         this.produto = produto;
         this.cliente = cliente;
+        this.quantidade = quantidade;
+    }
+    
+    public Encomenda(int idEncomenda, Produto produto, Cliente cliente, int quantidade) {
+        this.idEncomenda = idEncomenda;
+        this.produto = produto;
+        this.cliente = cliente;
+        this.quantidade = quantidade;
     }
 
     public Encomenda(Produto produto) {

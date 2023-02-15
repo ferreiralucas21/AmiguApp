@@ -70,7 +70,7 @@ public class EncomendaTableModel extends AbstractTableModel{
     }
     
     //Método que retorna um objeto do produto a partir da linha que o usuário selecionou
-    public Encomenda getProduto(int row) {
+    public Encomenda getEncomenda(int row) {
         return listaEncomendas.get(row);
     }
 }

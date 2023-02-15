@@ -188,13 +188,28 @@ public class ConexaoController {
             out.writeObject("EncomendaLista");          
             msg = (String) in.readObject();
             if (msg.equals("ok")) {
+                out.writeObject(vendedor);
                 return (ArrayList<Encomenda>) in.readObject();
             } else {
-                System.out.println("NULO AQUIIIIIIIIIIIIII");
                 return null;
             }          
         } catch (Exception ex) {
             ex.printStackTrace();
+            return null;
+        }
+    }
+    
+    public Encomenda detalharEncomenda() {
+        String msg;
+        try {
+            out.writeObject("EncomendaDetalhada");          
+            msg = (String) in.readObject();
+            if (msg.equals("ok")) {  
+                return (Encomenda) in.readObject();
+            } else {
+                return null;
+            }          
+        } catch (Exception e) {
             return null;
         }
     }

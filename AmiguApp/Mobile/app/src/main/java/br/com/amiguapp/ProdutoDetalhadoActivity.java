@@ -115,7 +115,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
                     int fkIdCliente = informacoesApp.getClienteLogado().getIdCliente();
                     System.out.println("ID do cliente logado "+ fkIdCliente);
 
-                    encomenda = new Encomenda(quantidade,new Produto(fkIdProduto),new Cliente(fkIdCliente));
+                    encomenda = new Encomenda(new Produto(fkIdProduto),new Cliente(fkIdCliente),quantidade);
 
                     Thread thread1 = new Thread(new Runnable() {
                         @Override

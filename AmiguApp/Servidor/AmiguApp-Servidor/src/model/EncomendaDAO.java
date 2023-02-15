@@ -12,8 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import modelDominio.Cliente;
 import modelDominio.Encomenda;
 import modelDominio.Produto;
+import modelDominio.Vendedor;
 
 /**
  *
@@ -52,7 +54,7 @@ public class EncomendaDAO {
         }
     }
     
-    public ArrayList<Encomenda> getListaEncomendas() {
+    public ArrayList<Encomenda> getListaEncomendas(Vendedor vendedor) {
         Statement stmt = null; // usado para rodar SQL
         ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
 
@@ -61,7 +63,8 @@ public class EncomendaDAO {
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
             ResultSet res = stmt.executeQuery(" select produto.nome,produto.preco,produto.tamanho,produto.descricao from produto "+
-                                             " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) ");
+                                             " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
+                                             " where produto.fkIdVendedor = " + vendedor.getIdVendedor());
 
             // Pebkorrendo o resultado - res
             while (res.next()) {
@@ -82,35 +85,35 @@ public class EncomendaDAO {
     }
     
     
-    /*public Encomenda detalharEncomenda(int codigo) {
+    public Encomenda detalharEncomenda() {
         PreparedStatement stmt = null; //usado para rodar SQL
         Encomenda encomendaSelecionada = null;
         
         try {
-            //passando a string SQL que faz o SELECT
-            String sql = " select produto.nome, produto.preco, produto.tamanho, cliente.nome, cliente.cpf, cliente.telefone, ";
-            stmt = con.prepareStatement(sql);                     
-            //substituir os ? do script SQL
-            stmt.setInt(1, codigo);
-         
-            
+                                   
+            String sql = " select produto.nome, produto.preco, produto.tamanho, produto.imagem,"+
+                         " cliente.nome, cliente.cpf, cliente.telefone, cliente.email,"+
+                         " encomenda.idEncomenda, encomenda.quantidade from produto"+
+                         " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto)"+
+                         " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)";
+                                 
             //Executando o select
-            ResultSet res = stmt.executeQuery();
+            stmt = con.prepareStatement(sql);           
             
+            ResultSet res = stmt.executeQuery();
             //Percorrendo o resultado - res
             while (res.next()) {
-                vendedorSelecionado = new Vendedor(res.getInt("idvendedor"),
-                                  res.getString("nome"),
-                                  res.getString("email"),
-                                  res.getString("telefone"));
+                encomendaSelecionada = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getString("produto.nome"),res.getFloat("preco"),res.getFloat("tamanho"),res.getBytes("imagem")),
+                                                     new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),
+                                                     res.getInt("quantidade"));
             }
             res.close();//fechando o resultado
             stmt.close();//fechando o statement
             con.close();//fechando a conexão com o banco
-            return vendedorSelecionado;//retornando a lista de
+            return encomendaSelecionada;//retornando a lista de
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
         }
-    }*/
+    }
 }

@@ -157,6 +157,11 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtEncomendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtEncomendasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtEncomendas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -227,6 +232,14 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
         formPerfilVendedor.setModal(true);
         formPerfilVendedor.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jtEncomendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEncomendasMouseClicked
+        Encomenda encomenda = encomendaModel.getEncomenda(jtEncomendas.getSelectedRow());
+        FormEncomendaDatalhada formEncomendaDetalhada = new FormEncomendaDatalhada(encomenda);
+        formEncomendaDetalhada.setModal(true);
+        formEncomendaDetalhada.setVisible(true);
+        atualizaTabela();
+    }//GEN-LAST:event_jtEncomendasMouseClicked
 
     public void atualizaTabela() {
         //if (jcbFiltro.getSelectedIndex() == 0) {
