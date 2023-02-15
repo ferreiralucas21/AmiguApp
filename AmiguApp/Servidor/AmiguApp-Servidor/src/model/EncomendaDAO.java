@@ -62,7 +62,7 @@ public class EncomendaDAO {
 
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery(" select encomenda.idEncomenda,encomenda.quantidade,produto.*,cliente.nome,cliente.email,cliente.telefone,cliente.cpf from produto"+
+            ResultSet res = stmt.executeQuery(" select encomenda.idEncomenda,encomenda.quantidade,encomenda.status,produto.*,cliente.nome,cliente.email,cliente.telefone,cliente.cpf from produto"+
                                               " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
                                               " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)" +
                                               " where produto.fkIdVendedor = " + vendedor.getIdVendedor());
@@ -71,7 +71,7 @@ public class EncomendaDAO {
             while (res.next()) {
                 // criando o objeto de gastomensal pegando dados do res.
                 Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor")),
-                                      new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),res.getInt("quantidade"));              
+                                      new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),res.getInt("quantidade"),res.getString("status"));              
                 listaEncomendas.add(encomenda);
                 System.out.println(encomenda);                
             }
@@ -83,6 +83,41 @@ public class EncomendaDAO {
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + " - " + e.getMessage());
             return null;
+        }
+    }
+    
+    public int alterarEncomenda(Encomenda encomenda) {
+        PreparedStatement stmt = null;
+        try {
+            try {
+                //Desliga o autocommit
+                con.setAutoCommit(false);
+                //O ? será substituído pelo valor
+                String sql = "update encomenda set status = ? where idEncomenda = ?";
+                stmt = con.prepareStatement(sql);
+                //Substituir os ? do script SQL
+                stmt.setString(1, "Enviado");
+                stmt.setInt(2, encomenda.getIdEncomenda());
+
+                stmt.execute();
+                con.commit();
+                return -1; // <- indica que deu tudo certo                
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {// Isto será executado dando erro ou não
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException e) {
+                return e.getErrorCode();
+            }
         }
     }
   

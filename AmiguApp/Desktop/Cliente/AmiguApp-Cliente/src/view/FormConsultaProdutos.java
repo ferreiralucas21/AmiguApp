@@ -259,7 +259,7 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
         if (jcbFiltro.getSelectedIndex() == 0) {
             produtoModel = new ProdutoTableModel(AmiguAppCliente.ccont.produtoLista());
         } else {
-            produtoModel = new ProdutoTableModel(AmiguAppCliente.ccont.produtoListaNome(jtfFiltro.getText()));
+            produtoModel = new ProdutoTableModel(AmiguAppCliente.ccont.produtoListaNome(jtfFiltro.getText(),AmiguAppCliente.ccont.vendedor));
         }
         
         jtProdutos.setModel(produtoModel);              

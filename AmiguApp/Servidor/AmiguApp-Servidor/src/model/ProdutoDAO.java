@@ -68,7 +68,7 @@ public class ProdutoDAO {
     }
     
     // Método para consultar produtos pelo nome
-    public ArrayList<Produto> getListaProdutosNome(String nome) {
+    public ArrayList<Produto> getListaProdutosNome(String nome, Vendedor vendedor) {
         Statement stmt = null; // usado para rodar SQL
         ArrayList<Produto> listprodutos = new ArrayList<>();
 
@@ -76,7 +76,7 @@ public class ProdutoDAO {
             // cria o objeto para rodar o SQL
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery("select * from produto where nome like '%" + nome + "%'");
+            ResultSet res = stmt.executeQuery("select * from produto where nome like '%" + nome + "%' and fkIdVendedor = " + vendedor.getIdVendedor());
 
             // Percorrendo o resultado - res
             while (res.next()) {

@@ -121,8 +121,9 @@ public class TrataClienteController extends Thread {
                     out.writeObject("ok");
                     // Nessa consulta eu preciso esperar o nome para realizar um filtro
                     String nome = (String) in.readObject();
+                    Vendedor vendedor = (Vendedor) in.readObject();
                     ProdutoDAO dao = new ProdutoDAO();
-                    ArrayList<Produto> listaProdutos = dao.getListaProdutosNome(nome);
+                    ArrayList<Produto> listaProdutos = dao.getListaProdutosNome(nome,vendedor);
                     out.writeObject(listaProdutos);
                     
                 } else if (comando.equalsIgnoreCase("VendedorPerfil")) { //Atualização dos campos do pefil do vendedor 
@@ -180,7 +181,19 @@ public class TrataClienteController extends Thread {
                     out.writeObject("ok");
                     Vendedor vendedor = (Vendedor) in.readObject();
                     EncomendaDAO dao = new EncomendaDAO();
-                    out.writeObject(dao.getListaEncomendas(vendedor));                    
+                    out.writeObject(dao.getListaEncomendas(vendedor));
+
+                } else if (comando.equalsIgnoreCase("EncomendaAlterar")) {
+                    out.writeObject("ok");                   
+                    // Esperando o objeto Produtou vir do cliente
+                    Encomenda encomenda = (Encomenda) in.readObject();
+                    // Crinado um DAO para armazenar no bano
+                    EncomendaDAO dao = new EncomendaDAO();
+                    if (dao.alterarEncomenda(encomenda) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");
+                    }
                                                     
                 } else {
                     //Comando inválido e não reconhecido!

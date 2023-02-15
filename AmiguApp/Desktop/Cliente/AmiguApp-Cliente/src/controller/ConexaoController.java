@@ -122,12 +122,13 @@ public class ConexaoController {
         }
     }
     
-    public ArrayList<Produto> produtoListaNome(String nome) {
+    public ArrayList<Produto> produtoListaNome(String nome, Vendedor vendedor) {
         String msg;
         try {
             out.writeObject("ProdutoListaNome");
             msg = (String) in.readObject();
             out.writeObject(nome);
+            out.writeObject(vendedor);
             ArrayList<Produto> listaProdutos = (ArrayList<Produto>) in.readObject();
             return listaProdutos;
         } catch (Exception ex) {
@@ -197,6 +198,20 @@ public class ConexaoController {
             ex.printStackTrace();
             return null;
         }
-    }       
+    }
+    
+    public String alterarEncomenda(Encomenda encomenda){
+        String msg = "";
+        try {
+            out.writeObject("EncomendaAlterar");
+            msg = (String) in.readObject();
+            out.writeObject(encomenda);
+            msg = (String) in.readObject();
+            return msg;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
     
 }

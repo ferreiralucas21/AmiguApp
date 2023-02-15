@@ -31,11 +31,12 @@ public class Encomenda implements Serializable {
         this.quantidade = quantidade;
     }
     
-    public Encomenda(int idEncomenda, Produto produto, Cliente cliente, int quantidade) {
+    public Encomenda(int idEncomenda, Produto produto, Cliente cliente, int quantidade, String status) { //mudar manuelamente no mobile
         this.idEncomenda = idEncomenda;
         this.produto = produto;
         this.cliente = cliente;
         this.quantidade = quantidade;
+        this.status = status;
     }
     
     public Encomenda(int idEncomenda, Produto produto) { //construtor prcisa ser inserido no mobile

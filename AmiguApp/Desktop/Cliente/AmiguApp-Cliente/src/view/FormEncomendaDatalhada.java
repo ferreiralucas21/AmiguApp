@@ -5,6 +5,7 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import modelDominio.Encomenda;
 import view.util.Imagem;
 
@@ -46,7 +47,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jlTamanho = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonFinalizarPedido = new javax.swing.JButton();
         jlImagem = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -209,10 +210,15 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(226, 102, 63));
-        jButton1.setFont(new java.awt.Font("Source Sans Pro Light", 0, 12)); // NOI18N
-        jButton1.setText("FINALIZAR PEDIDO");
-        jButton1.setBorder(null);
+        jButtonFinalizarPedido.setBackground(new java.awt.Color(226, 102, 63));
+        jButtonFinalizarPedido.setFont(new java.awt.Font("Source Sans Pro Light", 0, 12)); // NOI18N
+        jButtonFinalizarPedido.setText("FINALIZAR PEDIDO");
+        jButtonFinalizarPedido.setBorder(null);
+        jButtonFinalizarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinalizarPedidoActionPerformed(evt);
+            }
+        });
 
         jlImagem.setBackground(new java.awt.Color(0, 153, 255));
 
@@ -415,7 +421,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
                         .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonFinalizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(97, 97, 97)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -440,7 +446,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonFinalizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(258, 258, 258))
         );
 
@@ -479,6 +485,22 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
         formPerfilVendedor.setModal(true);
         formPerfilVendedor.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButtonFinalizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarPedidoActionPerformed
+        String msg;
+        
+        msg = AmiguAppCliente.ccont.alterarEncomenda(encomenda);
+        if (msg.equals("ok")) {
+            dispose();
+        }
+                            
+        //se retornar o ok o vendedor será inserido com sucesso
+        if (msg.equals("ok")) {
+            JOptionPane.showMessageDialog(this, "Encomenda finalizado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);                               
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao fializar encomenda!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonFinalizarPedidoActionPerformed
 
     public void atualizaCampos() {
         
@@ -532,9 +554,9 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonFinalizarPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
