@@ -197,21 +197,6 @@ public class ConexaoController {
             ex.printStackTrace();
             return null;
         }
-    }
-    
-    public Encomenda detalharEncomenda() {
-        String msg;
-        try {
-            out.writeObject("EncomendaDetalhada");          
-            msg = (String) in.readObject();
-            if (msg.equals("ok")) {  
-                return (Encomenda) in.readObject();
-            } else {
-                return null;
-            }          
-        } catch (Exception e) {
-            return null;
-        }
-    }
+    }       
     
 }

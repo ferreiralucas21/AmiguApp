@@ -234,6 +234,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jtEncomendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtEncomendasMouseClicked
+        System.out.println(jtEncomendas.getSelectedRow());
         Encomenda encomenda = encomendaModel.getEncomenda(jtEncomendas.getSelectedRow());
         FormEncomendaDatalhada formEncomendaDetalhada = new FormEncomendaDatalhada(encomenda);
         formEncomendaDetalhada.setModal(true);

@@ -62,16 +62,18 @@ public class EncomendaDAO {
 
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery(" select produto.nome,produto.preco,produto.tamanho,produto.descricao from produto "+
-                                             " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
-                                             " where produto.fkIdVendedor = " + vendedor.getIdVendedor());
+            ResultSet res = stmt.executeQuery(" select encomenda.idEncomenda,encomenda.quantidade,produto.*,cliente.nome,cliente.email,cliente.telefone,cliente.cpf from produto"+
+                                              " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
+                                              " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)" +
+                                              " where produto.fkIdVendedor = " + vendedor.getIdVendedor());
 
             // Pebkorrendo o resultado - res
             while (res.next()) {
                 // criando o objeto de gastomensal pegando dados do res.
-                Encomenda encomenda = new Encomenda(new Produto(res.getString("nome"),res.getFloat("preco"),res.getFloat("tamanho"),res.getString("descricao")));              
+                Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor")),
+                                      new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),res.getInt("quantidade"));              
                 listaEncomendas.add(encomenda);
-                System.out.println(listaEncomendas);                
+                System.out.println(encomenda);                
             }
             res.close();// fechando o resultado
             stmt.close();// fechando statment
@@ -83,37 +85,5 @@ public class EncomendaDAO {
             return null;
         }
     }
-    
-    
-    public Encomenda detalharEncomenda() {
-        PreparedStatement stmt = null; //usado para rodar SQL
-        Encomenda encomendaSelecionada = null;
-        
-        try {
-                                   
-            String sql = " select produto.nome, produto.preco, produto.tamanho, produto.imagem,"+
-                         " cliente.nome, cliente.cpf, cliente.telefone, cliente.email,"+
-                         " encomenda.idEncomenda, encomenda.quantidade from produto"+
-                         " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto)"+
-                         " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)";
-                                 
-            //Executando o select
-            stmt = con.prepareStatement(sql);           
-            
-            ResultSet res = stmt.executeQuery();
-            //Percorrendo o resultado - res
-            while (res.next()) {
-                encomendaSelecionada = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getString("produto.nome"),res.getFloat("preco"),res.getFloat("tamanho"),res.getBytes("imagem")),
-                                                     new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),
-                                                     res.getInt("quantidade"));
-            }
-            res.close();//fechando o resultado
-            stmt.close();//fechando o statement
-            con.close();//fechando a conexão com o banco
-            return encomendaSelecionada;//retornando a lista de
-        } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + " - " + e.getMessage());
-            return null;
-        }
-    }
+  
 }

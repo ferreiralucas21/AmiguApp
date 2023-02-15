@@ -22,24 +22,7 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
         initComponents();
         atualizaCampos();
     }
-    
-    public void atualizaCampos() {
         
-        encomenda = AmiguAppCliente.ccont.detalharEncomenda();
-        jlNomeProduto.setText(encomenda.getProduto().getNome());
-        jlPreco.setText(Float.toString(encomenda.getProduto().getPreco()));
-        jlTamanho.setText(Float.toString(encomenda.getProduto().getTamanho()));
-        jlNomeCliente.setText(encomenda.getCliente().getNome());
-        jlCpf.setText(encomenda.getCliente().getCpf());
-        jlTelefone.setText(encomenda.getCliente().getTelefone());
-        jlEmail.setText(encomenda.getCliente().getEmail());
-        jlQuantidade.setText(Integer.toString(encomenda.getQuantidade()));
-        if (encomenda.getProduto().getImagem() != null) {
-            imagem = new Imagem(encomenda.getProduto().getImagem());
-            jlImagem.setIcon(imagem.getImageIcon());
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -497,6 +480,22 @@ public class FormEncomendaDatalhada extends javax.swing.JDialog {
         formPerfilVendedor.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    public void atualizaCampos() {
+        
+        jlNomeProduto.setText(encomenda.getProduto().getNome());
+        jlPreco.setText(Float.toString(encomenda.getProduto().getPreco()));
+        jlTamanho.setText(Float.toString(encomenda.getProduto().getTamanho()));
+        jlNomeCliente.setText(encomenda.getCliente().getNome());
+        jlCpf.setText(encomenda.getCliente().getCpf());
+        jlTelefone.setText(encomenda.getCliente().getTelefone());
+        jlEmail.setText(encomenda.getCliente().getEmail());
+        jlQuantidade.setText(Integer.toString(encomenda.getQuantidade()));
+        if (encomenda.getProduto().getImagem() != null) {
+            imagem = new Imagem(encomenda.getProduto().getImagem());
+            jlImagem.setIcon(imagem.getImageIcon());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
