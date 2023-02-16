@@ -53,6 +53,10 @@ public class Vendedor implements Serializable {
         this.email = email;
         this.senha = senha;
     }  
+
+    public Vendedor(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
    
     public int getIdVendedor() {
         return idVendedor;

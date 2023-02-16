@@ -1,32 +1,26 @@
 package br.com.amiguapp;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import modelDominio.Produto;
-import modelDominio.Vendedor;
 
 public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHolder> {
     private List<Produto> listaProdutos;
     private ProdutoOnClickListener produtoOnClickListener;
-    private List<Vendedor> listaVendedores;
 
-    public ProdutoAdapter(List<Produto> listaProdutos, ProdutoOnClickListener produtoOnClickListener, List<Vendedor> listaVendedores) {
+    public ProdutoAdapter(List<Produto> listaProdutos, ProdutoOnClickListener produtoOnClickListener) {
         this.listaProdutos = listaProdutos;
         this.produtoOnClickListener = produtoOnClickListener;
-        this.listaVendedores = listaVendedores;
     }
 
     @Override
@@ -40,19 +34,10 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final ProdutoAdapter.MyViewHolder holder, final int position) {
         Produto meuProduto = listaProdutos.get(position);
-        Vendedor meuVendedor = null;
-
-        for (int i = 0; i <= listaVendedores.size(); i++) {
-            if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
-                meuVendedor = listaVendedores.get(i);
-                break;
-            }
-        }
 
         holder.tvNomeProduto.setText(meuProduto.getNome());
         holder.tvPrecoProduto.setText(String.valueOf(meuProduto.getPreco()));
-        holder.tvLojaNome.setText(meuVendedor.getNome());
-//        holder.tvLojaNome.setText(vendedor(meuProduto));
+        holder.tvLojaNome.setText(meuProduto.getVendedor().getNome());
         Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
         holder.imgViewProduto.setImageBitmap(bmp);
 
@@ -66,17 +51,6 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
             });
         }
     }
-
-//    private String vendedor(Produto meuProduto) {
-//        String vendedorDoProduto = null;
-//        for (int i = 0; i <= listaVendedores.size(); i++) {
-//            if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
-//                vendedorDoProduto = listaVendedores.get(i).getNome();
-//                break;
-//            }
-//        }
-//        return vendedorDoProduto;
-//    }
 
     @Override
     public int getItemCount() {

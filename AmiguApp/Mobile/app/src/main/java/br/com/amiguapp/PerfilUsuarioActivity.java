@@ -65,7 +65,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            pedidoAdapter = new PedidoAdapter(listaEncomendas, trataCliqueItem, listaVendedores);
+                            pedidoAdapter = new PedidoAdapter(listaEncomendas, trataCliqueItem);
                             recyclerListaPedidos.setLayoutManager(new LinearLayoutManager(informacoesApp));
                             recyclerListaPedidos.setItemAnimator(new DefaultItemAnimator());
                             recyclerListaPedidos.setAdapter(pedidoAdapter);

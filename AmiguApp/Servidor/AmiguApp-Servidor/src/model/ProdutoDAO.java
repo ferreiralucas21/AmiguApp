@@ -52,10 +52,11 @@ public class ProdutoDAO {
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         try {
             stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from produto");
+            ResultSet res = stmt.executeQuery("select produto.*, vendedor.* from produto" + 
+                                              "inner join produto on (vendedor.idVendedor = produto.fkIdVendedor)");
             
             while (res.next()){
-                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor"));
+                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("IdVendedor")));
                 
                 listaProdutos.add(produto);
             }

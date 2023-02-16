@@ -31,7 +31,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             tvProdutoDetalhadoBairo, tvProdutoDetalhadoCep;
     EditText etProdutoDetalhadoQuantidade;
     Button bAlterar, bProdutoFazerPedido;
-    ImageView imgProdutoDetalhado, appbarIconSeta, appbarIconHome;
+    ImageView imgProdutoDetalhado, appbarIconSeta, appbarIconHome, appbarIconPerfil;
     RadioButton rbPagamentoPix, rbPagamentoCartao;
 
     SearchView searchView;
@@ -40,8 +40,6 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
     int fkIdProduto, fkIdCliente;
     private ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
     ArrayList<Produto> listaProdutos;
-    ArrayList<Vendedor> listaVendedores;
-    Context context;
 
 
     @Override
@@ -62,6 +60,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         tvProdutoDetalhadoCep = findViewById(R.id.tvProdutoDetalhadoCep);
         etProdutoDetalhadoQuantidade = findViewById(R.id.etProdutoDetalhadoQuantidade);
         bProdutoFazerPedido = findViewById(R.id.bProdutoFazerPedido);
+        appbarIconPerfil = findViewById(R.id.appbarIconPerfil);
         bAlterar = findViewById(R.id.bAlterar);
         imgProdutoDetalhado = findViewById(R.id.imgProdutoDetalhado);
         appbarIconSeta = findViewById(R.id.appbarIconSeta);
@@ -77,6 +76,22 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             }
         });
 
+        appbarIconPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
+                startActivity(it);
+            }
+        });
+
+        bAlterar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent (ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
+                startActivity(it);
+            }
+        });
+
         appbarIconHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,18 +101,17 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        if (intent.hasExtra("produtoClicado") && (intent.hasExtra("vendedorDoProduto"))) {
+        if (intent.hasExtra("produtoClicado")) {
             final Produto meuProduto = (Produto) intent.getSerializableExtra("produtoClicado");
-            final Vendedor meuVendedor = (Vendedor) intent.getSerializableExtra("vendedorDoProduto");
 
-            tvProdutoDetalhadoNomeLoja.setText(meuVendedor.getNome());
+            tvProdutoDetalhadoNomeLoja.setText(meuProduto.getVendedor().getNome());
             Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
             imgProdutoDetalhado.setImageBitmap(bmp);
             tvProdutoDetalhadoNome.setText(meuProduto.getNome());
             tvProdutoDetalhadoPreco.setText(String.valueOf(meuProduto.getPreco()));
             tvProdutoDetalhadoTamanho.setText(String.valueOf(meuProduto.getTamanho()));
             tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
-            tvProdutoDetalhadoContato.setText(meuVendedor.getTelefone());
+            tvProdutoDetalhadoContato.setText(meuProduto.getVendedor().getTelefone());
             if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
                 etProdutoDetalhadoQuantidade.getText().toString();
             }
@@ -111,11 +125,14 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
                 if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
 
                     int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
-                    int fkIdProduto = informacoesApp.getProdutoSelecionado().getIdProduto();
-                    int fkIdCliente = informacoesApp.getClienteLogado().getIdCliente();
-                    System.out.println("ID do cliente logado " + fkIdCliente);
+                    Produto produto = informacoesApp.getProdutoSelecionado();
+                    Cliente cliente = informacoesApp.getClienteLogado();
+//                    int fkIdProduto = informacoesApp.getProdutoSelecionado().getIdProduto();
+//                    int fkIdCliente = informacoesApp.getClienteLogado().getIdCliente();
+                    System.out.println("ID do cliente logado " + cliente.getIdCliente());
 
-                    Encomenda minhaEncomenda = new Encomenda(new Produto(fkIdProduto), new Cliente(fkIdCliente), quantidade);
+//                  Encomenda minhaEncomenda = new Encomenda(new Produto(fkIdProduto), new Cliente(fkIdCliente), quantidade);
+                    Encomenda minhaEncomenda = new Encomenda(new Produto(produto.getIdProduto()), new Cliente(cliente.getIdCliente()), quantidade);
 
                     Thread thread1 = new Thread(new Runnable() {
                         @Override

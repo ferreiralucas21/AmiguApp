@@ -24,11 +24,9 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
     private List<Encomenda> listaEncomendas;
     private List<Produto> listaProdutos;
     private ProdutoOnClickListener produtoOnClickListener;
-    private List<Vendedor> listaVendedores;
 
-    public PedidoAdapter(List<Encomenda> listaEncomendas, ProdutoOnClickListener produtoOnClickListener, List<Vendedor> listaVendedores) {
+    public PedidoAdapter(List<Encomenda> listaEncomendas, ProdutoOnClickListener produtoOnClickListener) {
         this.produtoOnClickListener = produtoOnClickListener;
-        this.listaVendedores = listaVendedores;
     }
 
     @Override
@@ -42,18 +40,10 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final PedidoAdapter.MyViewHolder holder, final int position) {
         Encomenda minhaEncomenda = listaEncomendas.get(position);
-        Vendedor meuVendedor = null;
-
-        for (int i = 0; i <= listaVendedores.size(); i++) {
-            if (listaVendedores.get(i).getIdVendedor() == minhaEncomenda.getProduto().getFkIdVendedor()) {
-                meuVendedor = listaVendedores.get(i);
-                break;
-            }
-        }
 
         holder.tvPedidoNome.setText(minhaEncomenda.getProduto().getNome());
         holder.tvPedidoPreco.setText(String.valueOf(minhaEncomenda.getProduto().getPreco()));
-        holder.tvPedidoNomeLoja.setText(meuVendedor.getNome());
+        holder.tvPedidoNomeLoja.setText(minhaEncomenda.getProduto().getVendedor().getNome());
 //        Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
 //        holder.imgViewProduto.setImageBitmap(bmp);
 

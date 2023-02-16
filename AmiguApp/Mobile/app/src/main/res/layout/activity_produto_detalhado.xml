@@ -265,8 +265,16 @@
                 android:id="@+id/etProdutoDetalhadoQuantidade"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
+                android:inputType="number"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:textSize="14dp"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintBottom_toBottomOf="@+id/tvQuantidade"
                 app:layout_constraintStart_toEndOf="@id/tvQuantidade"
-                app:layout_constraintBottom_toBottomOf="@id/tvQuantidade" />
+                app:layout_constraintTop_toTopOf="@+id/tvQuantidade"
+                android:text="1"/>
 
             <TextView
                 android:id="@+id/tvProdutoConfirmarEndereco"
@@ -432,12 +440,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="80dp"
                 android:text="Fazer pedido"
                 android:textAllCaps="false"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="80dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rgPagamento" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

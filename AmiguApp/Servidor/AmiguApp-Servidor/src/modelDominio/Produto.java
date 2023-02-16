@@ -4,67 +4,38 @@ import java.io.Serializable;
 
 
 public class Produto implements Serializable {
-    
+
     private static final long serialVersionID = 123456789L;
-    
+
     private int idProduto;
     private String nome;
     private float preco;
     private float tamanho;
     private String descricao;
     private byte[] imagem;
-    private int fkIdVendedor;
+    private Vendedor vendedor;
 
     public Produto(int idProduto) {
         this.idProduto = idProduto;
     }
-    
-    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, byte[] imagem, int fkIdVendedor) {
+
+    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, byte[] imagem, Vendedor vendedor) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.preco = preco;
         this.tamanho = tamanho;
         this.descricao = descricao;
         this.imagem = imagem;
-        this.fkIdVendedor = fkIdVendedor;
+        this.vendedor = vendedor;
     }
 
-    public Produto(String nome, float preco, float tamanho, String descricao, byte[] imagem, int fkIdVendedor) {
+    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, byte[] imagem) {
+        this.idProduto = idProduto;
         this.nome = nome;
         this.preco = preco;
         this.tamanho = tamanho;
         this.descricao = descricao;
         this.imagem = imagem;
-        this.fkIdVendedor = fkIdVendedor;
-    }
-    
-    public Produto(int idProduto, String nome) {
-        this.idProduto = idProduto;
-        this.nome = nome;
-    }
-
-    public Produto(String nome, float preco, float tamanho, String descricao, int fkIdVendedor) {
-        this.nome = nome;
-        this.preco = preco;
-        this.tamanho = tamanho;
-        this.descricao = descricao;
-        this.fkIdVendedor = fkIdVendedor;
-    }   
-
-    public Produto(String nome, float preco, float tamanho, String descricao) {
-        this.nome = nome;
-        this.preco = preco;
-        this.tamanho = tamanho;
-        this.descricao = descricao;
-    }
-
-    public Produto(int idProduto, String nome, float preco, float tamanho, String descricao, int fkIdVendedor) {
-        this.idProduto = idProduto;
-        this.nome = nome;
-        this.preco = preco;
-        this.tamanho = tamanho;
-        this.descricao = descricao;
-        this.fkIdVendedor = fkIdVendedor;
     }
 
     public Produto(int idProduto, String nome, float preco, float tamanho, String descricao) {
@@ -75,13 +46,7 @@ public class Produto implements Serializable {
         this.descricao = descricao;
     }
 
-    public Produto(String nome, float preco, float tamanho, byte[] imagem) { //usado na encomenda detalhada
-        this.nome = nome;
-        this.preco = preco;
-        this.tamanho = tamanho;
-        this.imagem = imagem;
-    }   
-    
+
     public int getIdProduto() {
         return idProduto;
     }
@@ -130,17 +95,17 @@ public class Produto implements Serializable {
         this.imagem = imagem;
     }
 
-    public int getFkIdVendedor() {
-        return fkIdVendedor;
+    public Vendedor getVendedor() {
+        return vendedor;
     }
 
-    public void setFkIdVendedor(int fkIdVendedor) {
-        this.fkIdVendedor = fkIdVendedor;
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
-    
+
     @Override
     public String toString() {
         return "Produto{" + "serialVersionID=" + serialVersionID + ", idProduto=" + idProduto + ", nome=" + nome + ", preco=" + preco + ", tamanho=" + tamanho + ", descricao=" + descricao + ", imagem=" + imagem + '}';
     }
-       
+
 }
