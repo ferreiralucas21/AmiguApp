@@ -183,13 +183,15 @@ public class ConexaoController {
         }
     }
     
-    public ArrayList<Encomenda> encomendaLista() {
+    public ArrayList<Encomenda> encomendaLista(String status) {
         String msg;
         try {
             out.writeObject("EncomendaLista");          
             msg = (String) in.readObject();
             if (msg.equals("ok")) {
                 out.writeObject(vendedor);
+                msg = (String) in.readObject();
+                out.writeObject(status);
                 return (ArrayList<Encomenda>) in.readObject();
             } else {
                 return null;

@@ -54,7 +54,7 @@ public class EncomendaDAO {
         }
     }
     
-    public ArrayList<Encomenda> getListaEncomendas(Vendedor vendedor) {
+    public ArrayList<Encomenda> getListaEncomendas(Vendedor vendedor, String status) { //Listagem para o desktop
         Statement stmt = null; // usado para rodar SQL
         ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
 
@@ -62,10 +62,17 @@ public class EncomendaDAO {
 
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery(" select encomenda.idEncomenda,encomenda.quantidade,encomenda.status,produto.*,cliente.nome,cliente.email,cliente.telefone,cliente.cpf from produto"+
+            String sql = " select encomenda.idEncomenda,encomenda.quantidade,encomenda.status,produto.*,cliente.nome,cliente.email,cliente.telefone,cliente.cpf from produto"+
                                               " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
                                               " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)" +
-                                              " where produto.fkIdVendedor = " + vendedor.getIdVendedor());
+                                              " where produto.fkIdVendedor = " + vendedor.getIdVendedor();
+            
+            // verificando se precisa aplicar o filtro de status
+            if (!status.equals("")) {
+                sql = sql + " and encomenda.status like '%" + status + "%'";
+            }
+            
+            ResultSet res = stmt.executeQuery(sql);
 
             // Pebkorrendo o resultado - res
             while (res.next()) {
@@ -86,7 +93,7 @@ public class EncomendaDAO {
         }
     }
     
-    public ArrayList<Encomenda> getListaEncomendas () {
+    public ArrayList<Encomenda> getListaEncomendas () { //Listagem para o mobile
         Statement stmt = null; // usado para rodar SQL
         ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
 
@@ -146,5 +153,5 @@ public class EncomendaDAO {
             }
         }
     }
-  
+        
 }

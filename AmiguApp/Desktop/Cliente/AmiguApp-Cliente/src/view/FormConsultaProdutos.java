@@ -90,6 +90,11 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
         jButton2.setBackground(new java.awt.Color(226, 102, 63));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagem/icons8-carrinho-de-mão-de-entrega-24 (1).png"))); // NOI18N
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -254,6 +259,12 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
         formPerfilVendedor.setModal(true);
         formPerfilVendedor.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FormConsultaEncomendas formConsultaEncomendas = new FormConsultaEncomendas();
+        formConsultaEncomendas.setVisible(true);
+        formConsultaEncomendas.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void atualizaTabela() {
         if (jcbFiltro.getSelectedIndex() == 0) {

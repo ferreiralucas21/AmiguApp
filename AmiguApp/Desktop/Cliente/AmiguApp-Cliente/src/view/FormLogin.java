@@ -23,7 +23,6 @@ public class FormLogin extends javax.swing.JFrame {
      */
     public FormLogin() {
         initComponents();
-        jlErro.setVisible(false);
     }
 
     /**
@@ -40,7 +39,6 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jbtCadastrar = new javax.swing.JButton();
-        jlErro = new javax.swing.JLabel();
         jbtSair = new javax.swing.JButton();
         jbtLogin = new javax.swing.JButton();
         jtfEmail = new javax.swing.JTextField();
@@ -56,15 +54,15 @@ public class FormLogin extends javax.swing.JFrame {
         jpfSenha.setBackground(new java.awt.Color(204, 204, 204));
         jpfSenha.setBorder(null);
 
-        jLabel2.setFont(new java.awt.Font("Source Sans Pro Light", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Source Sans Pro Light", 0, 15)); // NOI18N
         jLabel2.setText("Acesse sua conta!");
 
         jLabel1.setFont(new java.awt.Font("Source Sans Pro Semibold", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(226, 102, 63));
-        jLabel1.setText("AmiguApp");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagem/logo (3).png"))); // NOI18N
 
         jbtCadastrar.setBackground(new java.awt.Color(255, 255, 255));
-        jbtCadastrar.setFont(new java.awt.Font("Source Sans Pro Light", 0, 12)); // NOI18N
+        jbtCadastrar.setFont(new java.awt.Font("Source Sans Pro Light", 0, 14)); // NOI18N
         jbtCadastrar.setForeground(new java.awt.Color(226, 102, 63));
         jbtCadastrar.setText("Cadastrar nova conta");
         jbtCadastrar.setBorderPainted(false);
@@ -73,9 +71,6 @@ public class FormLogin extends javax.swing.JFrame {
                 jbtCadastrarActionPerformed(evt);
             }
         });
-
-        jlErro.setFont(new java.awt.Font("Source Sans Pro Light", 0, 12)); // NOI18N
-        jlErro.setText("Usuário ou senha inválida!");
 
         jbtSair.setBackground(new java.awt.Color(226, 102, 63));
         jbtSair.setFont(new java.awt.Font("Source Sans Pro Light", 0, 14)); // NOI18N
@@ -114,64 +109,52 @@ public class FormLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jbtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlErro)
-                                .addGap(21, 21, 21)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlLogin)
+                            .addComponent(jlSenha))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlSenha)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlLogin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(75, 75, 75))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbtCadastrar)
-                        .addGap(135, 135, 135))))
+                                .addGap(28, 28, 28)
+                                .addComponent(jbtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jbtCadastrar)))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(26, 26, 26)
-                .addComponent(jlErro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlLogin))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlSenha)
                     .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtSair, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jbtCadastrar)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,7 +190,6 @@ public class FormLogin extends javax.swing.JFrame {
         System.out.println(vendedorSelecionado);
 
         if (vendedorSelecionado != null){
-            jlErro.setVisible(true);
 
             AmiguAppCliente.ccont.vendedor = vendedorSelecionado;
 
@@ -216,7 +198,10 @@ public class FormLogin extends javax.swing.JFrame {
 
             dispose();
         } else {
-            jlErro.setVisible(true);
+            JOptionPane.showMessageDialog(this, "E-mail ou senha incorretos!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+            jtfEmail.setText("");
+            jpfSenha.setText("");
+            jtfEmail.requestFocus();
         }       
     }//GEN-LAST:event_jbtLoginActionPerformed
 
@@ -262,7 +247,6 @@ public class FormLogin extends javax.swing.JFrame {
     private javax.swing.JButton jbtCadastrar;
     private javax.swing.JButton jbtLogin;
     private javax.swing.JButton jbtSair;
-    private javax.swing.JLabel jlErro;
     private javax.swing.JLabel jlLogin;
     private javax.swing.JLabel jlSenha;
     private javax.swing.JPasswordField jpfSenha;

@@ -37,12 +37,12 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
-        jtfTelefone = new javax.swing.JTextField();
         jtfSenha = new javax.swing.JTextField();
         jbtCadastrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jftTelefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro");
@@ -68,8 +68,6 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
         jtfNome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
 
         jtfEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
-
-        jtfTelefone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
 
         jtfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
 
@@ -118,6 +116,13 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
                 .addContainerGap(360, Short.MAX_VALUE))
         );
 
+        jftTelefone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
+        try {
+            jftTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+55(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,7 +145,7 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                             .addComponent(jtfEmail)
-                            .addComponent(jtfTelefone))
+                            .addComponent(jftTelefone))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -164,11 +169,11 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(26, 26, 26)
+                    .addComponent(jLabel3)
+                    .addComponent(jftTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -198,10 +203,10 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
     private void jbtCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCadastrarActionPerformed
         if (!jtfNome.getText().equals("")) {           
             if (!jtfEmail.getText().equals("")) {              
-                if (!jtfTelefone.getText().equals("")) {                   
+                if (!jftTelefone.getText().equals("")) {                   
                     if (!jtfSenha.getText().equals("")) {
                         
-                            Vendedor vendedor = new Vendedor(jtfNome.getText(),jtfEmail.getText(),(jtfTelefone.getText()),jtfSenha.getText());
+                            Vendedor vendedor = new Vendedor(jtfNome.getText(),jtfEmail.getText(),(jftTelefone.getText()),jtfSenha.getText());
                             System.out.println(vendedor);
                             
                             String msg;
@@ -215,7 +220,7 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
                                 JOptionPane.showMessageDialog(this, "Cadastro concluído com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
                                 jtfNome.setText("");
                                 jtfEmail.setText("");
-                                jtfTelefone.setText("");
+                                jftTelefone.setText("");
                                 jtfSenha.setText("");
                             } else {
                                 JOptionPane.showMessageDialog(this, "Erro ao se cadastrar!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
@@ -229,7 +234,7 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
                     }    
                 } else {
                     JOptionPane.showMessageDialog(this, "Preencha com seu Telefone!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                    jtfTelefone.requestFocus();
+                    jftTelefone.requestFocus();
                 }       
                  
             } else {
@@ -288,9 +293,9 @@ public class FormCadastroVendedor extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbtCadastrar;
+    private javax.swing.JFormattedTextField jftTelefone;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfSenha;
-    private javax.swing.JTextField jtfTelefone;
     // End of variables declaration//GEN-END:variables
 }

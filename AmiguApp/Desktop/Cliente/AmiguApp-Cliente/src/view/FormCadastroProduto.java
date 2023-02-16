@@ -32,8 +32,8 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         } else {
             codigo = produto.getIdProduto();
             jtfNome.setText(produto.getNome());
-            jtfPreco.setText(Float.toString(produto.getPreco()));
-            jtfTamanho.setText(Float.toString(produto.getTamanho()));
+            jftPreco.setText(Float.toString(produto.getPreco()));
+            jftTamanho.setText(Float.toString(produto.getTamanho()));
             jtfDescricao.setText(produto.getDescricao());
             if (produto.getImagem() != null) {
                 imagem = new Imagem(produto.getImagem());
@@ -62,14 +62,14 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         jlImagem = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jtfPreco = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jtfTamanho = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jtfDescricao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jbtSalvar = new javax.swing.JButton();
         jbtExcluir = new javax.swing.JButton();
+        jftPreco = new javax.swing.JFormattedTextField();
+        jftTamanho = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produto");
@@ -88,6 +88,11 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(226, 102, 63));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagem/icons8-carrinho-de-mão-de-entrega-24 (1).png"))); // NOI18N
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(226, 102, 63));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagem/icons8-usuário-24 (1).png"))); // NOI18N
@@ -158,13 +163,9 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Nome");
 
-        jtfPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
-
         jLabel2.setFont(new java.awt.Font("Source Sans Pro Light", 0, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Preço");
-
-        jtfTamanho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
 
         jLabel3.setFont(new java.awt.Font("Source Sans Pro Light", 0, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
@@ -198,6 +199,20 @@ public class FormCadastroProduto extends javax.swing.JDialog {
             }
         });
 
+        jftPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 103, 62)));
+        try {
+            jftPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jftTamanho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
+        try {
+            jftTamanho.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -207,7 +222,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jbtUploadImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,10 +230,10 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNome)
-                            .addComponent(jtfTamanho, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtfPreco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))
+                            .addComponent(jftPreco)
+                            .addComponent(jftTamanho)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -253,12 +268,12 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jftPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtfTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jftTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -289,13 +304,13 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         Produto produto; 
         
         if (!jtfNome.getText().equals("")) {           
-            if (!jtfPreco.getText().equals("")) {              
-                if (!jtfTamanho.getText().equals("")) {                   
+            if (!jftPreco.getText().equals("")) {              
+                if (!jftTamanho.getText().equals("")) {                   
                     if (!jtfDescricao.getText().equals("")) {                                             
                         if (imagem != null) { 
                         
                             int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                            produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),codVendedor);
+                            produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jftPreco.getText()),Float.parseFloat(jftTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),codVendedor);
                             System.out.println(produto);
                             
                             String msg;
@@ -313,8 +328,8 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                             if (msg.equals("ok")) {
                                 JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
                                 jtfNome.setText("");
-                                jtfPreco.setText("");
-                                jtfTamanho.setText("");
+                                jftPreco.setText("");
+                                jftTamanho.setText("");
                                 jtfDescricao.setText("");
                                 jlImagem.setIcon(null);
                                 imagem = null;
@@ -333,12 +348,12 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                     }    
                 } else {
                     JOptionPane.showMessageDialog(this, "Preencha o campo tamanho!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                    jtfTamanho.requestFocus();
+                    jftTamanho.requestFocus();
                 }       
                  
             } else {
                 JOptionPane.showMessageDialog(this, "Preencha o campo preço!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                jtfPreco.requestFocus();
+                jftPreco.requestFocus();
             } 
             
         } else {
@@ -380,6 +395,12 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         formPerfilVendedor.setModal(true);
         formPerfilVendedor.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FormConsultaEncomendas formConsultaEncomendas = new FormConsultaEncomendas();
+        formConsultaEncomendas.setVisible(true);
+        formConsultaEncomendas.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -431,10 +452,10 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     private javax.swing.JButton jbtSalvar;
     private javax.swing.JButton jbtUploadImagem;
     private javax.swing.JButton jbtVoltar;
+    private javax.swing.JFormattedTextField jftPreco;
+    private javax.swing.JFormattedTextField jftTamanho;
     private javax.swing.JLabel jlImagem;
     private javax.swing.JTextField jtfDescricao;
     private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfPreco;
-    private javax.swing.JTextField jtfTamanho;
     // End of variables declaration//GEN-END:variables
 }

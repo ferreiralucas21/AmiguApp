@@ -177,16 +177,18 @@ public class TrataClienteController extends Thread {
                         out.writeObject("nok");                       
                     }
                     
-                } else if (comando.equalsIgnoreCase("ListaEncomendas")) { //pegar encomendas no mobile
+                } else if (comando.equalsIgnoreCase("ListaEncomendas")) { //Listagem para o mobile
                     out.writeObject("ok");
                     EncomendaDAO dao = new EncomendaDAO();
                     out.writeObject(dao.getListaEncomendas());
                     
-                }else if (comando.equalsIgnoreCase("EncomendaLista")) { 
+                }else if (comando.equalsIgnoreCase("EncomendaLista")) { //Listagem para o desktop
                     out.writeObject("ok");
                     Vendedor vendedor = (Vendedor) in.readObject();
+                    out.writeObject("ok");
+                    String status = (String)in.readObject();
                     EncomendaDAO dao = new EncomendaDAO();
-                    out.writeObject(dao.getListaEncomendas(vendedor));
+                    out.writeObject(dao.getListaEncomendas(vendedor, status));
 
                 } else if (comando.equalsIgnoreCase("EncomendaAlterar")) {
                     out.writeObject("ok");                   
