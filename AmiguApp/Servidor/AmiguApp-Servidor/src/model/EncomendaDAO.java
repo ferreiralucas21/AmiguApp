@@ -86,6 +86,32 @@ public class EncomendaDAO {
         }
     }
     
+    public ArrayList<Encomenda> getListaEncomendas () {
+        Statement stmt = null; // usado para rodar SQL
+        ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
+
+        try {
+
+            stmt = con.createStatement();
+            // passando a string SQL que faz o SELECT
+            ResultSet res = stmt.executeQuery(" select encomenda.*,produto.*,cliente.* from produto"+
+                                              " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
+                                              " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)");
+
+            // Pebkorrendo o resultado - res
+            while (res.next()) {
+                // criando o objeto de gastomensal pegando dados do res.
+                Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor")),
+                                      new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),res.getInt("quantidade"),res.getString("status"));              
+                listaEncomendas.add(encomenda);             
+            }
+            return listaEncomendas;
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " - " + e.getMessage());
+            return null;
+        }
+    }
+    
     public int alterarEncomenda(Encomenda encomenda) {
         PreparedStatement stmt = null;
         try {

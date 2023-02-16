@@ -37,8 +37,8 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
     SearchView searchView;
     InformacoesApp informacoesApp;
     String msgRecebida;
-    Encomenda encomenda;
     int fkIdProduto, fkIdCliente;
+    private ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
     ArrayList<Produto> listaProdutos;
     ArrayList<Vendedor> listaVendedores;
     Context context;
@@ -86,19 +86,19 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        if (intent.hasExtra("produtoClicado") &&(intent.hasExtra("vendedorDoProduto"))) {
+        if (intent.hasExtra("produtoClicado") && (intent.hasExtra("vendedorDoProduto"))) {
             final Produto meuProduto = (Produto) intent.getSerializableExtra("produtoClicado");
             final Vendedor meuVendedor = (Vendedor) intent.getSerializableExtra("vendedorDoProduto");
 
             tvProdutoDetalhadoNomeLoja.setText(meuVendedor.getNome());
-            Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(),0, meuProduto.getImagem().length);
+            Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
             imgProdutoDetalhado.setImageBitmap(bmp);
             tvProdutoDetalhadoNome.setText(meuProduto.getNome());
             tvProdutoDetalhadoPreco.setText(String.valueOf(meuProduto.getPreco()));
             tvProdutoDetalhadoTamanho.setText(String.valueOf(meuProduto.getTamanho()));
             tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
             tvProdutoDetalhadoContato.setText(meuVendedor.getTelefone());
-            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")){
+            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
                 etProdutoDetalhadoQuantidade.getText().toString();
             }
         }
@@ -108,22 +108,22 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         bProdutoFazerPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!etProdutoDetalhadoQuantidade.getText().toString().equals("")){
+                if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
 
                     int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
                     int fkIdProduto = informacoesApp.getProdutoSelecionado().getIdProduto();
                     int fkIdCliente = informacoesApp.getClienteLogado().getIdCliente();
-                    System.out.println("ID do cliente logado "+ fkIdCliente);
+                    System.out.println("ID do cliente logado " + fkIdCliente);
 
-                    encomenda = new Encomenda(new Produto(fkIdProduto),new Cliente(fkIdCliente),quantidade);
+                    Encomenda minhaEncomenda = new Encomenda(new Produto(fkIdProduto), new Cliente(fkIdCliente), quantidade);
 
                     Thread thread1 = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                            msgRecebida = conexaoSocket.inserirEncomenda(encomenda);
+                            msgRecebida = conexaoSocket.inserirEncomenda(minhaEncomenda);
 
-                            if(encomenda != null){
+                            if (minhaEncomenda != null) {
                                 Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
                                 startActivity(it);
                             } else {

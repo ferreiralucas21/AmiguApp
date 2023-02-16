@@ -110,7 +110,6 @@ public class ConexaoSocketController {
             String msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("ok")) {
                 listaVendedores = (ArrayList<Vendedor>) informacoesApp.in.readObject();
-            }else{
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -120,6 +119,24 @@ public class ConexaoSocketController {
             listaVendedores = null;
         }
         return listaVendedores;
+    }
+
+    public ArrayList<Encomenda> listaEncomendas() {
+        ArrayList<Encomenda> listaEncomendas = null;
+        try {
+            informacoesApp.out.writeObject("ListaEncomendas");
+            String msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("ok")) {
+                listaEncomendas = (ArrayList<Encomenda>) informacoesApp.in.readObject();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaEncomendas = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaEncomendas = null;
+        }
+        return listaEncomendas;
     }
 
     public String inserirEncomenda(Encomenda encomenda) {

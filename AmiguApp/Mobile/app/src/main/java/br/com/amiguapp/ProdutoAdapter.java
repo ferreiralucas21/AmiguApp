@@ -40,8 +40,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final ProdutoAdapter.MyViewHolder holder, final int position) {
         Produto meuProduto = listaProdutos.get(position);
-
         Vendedor meuVendedor = null;
+
         for (int i = 0; i <= listaVendedores.size(); i++) {
             if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
                 meuVendedor = listaVendedores.get(i);

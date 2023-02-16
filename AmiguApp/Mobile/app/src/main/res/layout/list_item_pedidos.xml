@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageViewPedido"
+                android:id="@+id/imgViewPedido"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"

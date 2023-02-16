@@ -250,7 +250,7 @@
                 app:layout_constraintTop_toBottomOf="@id/contato" />
 
             <TextView
-                android:id="@+id/tProdutoDetalhadoQuantidade"
+                android:id="@+id/tvQuantidade"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -264,9 +264,9 @@
             <EditText
                 android:id="@+id/etProdutoDetalhadoQuantidade"
                 android:layout_width="60dp"
-                android:layout_height="25dp"
-                app:layout_constraintStart_toEndOf="@id/tProdutoDetalhadoQuantidade"
-                app:layout_constraintTop_toTopOf="@id/tProdutoDetalhadoQuantidade" />
+                android:layout_height="40dp"
+                app:layout_constraintStart_toEndOf="@id/tvQuantidade"
+                app:layout_constraintBottom_toBottomOf="@id/tvQuantidade" />
 
             <TextView
                 android:id="@+id/tvProdutoConfirmarEndereco"
@@ -275,8 +275,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Confirme o endereço de entrega: "
                 android:textColor="@color/cinza_escuro"
-                app:layout_constraintStart_toStartOf="@id/tProdutoDetalhadoQuantidade"
-                app:layout_constraintTop_toBottomOf="@id/tProdutoDetalhadoQuantidade" />
+                app:layout_constraintStart_toStartOf="@id/tvQuantidade"
+                app:layout_constraintTop_toBottomOf="@id/tvQuantidade" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardConfirmarEndereco"
