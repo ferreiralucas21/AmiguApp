@@ -62,10 +62,11 @@ public class EncomendaDAO {
 
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            String sql = " select encomenda.idEncomenda,encomenda.quantidade,encomenda.status,produto.*,cliente.nome,cliente.email,cliente.telefone,cliente.cpf from produto"+
+            String sql = " select encomenda.*,produto.*,cliente.*,vendedor.idVendedor from produto "+
                                               " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
-                                              " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)" +
-                                              " where produto.fkIdVendedor = " + vendedor.getIdVendedor();
+                                              " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente) "+
+                                              " inner join vendedor on produto.fkIdVendedor = vendedor.idVendedor "+
+                                              " and produto.fkIdVendedor = " + vendedor.getIdVendedor();
             
             // verificando se precisa aplicar o filtro de status
             if (!status.equals("")) {
@@ -77,7 +78,7 @@ public class EncomendaDAO {
             // Pebkorrendo o resultado - res
             while (res.next()) {
                 // criando o objeto de gastomensal pegando dados do res.
-                Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor")),
+                Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem")), new Vendedor(res.getInt("idVendedor")),
                                       new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),res.getInt("quantidade"),res.getString("status"));              
                 listaEncomendas.add(encomenda);
                 System.out.println(encomenda);                
@@ -101,14 +102,15 @@ public class EncomendaDAO {
 
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery(" select encomenda.*,produto.*,cliente.* from produto"+
+            ResultSet res = stmt.executeQuery(" select encomenda.*,produto.*,cliente.*,vendedor.* from produto"+
                                               " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
+                                              " inner join vendedor on (vendedor.idVendedor = produto.fkIdVendedor) "+
                                               " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)");
 
             // Pebkorrendo o resultado - res
             while (res.next()) {
                 // criando o objeto de gastomensal pegando dados do res.
-                Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor")),
+                Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem")), new Vendedor(res.getInt("idVendedor"),res.getString("vendedor.nome")),
                                       new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),res.getInt("quantidade"),res.getString("status"));              
                 listaEncomendas.add(encomenda);             
             }

@@ -10,19 +10,17 @@ public class Encomenda implements Serializable {
     private int idEncomenda;
     private int quantidade;
     private String status;
-    private int fkIdProduto;
-    private int fkIdCliente;
     private Produto produto;
     private Cliente cliente;
+    private Vendedor vendedor;
 
-    public Encomenda(int idEncomenda, int quantidade, String status, int fkIdProduto, int fkIdCliente, Produto produto, Cliente cliente) {
+    public Encomenda(int idEncomenda, int quantidade, String status, Produto produto, Cliente cliente, Vendedor vendedor) {
         this.idEncomenda = idEncomenda;
         this.quantidade = quantidade;
         this.status = status;
-        this.fkIdProduto = fkIdProduto;
-        this.fkIdCliente = fkIdCliente;
         this.produto = produto;
         this.cliente = cliente;
+        this.vendedor = vendedor;
     }
 
     public Encomenda(Produto produto, Cliente cliente, int quantidade) {
@@ -31,15 +29,16 @@ public class Encomenda implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Encomenda(int idEncomenda, Produto produto, Cliente cliente, int quantidade, String status) {
+    public Encomenda(int idEncomenda, Produto produto, Vendedor vendedor, Cliente cliente, int quantidade, String status) { //mudar manuelamente no mobile
         this.idEncomenda = idEncomenda;
         this.produto = produto;
+        this.vendedor = vendedor;
         this.cliente = cliente;
         this.quantidade = quantidade;
         this.status = status;
     }
 
-    public Encomenda(int idEncomenda, Produto produto) {
+    public Encomenda(int idEncomenda, Produto produto) { //construtor prcisa ser inserido no mobile
         this.idEncomenda = idEncomenda;
         this.produto = produto;
     }
@@ -72,28 +71,20 @@ public class Encomenda implements Serializable {
         this.status = status;
     }
 
-    public int getFkIdProduto() {
-        return fkIdProduto;
-    }
-
-    public void setFkIdProduto(int fkIdProduto) {
-        this.fkIdProduto = fkIdProduto;
-    }
-
-    public int getFkIdCliente() {
-        return fkIdCliente;
-    }
-
-    public void setFkIdCliente(int fkIdCliente) {
-        this.fkIdCliente = fkIdCliente;
-    }
-
     public Produto getProduto() {
         return produto;
     }
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
     public Cliente getCliente() {
@@ -106,7 +97,7 @@ public class Encomenda implements Serializable {
 
     @Override
     public String toString() {
-        return "Encomenda{" + "idEncomenda=" + idEncomenda + ", quantidade=" + quantidade + ", status=" + status + ", fkIdProduto=" + fkIdProduto + ", fkIdCliente=" + fkIdCliente + ", produto=" + produto + ", cliente=" + cliente + '}';
+        return "Encomenda{" + "idEncomenda=" + idEncomenda + ", quantidade=" + quantidade + ", status=" + status + ", produto=" + produto + ", cliente=" + cliente + ", vendedor=" + vendedor + '}';
     }
 
 }

@@ -26,6 +26,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
     private ProdutoOnClickListener produtoOnClickListener;
 
     public PedidoAdapter(List<Encomenda> listaEncomendas, ProdutoOnClickListener produtoOnClickListener) {
+        this.listaEncomendas = listaEncomendas;
         this.produtoOnClickListener = produtoOnClickListener;
     }
 
@@ -42,10 +43,11 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
         Encomenda minhaEncomenda = listaEncomendas.get(position);
 
         holder.tvPedidoNome.setText(minhaEncomenda.getProduto().getNome());
+        holder.tvPedidoSituacao.setText(minhaEncomenda.getStatus());
         holder.tvPedidoPreco.setText(String.valueOf(minhaEncomenda.getProduto().getPreco()));
-        holder.tvPedidoNomeLoja.setText(minhaEncomenda.getProduto().getVendedor().getNome());
-//        Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
-//        holder.imgViewProduto.setImageBitmap(bmp);
+        holder.tvPedidoNomeLoja.setText(minhaEncomenda.getVendedor().getNome());
+        Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);
+        holder.imgViewPedido.setImageBitmap(bmp);
 
         // clique no item do cliente
         if (produtoOnClickListener != null) {
@@ -74,6 +76,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
             tvPedidoPreco = itemView.findViewById(R.id.tvPedidoPreco);
             tvPedidoSituacao = itemView.findViewById(R.id.tvPedidoSituacao);
             tvPedidoNomeLoja = itemView.findViewById(R.id.tvPedidoNomeLoja);
+            imgViewPedido = itemView.findViewById(R.id.imgViewPedido);
         }
     }
 

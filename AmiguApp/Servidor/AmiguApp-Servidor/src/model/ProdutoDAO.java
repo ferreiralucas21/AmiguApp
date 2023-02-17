@@ -27,15 +27,16 @@ public class ProdutoDAO {
         con = Conector.getConnection();
     }
     
-    public ArrayList<Produto> getLista(Vendedor vendedor) {
+    public ArrayList<Produto> getLista(Vendedor vendedor) { //Listagem para o dekstop
         Statement stmt = null;
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         try {
             stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from produto where fkIdVendedor = " + vendedor.getIdVendedor());
+            ResultSet res = stmt.executeQuery(" select produto.*,vendedor.* from produto "+
+                                              " inner join vendedor on produto.fkIdVendedor = " + vendedor.getIdVendedor() + " and produto.fkIdVendedor = vendedor.idVendedor");
             
             while (res.next()){
-                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor"));
+                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("idVendedor")));
                 
                 listaProdutos.add(produto);
             }
@@ -47,16 +48,16 @@ public class ProdutoDAO {
         }
     }
     
-    public ArrayList<Produto> getLista() {
+    public ArrayList<Produto> getLista() { //Listagem para o mobile
         Statement stmt = null;
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         try {
             stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select produto.*, vendedor.* from produto" + 
-                                              "inner join produto on (vendedor.idVendedor = produto.fkIdVendedor)");
+            ResultSet res = stmt.executeQuery(" select produto.*, vendedor.* from produto"  + 
+                                              " inner join vendedor on (vendedor.idVendedor = produto.fkIdVendedor)");
             
             while (res.next()){
-                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("IdVendedor")));
+                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("idVendedor"),res.getString("vendedor.nome")));
                 
                 listaProdutos.add(produto);
             }
@@ -77,12 +78,14 @@ public class ProdutoDAO {
             // cria o objeto para rodar o SQL
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery("select * from produto where nome like '%" + nome + "%' and fkIdVendedor = " + vendedor.getIdVendedor());
+            ResultSet res = stmt.executeQuery(" select produto.*, vendedor.idVendedor from produto "+
+                                              " inner join vendedor on produto.fkIdVendedor = " + vendedor.getIdVendedor() + " and produto.nome "+
+                                              " like '%" + nome + "%' and produto.fkIdVendedor = vendedor.idVendedor");
 
             // Percorrendo o resultado - res
             while (res.next()) {
                 // criando o objeto de marca pegando dados do res.
-                Produto rc = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), res.getInt("fkIdVendedor"));
+                Produto rc = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("idVendedor")));
                 // adicionando na lista auxiliar
                 listprodutos.add(rc);
             }
@@ -109,7 +112,7 @@ public class ProdutoDAO {
                 stmt.setFloat(3, produto.getTamanho());
                 stmt.setString(4, produto.getDescricao());
                 stmt.setBytes(5, produto.getImagem());
-                stmt.setInt(6, produto.getFkIdVendedor());
+                stmt.setInt(6, produto.getVendedor().getIdVendedor());
                 stmt.execute();
                 con.commit();
                 return -1;

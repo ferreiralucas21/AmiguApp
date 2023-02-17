@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelDominio.Produto;
+import modelDominio.Vendedor;
 import view.util.Imagem;
 
 /**
@@ -309,8 +310,7 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                     if (!jtfDescricao.getText().equals("")) {                                             
                         if (imagem != null) { 
                         
-                            int codVendedor = AmiguAppCliente.ccont.vendedor.getIdVendedor();
-                            produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jftPreco.getText()),Float.parseFloat(jftTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),codVendedor);
+                            produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jftPreco.getText()),Float.parseFloat(jftTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),new Vendedor(AmiguAppCliente.ccont.vendedor.getIdVendedor()));
                             System.out.println(produto);
                             
                             String msg;
