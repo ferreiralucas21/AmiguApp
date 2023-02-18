@@ -30,16 +30,14 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             tvProdutoDetalhadoDescricao, tvProdutoDetalhadoContato, tvProdutoDetalhadoRua, tvProdutoDetalhadoComplemento,
             tvProdutoDetalhadoBairo, tvProdutoDetalhadoCep;
     EditText etProdutoDetalhadoQuantidade;
-    Button bAlterar, bProdutoFazerPedido;
+    Button bAlterarEndereco, bProdutoFazerPedido;
     ImageView imgProdutoDetalhado, appbarIconSeta, appbarIconHome, appbarIconPerfil;
     RadioButton rbPagamentoPix, rbPagamentoCartao;
 
     SearchView searchView;
     InformacoesApp informacoesApp;
     String msgRecebida;
-    int fkIdProduto, fkIdCliente;
     private ArrayList<Encomenda> listaEncomendas = new ArrayList<>();
-    ArrayList<Produto> listaProdutos;
 
 
     @Override
@@ -61,7 +59,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         etProdutoDetalhadoQuantidade = findViewById(R.id.etProdutoDetalhadoQuantidade);
         bProdutoFazerPedido = findViewById(R.id.bProdutoFazerPedido);
         appbarIconPerfil = findViewById(R.id.appbarIconPerfil);
-        bAlterar = findViewById(R.id.bAlterar);
+        bAlterarEndereco = findViewById(R.id.bAlterarEndereco);
         imgProdutoDetalhado = findViewById(R.id.imgProdutoDetalhado);
         appbarIconSeta = findViewById(R.id.appbarIconSeta);
         appbarIconHome = findViewById(R.id.appbarIconHome);
@@ -84,7 +82,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             }
         });
 
-        bAlterar.setOnClickListener(new View.OnClickListener() {
+        bAlterarEndereco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent (ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
@@ -127,11 +125,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
                     int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
                     Produto produto = informacoesApp.getProdutoSelecionado();
                     Cliente cliente = informacoesApp.getClienteLogado();
-//                    int fkIdProduto = informacoesApp.getProdutoSelecionado().getIdProduto();
-//                    int fkIdCliente = informacoesApp.getClienteLogado().getIdCliente();
-                    System.out.println("ID do cliente logado " + cliente.getIdCliente());
 
-//                  Encomenda minhaEncomenda = new Encomenda(new Produto(fkIdProduto), new Cliente(fkIdCliente), quantidade);
                     Encomenda minhaEncomenda = new Encomenda(new Produto(produto.getIdProduto()), new Cliente(cliente.getIdCliente()), quantidade);
 
                     Thread thread1 = new Thread(new Runnable() {

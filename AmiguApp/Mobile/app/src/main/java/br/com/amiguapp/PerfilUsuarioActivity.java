@@ -15,11 +15,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import controller.ConexaoSocketController;
+import modelDominio.Cliente;
 import modelDominio.Encomenda;
 import modelDominio.Produto;
 import modelDominio.Vendedor;
@@ -29,6 +31,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     EditText etPerfilUsuarioCpf, etPerfilUsuarioEmail, etPerfilUsuarioNome, etPerfilUsuarioTelefone,
             etPerfilUsuarioRua, etPerfilUsuarioBairro, etPerfilUsuarioComplemento, etPerfilUsuarioCep;
     Button bPerfilUsuarioEditar;
+    ImageView appbarIconSeta, appbarIconHome;
     RecyclerView recyclerListaPedidos;
     ArrayList<Encomenda> listaEncomendas;
     ArrayList<Vendedor> listaVendedores;
@@ -50,10 +53,25 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         etPerfilUsuarioComplemento = findViewById(R.id.etPerfilUsuarioComplemento);
         etPerfilUsuarioCep = findViewById(R.id.etPerfilUsuarioCep);
         bPerfilUsuarioEditar = findViewById(R.id.bPerfilUsuarioEditar);
+        appbarIconSeta = findViewById(R.id.appbarIconSeta);
+        appbarIconHome = findViewById(R.id.appbarIconHome);
 
         recyclerListaPedidos = findViewById(R.id.recyclerListaPedidos);
 
         informacoesApp = (InformacoesApp) getApplicationContext();
+
+        CliqueSeta();
+        CliqueHome();
+
+        Cliente cliente = informacoesApp.getClienteLogado();
+        etPerfilUsuarioCpf.setText(cliente.getCpf());
+        etPerfilUsuarioEmail.setText(cliente.getEmail());
+        etPerfilUsuarioNome.setText(cliente.getNome());
+        etPerfilUsuarioTelefone.setText(cliente.getTelefone());
+        etPerfilUsuarioRua.setText(cliente.getRua());
+        etPerfilUsuarioBairro.setText(cliente.getBairro());
+        etPerfilUsuarioComplemento.setText(cliente.getComplemento());
+        etPerfilUsuarioCep.setText(cliente.getCep());
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -83,6 +101,26 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             }
         });
         thread.start();
+    }
+
+    private void CliqueHome() {
+        appbarIconHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(PerfilUsuarioActivity.this, MainActivity.class);
+                startActivity(it);
+            }
+        });
+    }
+
+    private void CliqueSeta() {
+        appbarIconSeta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(PerfilUsuarioActivity.this, MainActivity.class);
+                startActivity(it);
+            }
+        });
     }
 
     PedidoAdapter.ProdutoOnClickListener trataCliqueItem = new PedidoAdapter.ProdutoOnClickListener() {

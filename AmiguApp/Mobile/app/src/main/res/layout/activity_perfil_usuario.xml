@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilUsuarioActivity">
+    tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarCardView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@drawable/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,216 +45,21 @@
 
             </androidx.appcompat.widget.SearchView>
 
-            <ImageView
-                android:id="@+id/appbarIconPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/appbarIconHome"
-                app:layout_constraintStart_toEndOf="@id/appbarSearchView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_person_24" />
 
             <ImageView
                 android:id="@+id/appbarIconHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/appbarIconPerfil"
-                app:layout_constraintTop_toTopOf="@id/appbarIconPerfil"
+                app:layout_constraintStart_toEndOf="@id/appbarSearchView"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_home_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbarCardView">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvPerfilUsuarioDados"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="50dp"
-                android:textColor="@color/rosa_escuro"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="Dados pessoais:" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioCpf"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="CPF"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioDados" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioEmail"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Email"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioCpf" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioNome"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Nome"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioEmail" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioTelefone"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Telefone"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioNome" />
-
-            <TextView
-                android:id="@+id/tvPerfilUsuarioEndereco"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/rosa_escuro"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioTelefone"
-                android:text="Endereço de entrega:" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioRua"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Rua"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioEndereco" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioBairro"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Bairro"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioRua" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioComplemento"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Complemento"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioBairro" />
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioCep"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="CEP"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioComplemento" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/bPerfilUsuarioEditar"
-                style="@style/Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Editar"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioCep" />
-
-            <TextView
-                android:id="@+id/tvPerfilUsuarioCompras"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/rosa_escuro"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/bPerfilUsuarioEditar"
-                android:text="Minhas compras:" />
+    <include layout="@layout/content_perfil_usuario" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerListaPedidos"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollView"
-        tools:listitem="@layout/list_item_pedidos"/>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
