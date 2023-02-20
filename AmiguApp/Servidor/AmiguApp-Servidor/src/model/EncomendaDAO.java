@@ -102,7 +102,7 @@ public class EncomendaDAO {
 
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery(" select encomenda.*,produto.*,cliente.*,vendedor.* from produto"+
+            ResultSet res = stmt.executeQuery(" select encomenda.*,produto.*,cliente.*,vendedor.idVendedor, vendedor.nome from produto"+
                                               " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto) "+
                                               " inner join vendedor on (vendedor.idVendedor = produto.fkIdVendedor) "+
                                               " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)");

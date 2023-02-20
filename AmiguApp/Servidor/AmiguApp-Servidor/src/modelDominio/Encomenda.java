@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 
 public class Encomenda implements Serializable {
-    
+
     private static final long serialVersionUID = 123456789L;
-    
+
     private int idEncomenda;
     private int quantidade;
     private String status;
@@ -21,14 +21,14 @@ public class Encomenda implements Serializable {
         this.produto = produto;
         this.cliente = cliente;
         this.vendedor = vendedor;
-    }   
-    
+    }
+
     public Encomenda(Produto produto, Cliente cliente, int quantidade) {
         this.produto = produto;
         this.cliente = cliente;
         this.quantidade = quantidade;
     }
-    
+
     public Encomenda(int idEncomenda, Produto produto, Vendedor vendedor, Cliente cliente, int quantidade, String status) { //mudar manuelamente no mobile
         this.idEncomenda = idEncomenda;
         this.produto = produto;
@@ -41,12 +41,12 @@ public class Encomenda implements Serializable {
     public Encomenda(int idEncomenda, Produto produto) { //construtor prcisa ser inserido no mobile
         this.idEncomenda = idEncomenda;
         this.produto = produto;
-    }       
+    }
 
     public Encomenda(Produto produto) {
         this.produto = produto;
-    }            
-         
+    }
+
     public int getIdEncomenda() {
         return idEncomenda;
     }
@@ -85,7 +85,7 @@ public class Encomenda implements Serializable {
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
-    }   
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -98,6 +98,6 @@ public class Encomenda implements Serializable {
     @Override
     public String toString() {
         return "Encomenda{" + "idEncomenda=" + idEncomenda + ", quantidade=" + quantidade + ", status=" + status + ", produto=" + produto + ", cliente=" + cliente + ", vendedor=" + vendedor + '}';
-    }  
-           
+    }
+
 }

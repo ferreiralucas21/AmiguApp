@@ -141,19 +141,19 @@ public class ClienteDAO {
         try {
             try {
                 con.setAutoCommit(false);
-                String sql = "update cliente set nome = ?, email = ?, telefone = ?, imagem = ? where idvendedor = ?";
+                String sql = "update cliente set nome = ?, email = ?, telefone = ?, cpf = ?, rua = ?, bairro = ?, complemento = ?, cep = ? where idcliente = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, cliente.getNome());
                 stmt.setString(2, cliente.getEmail());
                 stmt.setString(3, cliente.getTelefone());
-                stmt.setString(4, cliente.getSenha());
                 stmt.setString(4, cliente.getCpf());
-                stmt.setString(4, cliente.getRua());
-                stmt.setString(4, cliente.getBairro());
-                stmt.setString(4, cliente.getComplemento());
-                stmt.setString(4, cliente.getCep());
-                stmt.setInt(5, cliente.getIdCliente());
+                stmt.setString(5, cliente.getRua());
+                stmt.setString(6, cliente.getBairro());
+                stmt.setString(7, cliente.getComplemento());
+                stmt.setString(8, cliente.getCep());
+                stmt.setInt(9, cliente.getIdCliente());
                 stmt.execute();
+                System.out.println(cliente.getIdCliente());
                 con.commit();
                 return -1;
             } catch (SQLException e) {

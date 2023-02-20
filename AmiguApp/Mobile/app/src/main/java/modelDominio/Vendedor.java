@@ -107,8 +107,4 @@ public class Vendedor implements Serializable {
     public String toString() {
         return "Vendedor{" + "idVendedor=" + idVendedor + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", senha=" + senha + '}';
     }
-
-
-
-
 }

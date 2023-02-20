@@ -39,6 +39,17 @@ public class Cliente implements Serializable {
         this.cep = cep;
     }
 
+    public Cliente(String nome, String email, String telefone, String cpf, String rua, String bairro, String complemento, String cep) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.complemento = complemento;
+        this.cep = cep;
+    }
+
     public Cliente(String nome, String email, String telefone, String senha, String cpf) {
         this.nome = nome;
         this.email = email;
@@ -94,6 +105,18 @@ public class Cliente implements Serializable {
 
     public Cliente(int idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public Cliente(int idCliente, String nome, String email, String telefone, String cpf, String rua, String bairro, String complemento, String cep) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.complemento = complemento;
+        this.cep = cep;
     }
 
     public int getIdCliente() {

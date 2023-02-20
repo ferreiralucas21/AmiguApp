@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Cliente` (
   `cpf` VARCHAR(15) NULL,
   `rua` VARCHAR(45) NULL,
   `bairro` VARCHAR(45) NULL,
-  `complemento` VARCHAR(10) NULL,
+  `complemento` VARCHAR(45) NULL,
   `cep` VARCHAR(10) NULL,
   PRIMARY KEY (`idCliente`))
 ENGINE = InnoDB;

@@ -1,5 +1,6 @@
 package br.com.amiguapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -38,6 +39,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     InformacoesApp informacoesApp;
     PedidoAdapter pedidoAdapter;
     Context context;
+    Cliente clienteAlterado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +60,11 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
 
         recyclerListaPedidos = findViewById(R.id.recyclerListaPedidos);
 
-        informacoesApp = (InformacoesApp) getApplicationContext();
 
         CliqueSeta();
         CliqueHome();
+
+        informacoesApp = (InformacoesApp) getApplicationContext();
 
         Cliente cliente = informacoesApp.getClienteLogado();
         etPerfilUsuarioCpf.setText(cliente.getCpf());
@@ -72,6 +75,60 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         etPerfilUsuarioBairro.setText(cliente.getBairro());
         etPerfilUsuarioComplemento.setText(cliente.getComplemento());
         etPerfilUsuarioCep.setText(cliente.getCep());
+
+        bPerfilUsuarioEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!etPerfilUsuarioCpf.getText().toString().equals("")){
+                    if (!etPerfilUsuarioEmail.getText().toString().equals("")){
+                        if (!etPerfilUsuarioNome.getText().toString().equals("")){
+                            if (!etPerfilUsuarioTelefone.getText().toString().equals("")){
+                                int idCliente = cliente.getIdCliente();
+                                String cpf = etPerfilUsuarioCpf.getText().toString();
+                                String email = etPerfilUsuarioEmail.getText().toString();
+                                String nome = etPerfilUsuarioNome.getText().toString();
+                                String telefone = etPerfilUsuarioTelefone.getText().toString();
+                                String rua = etPerfilUsuarioRua.getText().toString();
+                                String bairro = etPerfilUsuarioBairro.getText().toString();
+                                String complemento = etPerfilUsuarioComplemento.getText().toString();
+                                String cep = etPerfilUsuarioCep.getText().toString();
+
+                                clienteAlterado = new Cliente(idCliente,cpf, email, nome, telefone, rua, bairro, complemento, cep);
+
+                                Thread thread1 = new Thread(() -> {
+                                    ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+                                    String msgRecebida = conexaoSocket.alterarCliente(clienteAlterado);
+
+                                    if (msgRecebida.equals("ok")) {
+                                        // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
+                                        informacoesApp.setClienteLogado(clienteAlterado);
+                                        runOnUiThread(() -> Toast.makeText(informacoesApp, "Informações editadas com sucesso", Toast.LENGTH_SHORT).show());
+                                    } else {
+                                        System.out.println(clienteAlterado.toString());
+                                        runOnUiThread(() -> Toast.makeText(informacoesApp, "Erro ao realizar as alterações", Toast.LENGTH_SHORT).show());
+                                    }
+
+                                });
+                                thread1.start();
+
+                            }else{
+                                etPerfilUsuarioTelefone.setError("Informe o telefone");
+                                etPerfilUsuarioTelefone.requestFocus();
+                            }
+                        }else {
+                            etPerfilUsuarioNome.setError("Informe o nome");
+                            etPerfilUsuarioNome.requestFocus();
+                        }
+                    }else {
+                        etPerfilUsuarioEmail.setError("Informe o email");
+                        etPerfilUsuarioEmail.requestFocus();
+                    }
+                }else {
+                    etPerfilUsuarioCpf.setError("Informe o CPF");
+                    etPerfilUsuarioCpf.requestFocus();
+                }
+            }
+        });
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -102,6 +159,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         });
         thread.start();
     }
+
 
     private void CliqueHome() {
         appbarIconHome.setOnClickListener(new View.OnClickListener() {

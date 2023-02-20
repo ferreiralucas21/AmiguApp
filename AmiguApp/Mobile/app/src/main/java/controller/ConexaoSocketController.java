@@ -72,6 +72,23 @@ public class ConexaoSocketController {
         return msgRecebida;
     }
 
+    public String alterarCliente(Cliente clienteAlterado) {
+        String msgRecebida = "";
+        try {
+            informacoesApp.out.writeObject("ClienteAlterar");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("ok")) {
+                informacoesApp.out.writeObject(clienteAlterado);
+                msgRecebida = (String) informacoesApp.in.readObject();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+        }
+        return msgRecebida;
+    }
+
     public String enviaRecebeString(String msgEnviar) {
         String msgRecebida = "";
         try {

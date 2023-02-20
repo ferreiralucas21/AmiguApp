@@ -68,6 +68,17 @@ public class TrataClienteController extends Thread {
                     
                     out.writeObject(clienteSelecionado);
                     
+                } else if (comando.equalsIgnoreCase("ClienteAlterar")) {
+                    out.writeObject("ok");                   
+                    Cliente cliente = (Cliente) in.readObject();
+                    System.out.println(cliente.toString());
+                    ClienteDAO dao = new ClienteDAO();
+                    if (dao.alterarCliente(cliente) == -1) {
+                        out.writeObject("ok");
+                    } else {
+                        out.writeObject("nok");
+                    }
+                    
                 } else if (comando.equalsIgnoreCase("VendedorInserir")) {
                     out.writeObject("ok");
                     Vendedor vendedor = (Vendedor) in.readObject();
