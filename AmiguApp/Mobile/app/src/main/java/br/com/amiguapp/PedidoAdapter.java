@@ -1,33 +1,28 @@
 package br.com.amiguapp;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import modelDominio.Encomenda;
 import modelDominio.Produto;
-import modelDominio.Vendedor;
 
 public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHolder> {
     private List<Encomenda> listaEncomendas;
     private List<Produto> listaProdutos;
-    private ProdutoOnClickListener produtoOnClickListener;
+    private PedidoOnClickListener pedidoOnClickListener;
 
-    public PedidoAdapter(List<Encomenda> listaEncomendas, ProdutoOnClickListener produtoOnClickListener) {
+    public PedidoAdapter(List<Encomenda> listaEncomendas, PedidoOnClickListener pedidoOnClickListener) {
         this.listaEncomendas = listaEncomendas;
-        this.produtoOnClickListener = produtoOnClickListener;
+        this.pedidoOnClickListener = pedidoOnClickListener;
     }
 
     @Override
@@ -43,18 +38,19 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
         Encomenda minhaEncomenda = listaEncomendas.get(position);
 
         holder.tvPedidoNome.setText(minhaEncomenda.getProduto().getNome());
-        holder.tvPedidoSituacao.setText(minhaEncomenda.getStatus());
+        holder.tvPedidoSituacao.append(minhaEncomenda.getStatus());
         holder.tvPedidoPreco.setText(String.valueOf(minhaEncomenda.getProduto().getPreco()));
+        holder.tvPedidoQuantidade.append(String.valueOf(minhaEncomenda.getQuantidade()));
         holder.tvPedidoNomeLoja.setText(minhaEncomenda.getVendedor().getNome());
         Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);
         holder.imgViewPedido.setImageBitmap(bmp);
 
-        // clique no item do cliente
-        if (produtoOnClickListener != null) {
+        // clique no pedido
+        if (pedidoOnClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    produtoOnClickListener.onClickProduto(holder.itemView, holder.getAdapterPosition());
+                    pedidoOnClickListener.onClickPedido(holder.itemView, holder.getAdapterPosition());
                 }
             });
         }
@@ -67,7 +63,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPedidoNome, tvPedidoPreco, tvPedidoSituacao, tvPedidoNomeLoja;
+        TextView tvPedidoNome, tvPedidoPreco, tvPedidoSituacao, tvPedidoQuantidade, tvPedidoNomeLoja;
         ImageView imgViewPedido;
 
         public MyViewHolder(View itemView) {
@@ -75,13 +71,14 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
             tvPedidoNome = itemView.findViewById(R.id.tvPedidoNome);
             tvPedidoPreco = itemView.findViewById(R.id.tvPedidoPreco);
             tvPedidoSituacao = itemView.findViewById(R.id.tvPedidoSituacao);
+            tvPedidoQuantidade = itemView.findViewById(R.id.tvPedidoQuantidade);
             tvPedidoNomeLoja = itemView.findViewById(R.id.tvPedidoNomeLoja);
             imgViewPedido = itemView.findViewById(R.id.imgViewPedido);
         }
     }
 
-    public interface ProdutoOnClickListener {
-        public void onClickProduto(View view, int position);
+    public interface PedidoOnClickListener {
+        public void onClickPedido(View view, int position);
     }
 
 }

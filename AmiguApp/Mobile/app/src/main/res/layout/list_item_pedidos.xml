@@ -39,6 +39,7 @@
         android:layout_marginTop="4dp"
         android:textColor="@color/cinza_escuro"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cifrao"
         app:layout_constraintStart_toEndOf="@id/cardPedidoImagem"
         app:layout_constraintTop_toTopOf="@id/cardPedidoImagem"
         tools:text="Pelúcia de Dinossauro" />
@@ -47,8 +48,8 @@
         android:id="@+id/cifrao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         android:text="R$ "
+        android:layout_marginTop="2dp"
         android:textColor="@color/cinza_escuro"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
@@ -65,25 +66,26 @@
         tools:text="0,00" />
 
     <TextView
-        android:id="@+id/situacao"
+        android:id="@+id/tvPedidoSituacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         android:text="Situação: "
+        android:layout_marginTop="2dp"
         android:textColor="@color/cinza_escuro"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
         app:layout_constraintTop_toBottomOf="@id/cifrao" />
 
     <TextView
-        android:id="@+id/tvPedidoSituacao"
+        android:id="@+id/tvPedidoQuantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Quantidade: "
+        android:layout_marginTop="2dp"
         android:textColor="@color/cinza_escuro"
         android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@id/situacao"
-        app:layout_constraintTop_toTopOf="@id/situacao"
-        tools:text="em processamento/enviado" />
+        app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
+        app:layout_constraintTop_toBottomOf="@id/tvPedidoSituacao" />
 
     <TextView
         android:id="@+id/lojaPedido"
@@ -94,7 +96,7 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@id/cardPedidoImagem"
         app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
-        app:layout_constraintTop_toBottomOf="@id/tvPedidoSituacao" />
+        app:layout_constraintTop_toBottomOf="@id/tvPedidoQuantidade" />
 
     <TextView
         android:id="@+id/tvPedidoNomeLoja"

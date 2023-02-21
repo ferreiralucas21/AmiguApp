@@ -82,10 +82,23 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             tvProdutoDetalhadoTamanho.setText(String.valueOf(meuProduto.getTamanho()));
             tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
             tvProdutoDetalhadoContato.setText(meuProduto.getVendedor().getTelefone());
-            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
-                etProdutoDetalhadoQuantidade.getText().toString();
-            }
         }
+
+//        if (intent.hasExtra("pedidoClicado")){
+//            final Encomenda minhaEncomenda = (Encomenda) intent.getSerializableExtra("pedidoClicado");
+//
+//            tvProdutoDetalhadoNomeLoja.setText(minhaEncomenda.getProduto().getVendedor().getNome());
+//            Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);
+//            imgProdutoDetalhado.setImageBitmap(bmp);
+//            tvProdutoDetalhadoNome.setText(minhaEncomenda.getProduto().getNome());
+//            tvProdutoDetalhadoPreco.setText(String.valueOf(minhaEncomenda.getProduto().getPreco()));
+//            tvProdutoDetalhadoTamanho.setText(String.valueOf(minhaEncomenda.getProduto().getTamanho()));
+//            tvProdutoDetalhadoDescricao.setText(minhaEncomenda.getProduto().getDescricao());
+//            tvProdutoDetalhadoContato.setText(minhaEncomenda.getVendedor().getTelefone());
+//            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
+//                etProdutoDetalhadoQuantidade.getText().toString();
+//            }
+//        }
 
         informacoesApp = (InformacoesApp) getApplicationContext();
 
@@ -98,9 +111,9 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         bProdutoFazerPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
+                if (!etProdutoDetalhadoQuantidade.getText().toString().equals("0") && !etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
                     if (!tvProdutoDetalhadoRua.getText().toString().equals("") && !tvProdutoDetalhadoBairro.getText().toString().equals("")
-                            && !tvProdutoDetalhadoCep.getText().toString().equals("")) {
+                            && !tvProdutoDetalhadoComplemento.getText().toString().equals("") && !tvProdutoDetalhadoCep.getText().toString().equals("")) {
 
                         int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
                         Produto produto = informacoesApp.getProdutoSelecionado();
@@ -179,8 +192,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         appbarIconSeta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(ProdutoDetalhadoActivity.this, MainActivity.class);
-                startActivity(it);
+                finish();
             }
         });
     }

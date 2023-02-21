@@ -1,18 +1,12 @@
 package br.com.amiguapp;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +18,6 @@ import java.util.ArrayList;
 import controller.ConexaoSocketController;
 import modelDominio.Cliente;
 import modelDominio.Encomenda;
-import modelDominio.Produto;
 import modelDominio.Vendedor;
 
 public class PerfilUsuarioActivity extends AppCompatActivity {
@@ -38,7 +31,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     ArrayList<Vendedor> listaVendedores;
     InformacoesApp informacoesApp;
     PedidoAdapter pedidoAdapter;
-    Context context;
     Cliente clienteAlterado;
 
     @Override
@@ -93,7 +85,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                                 String complemento = etPerfilUsuarioComplemento.getText().toString();
                                 String cep = etPerfilUsuarioCep.getText().toString();
 
-                                clienteAlterado = new Cliente(idCliente,cpf, email, nome, telefone, rua, bairro, complemento, cep);
+                                clienteAlterado = new Cliente(idCliente,nome, email, telefone, cpf, rua, bairro, complemento, cep);
 
                                 Thread thread1 = new Thread(() -> {
                                     ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
@@ -175,28 +167,19 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         appbarIconSeta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(PerfilUsuarioActivity.this, MainActivity.class);
-                startActivity(it);
+                finish();
             }
         });
     }
 
-    PedidoAdapter.ProdutoOnClickListener trataCliqueItem = new PedidoAdapter.ProdutoOnClickListener() {
+    PedidoAdapter.PedidoOnClickListener trataCliqueItem = new PedidoAdapter.PedidoOnClickListener() {
         @Override
-        public void onClickProduto(View view, int position) {
-//            Encomenda minhaEncomenda = listaEncomendas.get(position);
-//            Vendedor meuVendedor = null;
-//            informacoesApp.setProdutoSelecionado(meuProduto);
-//            for (int i = 0; i <= listaVendedores.size(); i++) {
-//                if (listaVendedores.get(i).getIdVendedor() == meuProduto.getFkIdVendedor()) {
-//                    meuVendedor = listaVendedores.get(i);
-//                    break;
-//                }
-//            }
-//            Intent it = new Intent(MainActivity.this, ProdutoDetalhadoActivity.class);
-//            it.putExtra("produtoClicado", meuProduto);
-//            it.putExtra("vendedorDoProduto",meuVendedor);
-//            startActivity(it);
+        public void onClickPedido(View view, int position) {
+            Encomenda minhaEncomenda = listaEncomendas.get(position);
+            informacoesApp.setProdutoSelecionado(minhaEncomenda.getProduto());
+            Intent it = new Intent(PerfilUsuarioActivity.this, ProdutoDetalhadoActivity.class);
+            it.putExtra("pedidoClicado", minhaEncomenda.getProduto());
+            startActivity(it);
         }
     };
 }

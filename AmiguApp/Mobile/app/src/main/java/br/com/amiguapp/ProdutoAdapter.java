@@ -41,7 +41,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
         Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
         holder.imgViewProduto.setImageBitmap(bmp);
 
-        // clique no item do cliente
+        // clique no produto
         if (produtoOnClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

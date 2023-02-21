@@ -32,20 +32,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/etPerfilUsuarioCpf"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioCpf"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="CPF"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioDados" />
+                app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioDados">
+
+                <EditText
+                    android:id="@+id/etPerfilUsuarioCpf"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="CPF"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <EditText
                 android:id="@+id/etPerfilUsuarioEmail"
@@ -57,9 +65,9 @@
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioCpf" />
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioCpf" />
 
             <EditText
                 android:id="@+id/etPerfilUsuarioNome"
@@ -71,7 +79,7 @@
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
                 app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioEmail" />
 
@@ -85,7 +93,7 @@
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
                 app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioNome" />
 
@@ -110,7 +118,7 @@
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
                 app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioEndereco" />
 
@@ -124,7 +132,7 @@
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
                 app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioRua" />
 
@@ -134,11 +142,11 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/edit_text_border"
-                android:hint="Complemento"
+                android:hint="Número/Complemento"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
                 app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioBairro" />
 
@@ -152,7 +160,7 @@
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/etPerfilUsuarioCpf"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
                 app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioComplemento" />
 

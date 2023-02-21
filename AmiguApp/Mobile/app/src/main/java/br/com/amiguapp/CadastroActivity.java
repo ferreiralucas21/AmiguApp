@@ -96,7 +96,7 @@ public class CadastroActivity extends AppCompatActivity {
                                                 // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
                                                 informacoesApp.setClienteInserido(cliente);
 
-                                                Intent it = new Intent(CadastroActivity.this, MainActivity.class);
+                                                Intent it = new Intent(CadastroActivity.this, LoginActivity.class);
                                                 startActivity(it);
                                             } else {
 
