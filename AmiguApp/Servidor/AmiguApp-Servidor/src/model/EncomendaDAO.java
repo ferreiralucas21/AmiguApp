@@ -79,7 +79,7 @@ public class EncomendaDAO {
             while (res.next()) {
                 // criando o objeto de gastomensal pegando dados do res.
                 Encomenda encomenda = new Encomenda(res.getInt("idEncomenda"),new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem")), new Vendedor(res.getInt("idVendedor")),
-                                      new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf")),res.getInt("quantidade"),res.getString("status"));              
+                                      new Cliente(res.getString("cliente.nome"),res.getString("email"),res.getString("telefone"),res.getString("cpf"),res.getString("rua"),res.getString("bairro"),res.getString("complemento"),res.getString("cep")),res.getInt("quantidade"),res.getString("status"));              
                 listaEncomendas.add(encomenda);
                 System.out.println(encomenda);                
             }
