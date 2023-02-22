@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
     Button bLoginEntrar, bLoginCadastrar;
 
     Cliente cliente;
-    String msgRecebida;
     InformacoesApp informacoesApp;
     Boolean resultadoConexao;
 
@@ -34,75 +33,57 @@ public class LoginActivity extends AppCompatActivity {
         bLoginCadastrar = findViewById(R.id.bLoginCadastrar);
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-        bLoginCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(LoginActivity.this, CadastroActivity.class);
-                startActivity(it);
-            }
+        bLoginCadastrar.setOnClickListener(view -> {
+            Intent it = new Intent(LoginActivity.this, CadastroActivity.class);
+            startActivity(it);
         });
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                resultadoConexao = conexaoSocket.criaConexao();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!resultadoConexao == true) {
-                            Toast.makeText(informacoesApp, "Erro: não foi possível estabelexer a conexão com o servidor.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
+        Thread thread = new Thread(() -> {
+            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+            resultadoConexao = conexaoSocket.criaConexao();
+            runOnUiThread(() -> {
+                if (!resultadoConexao == true) {
+                    Toast.makeText(informacoesApp, "Erro: não foi possível estabelexer a conexão com o servidor.", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
         thread.start();
 
-        bLoginEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!etLoginEmail.getText().toString().equals("")) {
-                    if (!etLoginSenha.getText().toString().equals("")) {
-                        String email = etLoginEmail.getText().toString();
-                        String senha = etLoginSenha.getText().toString();
+        bLoginEntrar.setOnClickListener(view -> {
+            if (!etLoginEmail.getText().toString().equals("")) {
+                if (!etLoginSenha.getText().toString().equals("")) {
+                    String email = etLoginEmail.getText().toString();
+                    String senha = etLoginSenha.getText().toString();
 
-                        cliente = new Cliente(email, senha);
+                    cliente = new Cliente(email, senha);
 
-                        Thread thread1 = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                                cliente = conexaoSocket.efetuarLogin(cliente);
+                    Thread thread1 = new Thread(() -> {
+                        ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+                        cliente = conexaoSocket.efetuarLogin(cliente);
 
-                                if (cliente != null) {
-                                    // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
-                                    informacoesApp.setClienteLogado(cliente);
+                        if (cliente != null) {
+                            // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
+                            informacoesApp.setClienteLogado(cliente);
 
-                                    Intent it = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(it);
-                                } else {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(informacoesApp, "ATENÇÃO: Usuário e senha não conferem!", Toast.LENGTH_SHORT).show();
-                                            limpaCampos();
-                                        }
-                                    });
-                                }
+                            Intent it = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(it);
+                        } else {
+                            runOnUiThread(() -> {
+                                Toast.makeText(informacoesApp, "ATENÇÃO: Usuário e senha não conferem!", Toast.LENGTH_SHORT).show();
+                                limpaCampos();
+                            });
+                        }
 
-                            }
-                        });
-                        thread1.start();
+                    });
+                    thread1.start();
 
-                    } else {
-                        etLoginSenha.setError("Informe a senha");
-                        etLoginSenha.requestFocus();
-                    }
                 } else {
-                    etLoginEmail.setError("Informe o email");
-                    etLoginEmail.requestFocus();
+                    etLoginSenha.setError("Informe a senha");
+                    etLoginSenha.requestFocus();
                 }
+            } else {
+                etLoginEmail.setError("Informe o email");
+                etLoginEmail.requestFocus();
             }
         });
 

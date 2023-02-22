@@ -102,11 +102,7 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
 
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-        Cliente cliente = informacoesApp.getClienteLogado();
-        tvProdutoDetalhadoRua.setText(cliente.getRua());
-        tvProdutoDetalhadoBairro.setText(cliente.getBairro());
-        tvProdutoDetalhadoComplemento.setText(cliente.getComplemento());
-        tvProdutoDetalhadoCep.setText(cliente.getCep());
+        preencheEndereco();
 
         bProdutoFazerPedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +152,20 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        preencheEndereco();
+    }
+
+    private void preencheEndereco() {
+        Cliente cliente = informacoesApp.getClienteLogado();
+        tvProdutoDetalhadoRua.setText(cliente.getRua());
+        tvProdutoDetalhadoBairro.setText(cliente.getBairro());
+        tvProdutoDetalhadoComplemento.setText(cliente.getComplemento());
+        tvProdutoDetalhadoCep.setText(cliente.getCep());
     }
 
     private void CliqueHome() {

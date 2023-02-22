@@ -57,7 +57,7 @@ public class ProdutoDAO {
                                               " inner join vendedor on (vendedor.idVendedor = produto.fkIdVendedor)");
             
             while (res.next()){
-                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("idVendedor"),res.getString("vendedor.nome")));
+                Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("idVendedor"), res.getString("vendedor.nome"), res.getString("telefone")));
                 
                 listaProdutos.add(produto);
             }

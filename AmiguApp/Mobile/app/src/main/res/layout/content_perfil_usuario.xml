@@ -45,6 +45,7 @@
                 <EditText
                     android:id="@+id/etPerfilUsuarioCpf"
                     android:layout_width="match_parent"
+                    android:inputType="number"
                     android:layout_height="30dp"
                     android:background="@drawable/edit_text_border"
                     android:paddingTop="0dp"
@@ -88,6 +89,7 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
+                android:inputType="number"
                 android:background="@drawable/edit_text_border"
                 android:hint="Telefone"
                 android:paddingTop="0dp"
@@ -157,6 +159,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/edit_text_border"
                 android:hint="CEP"
+                android:inputType="number"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:textSize="13dp"

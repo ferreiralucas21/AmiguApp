@@ -29,6 +29,12 @@ public class Vendedor implements Serializable {
         this.senha = senha;
     }
 
+    public Vendedor(int idVendedor, String nome, String telefone) {
+        this.idVendedor = idVendedor;
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
     public Vendedor(String nome, String email, String telefone, String senha) {
         this.nome = nome;
         this.email = email;
