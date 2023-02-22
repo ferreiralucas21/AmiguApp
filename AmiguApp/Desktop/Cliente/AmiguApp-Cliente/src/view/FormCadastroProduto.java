@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import modelDominio.Produto;
 import modelDominio.Vendedor;
 import view.util.Imagem;
+import view.util.MascaraNumeros;
 
 /**
  *
@@ -26,6 +27,8 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     
     public FormCadastroProduto(Produto produto) {
         initComponents();
+        jtfPreco.setDocument(new MascaraNumeros());
+        jtfTamanho.setDocument(new MascaraNumeros());
                      
         if (produto == null) {
             codigo = -1;
@@ -33,8 +36,8 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         } else {
             codigo = produto.getIdProduto();
             jtfNome.setText(produto.getNome());
-            jftPreco.setText(Float.toString(produto.getPreco()));
-            jftTamanho.setText(Float.toString(produto.getTamanho()));
+            jtfPreco.setText(Float.toString(produto.getPreco()));
+            jtfTamanho.setText(Float.toString(produto.getTamanho()));
             jtfDescricao.setText(produto.getDescricao());
             if (produto.getImagem() != null) {
                 imagem = new Imagem(produto.getImagem());
@@ -69,8 +72,8 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jbtSalvar = new javax.swing.JButton();
         jbtExcluir = new javax.swing.JButton();
-        jftPreco = new javax.swing.JFormattedTextField();
-        jftTamanho = new javax.swing.JFormattedTextField();
+        jtfPreco = new javax.swing.JTextField();
+        jtfTamanho = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produto");
@@ -200,19 +203,9 @@ public class FormCadastroProduto extends javax.swing.JDialog {
             }
         });
 
-        jftPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 103, 62)));
-        try {
-            jftPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jtfPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 103, 62)));
 
-        jftTamanho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
-        try {
-            jftTamanho.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jtfTamanho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 102, 63)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -233,8 +226,8 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNome)
-                            .addComponent(jftPreco)
-                            .addComponent(jftTamanho)))
+                            .addComponent(jtfPreco)
+                            .addComponent(jtfTamanho)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -270,11 +263,11 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jftPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jftTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -305,12 +298,12 @@ public class FormCadastroProduto extends javax.swing.JDialog {
         Produto produto; 
         
         if (!jtfNome.getText().equals("")) {           
-            if (!jftPreco.getText().equals("")) {              
-                if (!jftTamanho.getText().equals("")) {                   
+            if (!jtfPreco.getText().equals("")) {              
+                if (!jtfTamanho.getText().equals("")) {                   
                     if (!jtfDescricao.getText().equals("")) {                                             
                         if (imagem != null) { 
                         
-                            produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jftPreco.getText()),Float.parseFloat(jftTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),new Vendedor(AmiguAppCliente.ccont.vendedor.getIdVendedor()));
+                            produto = new Produto(codigo,jtfNome.getText(),Float.parseFloat(jtfPreco.getText()),Float.parseFloat(jtfTamanho.getText()),jtfDescricao.getText(), imagem.getImagem(),new Vendedor(AmiguAppCliente.ccont.vendedor.getIdVendedor()));
                             System.out.println(produto);
                             
                             String msg;
@@ -328,8 +321,8 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                             if (msg.equals("ok")) {
                                 JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
                                 jtfNome.setText("");
-                                jftPreco.setText("");
-                                jftTamanho.setText("");
+                                jtfPreco.setText("");
+                                jtfTamanho.setText("");
                                 jtfDescricao.setText("");
                                 jlImagem.setIcon(null);
                                 imagem = null;
@@ -348,12 +341,12 @@ public class FormCadastroProduto extends javax.swing.JDialog {
                     }    
                 } else {
                     JOptionPane.showMessageDialog(this, "Preencha o campo tamanho!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                    jftTamanho.requestFocus();
+                    jtfTamanho.requestFocus();
                 }       
                  
             } else {
                 JOptionPane.showMessageDialog(this, "Preencha o campo preço!", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-                jftPreco.requestFocus();
+                jtfPreco.requestFocus();
             } 
             
         } else {
@@ -452,10 +445,10 @@ public class FormCadastroProduto extends javax.swing.JDialog {
     private javax.swing.JButton jbtSalvar;
     private javax.swing.JButton jbtUploadImagem;
     private javax.swing.JButton jbtVoltar;
-    private javax.swing.JFormattedTextField jftPreco;
-    private javax.swing.JFormattedTextField jftTamanho;
     private javax.swing.JLabel jlImagem;
     private javax.swing.JTextField jtfDescricao;
     private javax.swing.JTextField jtfNome;
+    private javax.swing.JTextField jtfPreco;
+    private javax.swing.JTextField jtfTamanho;
     // End of variables declaration//GEN-END:variables
 }
