@@ -35,6 +35,10 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
     public void onBindViewHolder(final ProdutoAdapter.MyViewHolder holder, final int position) {
         Produto meuProduto = listaProdutos.get(position);
 
+        bind(holder, meuProduto);
+    }
+
+    private void bind(MyViewHolder holder, Produto meuProduto) {
         holder.tvNomeProduto.setText(meuProduto.getNome());
         holder.tvPrecoProduto.setText(String.valueOf(meuProduto.getPreco()));
         holder.tvLojaNome.setText(meuProduto.getVendedor().getNome());
@@ -50,6 +54,11 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
                 }
             });
         }
+    }
+
+    public void search(List<Produto> listaFiltrada){
+        listaProdutos = listaFiltrada;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -35,9 +35,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tfPerfilUsuarioCpf"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
+                android:gravity="bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
                 app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioDados">
@@ -55,49 +56,74 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <EditText
-                android:id="@+id/etPerfilUsuarioEmail"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioEmail"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Email"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:gravity="bottom"
                 app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioCpf" />
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioCpf">
 
-            <EditText
-                android:id="@+id/etPerfilUsuarioNome"
+                <EditText
+                    android:id="@+id/etPerfilUsuarioEmail"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="Email"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioNome"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Nome"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:gravity="bottom"
                 app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioEmail" />
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioEmail">
 
-            <EditText
-                android:id="@+id/etPerfilUsuarioTelefone"
+                <EditText
+                    android:id="@+id/etPerfilUsuarioNome"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="Nome"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioTelefone"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:inputType="number"
-                android:background="@drawable/edit_text_border"
-                android:hint="Telefone"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:gravity="bottom"
                 app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioNome" />
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioNome">
+
+                <EditText
+                    android:id="@+id/etPerfilUsuarioTelefone"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="Telefone"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilUsuarioEndereco"
@@ -108,64 +134,99 @@
                 android:textColor="@color/rosa_escuro"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioTelefone" />
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioTelefone" />
 
-            <EditText
-                android:id="@+id/etPerfilUsuarioRua"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioRua"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Rua"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
+                android:gravity="bottom"
                 app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioEndereco" />
+                app:layout_constraintTop_toBottomOf="@id/tvPerfilUsuarioEndereco">
 
-            <EditText
-                android:id="@+id/etPerfilUsuarioBairro"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Bairro"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioRua" />
+                <EditText
+                    android:id="@+id/etPerfilUsuarioRua"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="Rua"
+                    android:textSize="13dp" />
 
-            <EditText
-                android:id="@+id/etPerfilUsuarioComplemento"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="Número/Complemento"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
-                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
-                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioBairro" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/etPerfilUsuarioCep"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioBairro"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_border"
-                android:hint="CEP"
-                android:inputType="number"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:textSize="13dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:gravity="bottom"
                 app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
                 app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioComplemento" />
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioRua">
+
+                <EditText
+                    android:id="@+id/etPerfilUsuarioBairro"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="Bairro"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioComplemento"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:gravity="bottom"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
+                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioBairro">
+
+                <EditText
+                    android:id="@+id/etPerfilUsuarioComplemento"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="Complemento"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPerfilUsuarioCep"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:gravity="bottom"
+                app:layout_constraintEnd_toEndOf="@id/tfPerfilUsuarioCpf"
+                app:layout_constraintStart_toStartOf="@id/tvPerfilUsuarioDados"
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioComplemento">
+
+                <EditText
+                    android:id="@+id/etPerfilUsuarioCep"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_text_border"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:hint="Cep"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bPerfilUsuarioEditar"
@@ -177,7 +238,7 @@
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilUsuarioCep" />
+                app:layout_constraintTop_toBottomOf="@id/tfPerfilUsuarioCep" />
 
             <TextView
                 android:id="@+id/tvPerfilUsuarioCompras"

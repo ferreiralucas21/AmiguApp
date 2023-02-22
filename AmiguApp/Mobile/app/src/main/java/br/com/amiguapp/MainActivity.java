@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.ConexaoSocketController;
 import modelDominio.Produto;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerListaItens = findViewById(R.id.recyclerListaItens);
         informacoesApp = (InformacoesApp) getApplicationContext();
 
+
         appbarIconPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +60,30 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
 
                             produtoAdapter = new ProdutoAdapter(listaProdutos, trataCliqueItem);
+
+                            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                @Override
+                                public boolean onQueryTextSubmit(String query) {
+                                    return false;
+                                }
+
+                                @Override
+                                public boolean onQueryTextChange(String newText) {
+                                    List<Produto> listaFiltrada = new ArrayList<>();
+                                    for (Produto produto :
+                                            listaProdutos) {
+                                        //Checa se o nome do produto contem o que foi pesquisado, o tolowercase serve pra nao dar problema de maiusculo e minusculo pq transforma tudo em minusculo
+                                        if (produto.getNome().toLowerCase().contains(newText.toLowerCase())){
+                                            listaFiltrada.add(produto);
+                                        }
+                                    }
+                                    produtoAdapter.search(listaFiltrada);
+                                    if (listaFiltrada.isEmpty()){
+                                        Toast.makeText(informacoesApp, "Sem produtos desse nome", Toast.LENGTH_SHORT).show();
+                                    }
+                                    return false;
+                                }
+                            });
                             recyclerListaItens.setLayoutManager(new GridLayoutManager(context, 2));
                             recyclerListaItens.setItemAnimator(new DefaultItemAnimator());
                             recyclerListaItens.setAdapter(produtoAdapter);
