@@ -126,7 +126,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             @Override
             public void run() {
                 ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                listaEncomendas = conexaoSocket.listaEncomendas();
+                listaEncomendas = conexaoSocket.listaEncomendas(cliente);
                 listaVendedores = conexaoSocket.listaVendedores();
                 if (listaEncomendas != null) {
                     runOnUiThread(new Runnable() {

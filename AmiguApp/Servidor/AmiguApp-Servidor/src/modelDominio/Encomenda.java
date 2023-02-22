@@ -23,6 +23,14 @@ public class Encomenda implements Serializable {
         this.vendedor = vendedor;
     }
 
+    public Encomenda(int idEncomenda, int quantidade, String status, Produto produto, Vendedor vendedor) {
+        this.idEncomenda = idEncomenda;
+        this.quantidade = quantidade;
+        this.status = status;
+        this.produto = produto;
+        this.vendedor = vendedor;
+    }
+
     public Encomenda(Produto produto, Cliente cliente, int quantidade) {
         this.produto = produto;
         this.cliente = cliente;

@@ -33,7 +33,7 @@ public class ProdutoDAO {
         try {
             stmt = con.createStatement();
             ResultSet res = stmt.executeQuery(" select produto.*,vendedor.* from produto "+
-                                              " inner join vendedor on produto.fkIdVendedor = " + vendedor.getIdVendedor() + " and produto.fkIdVendedor = vendedor.idVendedor");
+                                                " inner join vendedor on produto.fkIdVendedor = " + vendedor.getIdVendedor() + " and produto.fkIdVendedor = vendedor.idVendedor");
             
             while (res.next()){
                 Produto produto = new Produto(res.getInt("idProduto"), res.getString("nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem"), new Vendedor(res.getInt("idVendedor")));

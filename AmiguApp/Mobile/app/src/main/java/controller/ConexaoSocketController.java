@@ -138,12 +138,13 @@ public class ConexaoSocketController {
         return listaVendedores;
     }
 
-    public ArrayList<Encomenda> listaEncomendas() {
+    public ArrayList<Encomenda> listaEncomendas(Cliente cliente) {
         ArrayList<Encomenda> listaEncomendas = null;
         try {
             informacoesApp.out.writeObject("ListaEncomendas");
             String msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("ok")) {
+                informacoesApp.out.writeObject(cliente);
                 listaEncomendas = (ArrayList<Encomenda>) informacoesApp.in.readObject();
             }
         } catch (IOException ioe) {
