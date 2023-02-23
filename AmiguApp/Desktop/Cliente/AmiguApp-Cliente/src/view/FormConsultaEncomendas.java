@@ -122,7 +122,7 @@ public class FormConsultaEncomendas extends javax.swing.JDialog {
         jrbProcessamento.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(jrbProcessamento);
         jrbProcessamento.setFont(new java.awt.Font("Source Sans Pro Light", 0, 12)); // NOI18N
-        jrbProcessamento.setText("Em precessamento");
+        jrbProcessamento.setText("Em processamento");
         jrbProcessamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbProcessamentoActionPerformed(evt);

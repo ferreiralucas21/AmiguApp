@@ -39,21 +39,10 @@
         android:layout_marginTop="4dp"
         android:textColor="@color/cinza_escuro"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cifrao"
+        app:layout_constraintBottom_toTopOf="@+id/tvPedidoPreco"
         app:layout_constraintStart_toEndOf="@id/cardPedidoImagem"
         app:layout_constraintTop_toTopOf="@id/cardPedidoImagem"
         tools:text="Pelúcia de Dinossauro" />
-
-    <TextView
-        android:id="@+id/cifrao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="R$ "
-        android:layout_marginTop="2dp"
-        android:textColor="@color/cinza_escuro"
-        android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
-        app:layout_constraintTop_toBottomOf="@id/tvPedidoNome" />
 
     <TextView
         android:id="@+id/tvPedidoPreco"
@@ -61,8 +50,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/cinza_escuro"
         android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@id/cifrao"
-        app:layout_constraintTop_toTopOf="@id/cifrao"
+        app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
+        app:layout_constraintTop_toBottomOf="@id/tvPedidoNome"
         tools:text="0,00" />
 
     <TextView
@@ -74,7 +63,7 @@
         android:textColor="@color/cinza_escuro"
         android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@id/tvPedidoNome"
-        app:layout_constraintTop_toBottomOf="@id/cifrao" />
+        app:layout_constraintTop_toBottomOf="@id/tvPedidoPreco" />
 
     <TextView
         android:id="@+id/tvPedidoQuantidade"

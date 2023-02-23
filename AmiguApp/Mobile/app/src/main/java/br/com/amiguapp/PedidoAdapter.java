@@ -17,7 +17,6 @@ import modelDominio.Produto;
 
 public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHolder> {
     private List<Encomenda> listaEncomendas;
-    private List<Produto> listaProdutos;
     private PedidoOnClickListener pedidoOnClickListener;
 
     public PedidoAdapter(List<Encomenda> listaEncomendas, PedidoOnClickListener pedidoOnClickListener) {
@@ -39,7 +38,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
 
         holder.tvPedidoNome.setText(minhaEncomenda.getProduto().getNome());
         holder.tvPedidoSituacao.append(minhaEncomenda.getStatus());
-        holder.tvPedidoPreco.setText(String.valueOf(minhaEncomenda.getProduto().getPreco()));
+        holder.tvPedidoPreco.setText(String.valueOf(PrecoUtil.precoFormat(minhaEncomenda.getProduto().getPreco())));
         holder.tvPedidoQuantidade.append(String.valueOf(minhaEncomenda.getQuantidade()));
         holder.tvPedidoNomeLoja.setText(minhaEncomenda.getVendedor().getNome());
         Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);

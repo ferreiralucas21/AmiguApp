@@ -40,7 +40,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
 
     private void bind(MyViewHolder holder, Produto meuProduto) {
         holder.tvNomeProduto.setText(meuProduto.getNome());
-        holder.tvPrecoProduto.setText(String.valueOf(meuProduto.getPreco()));
+        holder.tvPrecoProduto.setText(String.valueOf(PrecoUtil.precoFormat(meuProduto.getPreco())));
         holder.tvLojaNome.setText(meuProduto.getVendedor().getNome());
         Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
         holder.imgViewProduto.setImageBitmap(bmp);

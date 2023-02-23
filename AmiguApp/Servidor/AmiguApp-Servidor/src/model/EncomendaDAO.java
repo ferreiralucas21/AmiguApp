@@ -102,7 +102,7 @@ public class EncomendaDAO {
 
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
-            ResultSet res = stmt.executeQuery(" select encomenda.quantidade,encomenda.idEncomenda, encomenda.status, produto.*,vendedor.idVendedor,vendedor.nome from produto" +
+            ResultSet res = stmt.executeQuery(" select encomenda.quantidade,encomenda.idEncomenda, encomenda.status, produto.*,vendedor.idVendedor,vendedor.nome,vendedor.telefone from produto" +
 " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto and encomenda.fkIdCliente = " +cliente.getIdCliente() +
 ")inner join vendedor on (vendedor.idVendedor = produto.fkIdVendedor)" +
 "inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)");
@@ -111,7 +111,7 @@ public class EncomendaDAO {
             while (res.next()) {
                 // criando o objeto de gastomensal pegando dados do res.
                 Encomenda encomenda;              
-                encomenda = new Encomenda(res.getInt("idEncomenda"), res.getInt("quantidade"), res.getString("status"), new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem")), new Vendedor(res.getInt("idVendedor"),res.getString("vendedor.nome")));
+                encomenda = new Encomenda(res.getInt("idEncomenda"), res.getInt("quantidade"), res.getString("status"), new Produto(res.getInt("idProduto"), res.getString("produto.nome"), res.getFloat("preco"), res.getFloat("tamanho"), res.getString("descricao"), res.getBytes("imagem")), new Vendedor(res.getInt("idVendedor"),res.getString("vendedor.nome"),res.getString("vendedor.telefone")));
                 listaEncomendas.add(encomenda);             
             }
             return listaEncomendas;

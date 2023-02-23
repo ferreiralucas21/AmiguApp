@@ -72,22 +72,12 @@
                 tools:text="Nome do produto" />
 
             <TextView
-                android:id="@+id/cifrao"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="R$ "
-                android:textColor="@color/cinza_escuro"
-                app:layout_constraintStart_toStartOf="@id/tvProdutoDetalhadoNome"
-                app:layout_constraintTop_toBottomOf="@id/tvProdutoDetalhadoNome" />
-
-            <TextView
                 android:id="@+id/tvProdutoDetalhadoPreco"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/cinza_escuro"
-                app:layout_constraintBottom_toBottomOf="@id/cifrao"
-                app:layout_constraintStart_toEndOf="@id/cifrao"
-                app:layout_constraintTop_toTopOf="@id/cifrao"
+                app:layout_constraintStart_toStartOf="@id/tvProdutoDetalhadoNome"
+                app:layout_constraintTop_toBottomOf="@id/tvProdutoDetalhadoNome"
                 tools:text="0,00" />
 
             <TextView
@@ -97,8 +87,8 @@
                 android:layout_marginTop="5dp"
                 android:text="Tamanho:"
                 android:textColor="@color/cinza_escuro"
-                app:layout_constraintStart_toStartOf="@id/cifrao"
-                app:layout_constraintTop_toBottomOf="@id/cifrao" />
+                app:layout_constraintStart_toStartOf="@id/tvProdutoDetalhadoPreco"
+                app:layout_constraintTop_toBottomOf="@id/tvProdutoDetalhadoPreco" />
 
             <TextView
                 android:id="@+id/tvProdutoDetalhadoTamanho"
@@ -109,7 +99,16 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tamanho"
                 app:layout_constraintStart_toEndOf="@id/tamanho"
                 app:layout_constraintTop_toTopOf="@+id/tamanho"
-                tools:text="18cm" />
+                tools:text="18" />
+
+            <TextView
+                android:id="@+id/centimetros"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=" cm"
+                android:textColor="@color/cinza_escuro"
+                app:layout_constraintStart_toEndOf="@id/tvProdutoDetalhadoTamanho"
+                app:layout_constraintBottom_toBottomOf="@id/tvProdutoDetalhadoTamanho"/>
 
             <TextView
                 android:id="@+id/descricao"

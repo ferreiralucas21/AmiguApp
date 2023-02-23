@@ -62,22 +62,12 @@
         tools:text="Pelúcia de Dinossauro" />
 
     <TextView
-        android:id="@+id/tvProdutoCifrao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="R$ "
-        android:textColor="@color/cinza_escuro"
-        android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@id/tvProdutoNome"
-        app:layout_constraintTop_toBottomOf="@id/tvProdutoNome" />
-
-    <TextView
         android:id="@+id/tvProdutoPreco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/cinza_escuro"
         android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@id/tvProdutoCifrao"
+        app:layout_constraintStart_toStartOf="@id/cardProdutoImagem"
         app:layout_constraintTop_toBottomOf="@id/tvProdutoNome"
         tools:text="0,00" />
 

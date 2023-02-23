@@ -15,4 +15,5 @@
     <color name="rosa_claro">#FADADA</color>
     <color name="cinza_escuro">#444444</color>
     <color name="rosa_escuro">#E75B5B</color>
+    <color name="rosa_notif">#b34747</color>
 </resources>

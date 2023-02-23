@@ -33,4 +33,15 @@
     <style name="SearchView">
         <item name="android:background">@drawable/searchview</item>
     </style>
+
+
+    <!-- Defined a new style with three items of color. -->
+    <style name="DemoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/rosa_notif</item>
+
+        <!-- Defining that new color in ColorPrimaryDark -->
+        <item name="colorPrimaryDark">@color/rosa_notif</item>
+        <item name="colorAccent">@color/rosa_notif</item>
+    </style>
 </resources>

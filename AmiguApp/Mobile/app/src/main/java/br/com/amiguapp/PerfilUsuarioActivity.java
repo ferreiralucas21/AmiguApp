@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import controller.ConexaoSocketController;
 import modelDominio.Cliente;
 import modelDominio.Encomenda;
+import modelDominio.Produto;
 import modelDominio.Vendedor;
 
 public class PerfilUsuarioActivity extends AppCompatActivity {
@@ -29,6 +30,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     RecyclerView recyclerListaPedidos;
     ArrayList<Encomenda> listaEncomendas;
     ArrayList<Vendedor> listaVendedores;
+    ArrayList<Produto> listaProdutos;
     InformacoesApp informacoesApp;
     PedidoAdapter pedidoAdapter;
     Cliente clienteAlterado;
@@ -53,8 +55,8 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         recyclerListaPedidos = findViewById(R.id.recyclerListaPedidos);
 
 
-        CliqueSeta();
-        CliqueHome();
+        cliqueSeta();
+        cliqueHome();
 
         informacoesApp = (InformacoesApp) getApplicationContext();
 
@@ -92,7 +94,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
                                     String msgRecebida = conexaoSocket.alterarCliente(clienteAlterado);
 
                                     if (msgRecebida.equals("ok")) {
-                                        // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
                                         informacoesApp.setClienteLogado(clienteAlterado);
                                         runOnUiThread(() -> Toast.makeText(informacoesApp, "Informações editadas com sucesso", Toast.LENGTH_SHORT).show());
                                     } else {
@@ -153,7 +154,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     }
 
 
-    private void CliqueHome() {
+    private void cliqueHome() {
         appbarIconHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,7 +164,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         });
     }
 
-    private void CliqueSeta() {
+    private void cliqueSeta() {
         appbarIconSeta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -178,7 +179,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             Encomenda minhaEncomenda = listaEncomendas.get(position);
             informacoesApp.setProdutoSelecionado(minhaEncomenda.getProduto());
             Intent it = new Intent(PerfilUsuarioActivity.this, ProdutoDetalhadoActivity.class);
-            it.putExtra("pedidoClicado", minhaEncomenda.getProduto());
+            it.putExtra("pedidoClicado", minhaEncomenda);
             startActivity(it);
         }
     };

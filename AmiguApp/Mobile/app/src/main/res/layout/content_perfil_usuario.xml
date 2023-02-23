@@ -69,7 +69,6 @@
                 <EditText
                     android:id="@+id/etPerfilUsuarioEmail"
                     android:layout_width="match_parent"
-                    android:inputType="number"
                     android:layout_height="30dp"
                     android:background="@drawable/edit_text_border"
                     android:paddingTop="0dp"
@@ -92,7 +91,6 @@
                 <EditText
                     android:id="@+id/etPerfilUsuarioNome"
                     android:layout_width="match_parent"
-                    android:inputType="number"
                     android:layout_height="30dp"
                     android:background="@drawable/edit_text_border"
                     android:paddingTop="0dp"
@@ -149,7 +147,6 @@
                 <EditText
                     android:id="@+id/etPerfilUsuarioRua"
                     android:layout_width="match_parent"
-                    android:inputType="number"
                     android:layout_height="30dp"
                     android:background="@drawable/edit_text_border"
                     android:paddingTop="0dp"
@@ -172,7 +169,6 @@
                 <EditText
                     android:id="@+id/etPerfilUsuarioBairro"
                     android:layout_width="match_parent"
-                    android:inputType="number"
                     android:layout_height="30dp"
                     android:background="@drawable/edit_text_border"
                     android:paddingTop="0dp"
@@ -195,7 +191,6 @@
                 <EditText
                     android:id="@+id/etPerfilUsuarioComplemento"
                     android:layout_width="match_parent"
-                    android:inputType="number"
                     android:layout_height="30dp"
                     android:background="@drawable/edit_text_border"
                     android:paddingTop="0dp"
@@ -218,7 +213,6 @@
                 <EditText
                     android:id="@+id/etPerfilUsuarioCep"
                     android:layout_width="match_parent"
-                    android:inputType="number"
                     android:layout_height="30dp"
                     android:background="@drawable/edit_text_border"
                     android:paddingTop="0dp"

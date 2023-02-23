@@ -1,10 +1,5 @@
 package br.com.amiguapp;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -78,77 +77,66 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
             Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
             imgProdutoDetalhado.setImageBitmap(bmp);
             tvProdutoDetalhadoNome.setText(meuProduto.getNome());
-            tvProdutoDetalhadoPreco.setText(String.valueOf(meuProduto.getPreco()));
-            tvProdutoDetalhadoTamanho.setText(String.valueOf(meuProduto.getTamanho()));
+            tvProdutoDetalhadoPreco.setText(String.valueOf(PrecoUtil.precoFormat(meuProduto.getPreco())));
+            tvProdutoDetalhadoTamanho.setText(String.valueOf(TamanhoUtil.tamanhoFormat(meuProduto.getTamanho())));
             tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
             tvProdutoDetalhadoContato.setText(meuProduto.getVendedor().getTelefone());
         }
 
-//        if (intent.hasExtra("pedidoClicado")){
-//            final Encomenda minhaEncomenda = (Encomenda) intent.getSerializableExtra("pedidoClicado");
-//
-//            tvProdutoDetalhadoNomeLoja.setText(minhaEncomenda.getProduto().getVendedor().getNome());
-//            Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);
-//            imgProdutoDetalhado.setImageBitmap(bmp);
-//            tvProdutoDetalhadoNome.setText(minhaEncomenda.getProduto().getNome());
-//            tvProdutoDetalhadoPreco.setText(String.valueOf(minhaEncomenda.getProduto().getPreco()));
-//            tvProdutoDetalhadoTamanho.setText(String.valueOf(minhaEncomenda.getProduto().getTamanho()));
-//            tvProdutoDetalhadoDescricao.setText(minhaEncomenda.getProduto().getDescricao());
-//            tvProdutoDetalhadoContato.setText(minhaEncomenda.getVendedor().getTelefone());
-//            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
-//                etProdutoDetalhadoQuantidade.getText().toString();
-//            }
-//        }
+        if (intent.hasExtra("pedidoClicado")){
+            final Encomenda minhaEncomenda = (Encomenda) intent.getSerializableExtra("pedidoClicado");
+
+            tvProdutoDetalhadoNomeLoja.setText(minhaEncomenda.getVendedor().getNome());
+            Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);
+            imgProdutoDetalhado.setImageBitmap(bmp);
+            tvProdutoDetalhadoNome.setText(minhaEncomenda.getProduto().getNome());
+            tvProdutoDetalhadoPreco.setText(String.valueOf(PrecoUtil.precoFormat(minhaEncomenda.getProduto().getPreco())));
+            tvProdutoDetalhadoTamanho.setText(String.valueOf(TamanhoUtil.tamanhoFormat(minhaEncomenda.getProduto().getTamanho())));
+            tvProdutoDetalhadoDescricao.setText(minhaEncomenda.getProduto().getDescricao());
+            tvProdutoDetalhadoContato.setText(minhaEncomenda.getVendedor().getTelefone());
+            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
+                etProdutoDetalhadoQuantidade.getText().toString();
+            }
+        }
 
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         preencheEndereco();
 
-        bProdutoFazerPedido.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!etProdutoDetalhadoQuantidade.getText().toString().equals("0") && !etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
-                    if (!tvProdutoDetalhadoRua.getText().toString().equals("") && !tvProdutoDetalhadoBairro.getText().toString().equals("")
-                            && !tvProdutoDetalhadoComplemento.getText().toString().equals("") && !tvProdutoDetalhadoCep.getText().toString().equals("")) {
+        bProdutoFazerPedido.setOnClickListener(view -> {
+            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("0") && !etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
+                if (!tvProdutoDetalhadoRua.getText().toString().equals("") && !tvProdutoDetalhadoBairro.getText().toString().equals("")
+                        && !tvProdutoDetalhadoComplemento.getText().toString().equals("") && !tvProdutoDetalhadoCep.getText().toString().equals("")) {
 
-                        int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
-                        Produto produto = informacoesApp.getProdutoSelecionado();
-                        Cliente cliente = informacoesApp.getClienteLogado();
+                    int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
+                    Produto produto = informacoesApp.getProdutoSelecionado();
+                    Cliente cliente = informacoesApp.getClienteLogado();
 
-                        Encomenda minhaEncomenda = new Encomenda(new Produto(produto.getIdProduto()), new Cliente(cliente.getIdCliente()), quantidade);
+                    Encomenda minhaEncomenda = new Encomenda(new Produto(produto.getIdProduto()), new Cliente(cliente.getIdCliente()), quantidade);
 
-                        Thread thread1 = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                                msgRecebida = conexaoSocket.inserirEncomenda(minhaEncomenda);
+                    Thread thread1 = new Thread(() -> {
+                        ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+                        msgRecebida = conexaoSocket.inserirEncomenda(minhaEncomenda);
 
-                                if (minhaEncomenda != null) {
-                                    Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
-                                    startActivity(it);
-                                } else {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível realizar o pedido!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-                            }
-                        });
-                        thread1.start();
-                    } else {
-                        AlertDialog.Builder enderecoVazio = new AlertDialog.Builder(ProdutoDetalhadoActivity.this);
-                        enderecoVazio.setTitle("Atenção");
-                        enderecoVazio.setMessage("Preencha todos os campos do endereço de entrega");
-                        enderecoVazio.setNeutralButton("ok", null);
-                        enderecoVazio.create().show();
-                    }
-
+                        if (minhaEncomenda != null) {
+                            Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
+                            startActivity(it);
+                        } else {
+                            runOnUiThread(() -> Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível realizar o pedido!", Toast.LENGTH_SHORT).show());
+                        }
+                    });
+                    thread1.start();
                 } else {
-                    etProdutoDetalhadoQuantidade.setError("Informe a quantidade");
-                    etProdutoDetalhadoQuantidade.requestFocus();
+                    AlertDialog.Builder enderecoVazio = new AlertDialog.Builder(ProdutoDetalhadoActivity.this);
+                    enderecoVazio.setTitle("Atenção");
+                    enderecoVazio.setMessage("Preencha todos os campos do endereço de entrega");
+                    enderecoVazio.setNeutralButton("ok", null);
+                    enderecoVazio.create().show();
                 }
+
+            } else {
+                etProdutoDetalhadoQuantidade.setError("Informe a quantidade");
+                etProdutoDetalhadoQuantidade.requestFocus();
             }
         });
 
@@ -169,41 +157,27 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
     }
 
     private void CliqueHome() {
-        appbarIconHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(ProdutoDetalhadoActivity.this, MainActivity.class);
-                startActivity(it);
-            }
+        appbarIconHome.setOnClickListener(view -> {
+            Intent it = new Intent(ProdutoDetalhadoActivity.this, MainActivity.class);
+            startActivity(it);
         });
     }
 
     private void CliqueAlterarEndereco() {
-        bAlterarEndereco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
-                startActivity(it);
-            }
+        bAlterarEndereco.setOnClickListener(view -> {
+            Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
+            startActivity(it);
         });
     }
 
     private void CliquePerfil() {
-        appbarIconPerfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
-                startActivity(it);
-            }
+        appbarIconPerfil.setOnClickListener(view -> {
+            Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
+            startActivity(it);
         });
     }
 
     private void CliqueSeta() {
-        appbarIconSeta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        appbarIconSeta.setOnClickListener(view -> finish());
     }
 }
