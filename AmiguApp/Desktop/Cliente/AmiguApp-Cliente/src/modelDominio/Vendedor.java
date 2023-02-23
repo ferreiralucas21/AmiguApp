@@ -12,9 +12,9 @@ import java.io.Serializable;
  * @author ADMIN
  */
 public class Vendedor implements Serializable {
-    
+
     private static final long serialVersionID = 123456789L;
-    
+
     private int idVendedor;
     private String nome;
     private String email;
@@ -27,6 +27,12 @@ public class Vendedor implements Serializable {
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
+    }
+
+    public Vendedor(int idVendedor, String nome, String telefone) {
+        this.idVendedor = idVendedor;
+        this.nome = nome;
+        this.telefone = telefone;
     }
 
     public Vendedor(String nome, String email, String telefone, String senha) {
@@ -48,7 +54,7 @@ public class Vendedor implements Serializable {
         this.email = email;
         this.telefone = telefone;
     }
-       
+
     public Vendedor(String email, String senha) {
         this.email = email;
         this.senha = senha;
@@ -61,8 +67,8 @@ public class Vendedor implements Serializable {
     public Vendedor(int idVendedor, String nome) {
         this.idVendedor = idVendedor;
         this.nome = nome;
-    }    
-   
+    }
+
     public int getIdVendedor() {
         return idVendedor;
     }
@@ -107,8 +113,4 @@ public class Vendedor implements Serializable {
     public String toString() {
         return "Vendedor{" + "idVendedor=" + idVendedor + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", senha=" + senha + '}';
     }
-    
-    
-
-    
 }
