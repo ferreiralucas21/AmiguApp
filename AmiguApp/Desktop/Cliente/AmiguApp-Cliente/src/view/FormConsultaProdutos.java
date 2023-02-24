@@ -263,7 +263,7 @@ public class FormConsultaProdutos extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         FormConsultaEncomendas formConsultaEncomendas = new FormConsultaEncomendas();
-        formConsultaEncomendas.setVisible(true);
+        formConsultaEncomendas.setModal(true);
         formConsultaEncomendas.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
