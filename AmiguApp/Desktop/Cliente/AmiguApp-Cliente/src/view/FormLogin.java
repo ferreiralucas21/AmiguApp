@@ -5,9 +5,6 @@
  */
 package view;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import modelDominio.Vendedor;
 

@@ -103,9 +103,9 @@ public class EncomendaDAO {
             stmt = con.createStatement();
             // passando a string SQL que faz o SELECT
             ResultSet res = stmt.executeQuery(" select encomenda.quantidade,encomenda.idEncomenda, encomenda.status, produto.*,vendedor.idVendedor,vendedor.nome,vendedor.telefone from produto" +
-" inner join encomenda on (produto.idProduto = encomenda.fkIdProduto and encomenda.fkIdCliente = " +cliente.getIdCliente() +
-")inner join vendedor on (vendedor.idVendedor = produto.fkIdVendedor)" +
-"inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)");
+                                              " inner join encomenda on (produto.idProduto = encomenda.fkIdProduto and encomenda.fkIdCliente = " +cliente.getIdCliente() +
+                                              ")inner join vendedor on (vendedor.idVendedor = produto.fkIdVendedor)" +
+                                              " inner join cliente on (cliente.idCliente = encomenda.fkIdCliente)");
 
             // Pebkorrendo o resultado - res
             while (res.next()) {

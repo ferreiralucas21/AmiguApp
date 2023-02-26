@@ -13,7 +13,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Connection;
-import modelDominio.Vendedor;
 
 /**
  *

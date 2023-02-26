@@ -25,27 +25,7 @@ public class ClienteDAO {
     public ClienteDAO() {
         con = Conector.getConnection();
     }
-    
-    /*public ArrayList<Vendedor> getLista() {
-        Statement stmt = null;
-        ArrayList<Vendedor> listaVendedores = new ArrayList<>();
-        try {
-            stmt = con.createStatement();
-            ResultSet res = stmt.executeQuery("select * from vendedor");
-            
-            while (res.next()){
-                Vendedor vendedor = new Vendedor(res.getInt("idvendedor"), res.getString("nome"), res.getString("email"), res.getInt("telefone"), res.getString("senha"), res.getBytes("imagem"));
-                
-                listaVendedores.add(vendedor);
-            }
-            
-            return listaVendedores;
-        } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + " - " + e.getMessage());
-            return null;
-        }
-    }*/
-    
+       
     public Cliente efetuarLogin(Cliente cliente) {
         PreparedStatement stmt = null; //usado para rodar SQL
         Cliente clienteSelecionado = null;

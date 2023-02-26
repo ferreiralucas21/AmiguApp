@@ -151,22 +151,6 @@ public class ConexaoController {
         }
     }
     
-    /*public ArrayList<Vendedor> vendedorLista() {
-        String msg;
-        try {
-            out.writeObject("VendedorLista");          
-            msg = (String) in.readObject();
-            if (msg.equals("ok")) {
-                out.writeObject(vendedor);                
-                return (ArrayList<Vendedor>) in.readObject();
-            } else {
-                return null;
-            }          
-        } catch (Exception e) {
-            return null;
-        }
-    }*/
-    
     public Vendedor perfilVendedor(int codigo) {
         String msg;
         try {

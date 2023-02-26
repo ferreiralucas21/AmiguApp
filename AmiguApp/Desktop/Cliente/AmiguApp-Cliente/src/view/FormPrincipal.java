@@ -5,8 +5,6 @@
  */
 package view;
 
-import modelDominio.Vendedor;
-
 /**
  *
  * @author ADMIN

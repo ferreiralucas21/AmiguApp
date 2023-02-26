@@ -6,7 +6,6 @@
 package view;
 
 import modelDominio.Produto;
-import modelDominio.Vendedor;
 import view.tableModel.ProdutoTableModel;
 
 /**

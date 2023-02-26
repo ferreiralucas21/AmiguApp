@@ -15,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import modelDominio.Produto;
 import modelDominio.Vendedor;
 
 /**
