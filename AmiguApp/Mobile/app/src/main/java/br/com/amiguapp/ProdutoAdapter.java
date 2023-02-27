@@ -38,6 +38,11 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
         bind(holder, meuProduto);
     }
 
+    public void search(List<Produto> listaFiltrada){
+        listaProdutos = listaFiltrada;
+        notifyDataSetChanged();
+    }
+
     private void bind(MyViewHolder holder, Produto meuProduto) {
         holder.tvNomeProduto.setText(meuProduto.getNome());
         holder.tvPrecoProduto.setText(String.valueOf(PrecoUtil.precoFormat(meuProduto.getPreco())));
@@ -47,19 +52,11 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.MyViewHo
 
         // clique no produto
         if (produtoOnClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    produtoOnClickListener.onClickProduto(holder.itemView, holder.getAdapterPosition());
-                }
-            });
+            holder.itemView.setOnClickListener(v ->
+                    produtoOnClickListener.onClickProduto(holder.itemView, holder.getAdapterPosition()));
         }
     }
 
-    public void search(List<Produto> listaFiltrada){
-        listaProdutos = listaFiltrada;
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getItemCount() {

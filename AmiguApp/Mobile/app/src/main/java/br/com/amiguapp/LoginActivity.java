@@ -1,15 +1,15 @@
 package br.com.amiguapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import controller.ConexaoSocketController;
 import modelDominio.Cliente;
 
@@ -27,28 +27,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
-        etLoginEmail = findViewById(R.id.etLoginEmail);
-        etLoginSenha = findViewById(R.id.etLoginSenha);
-        bLoginEntrar = findViewById(R.id.bLoginEntrar);
-        bLoginCadastrar = findViewById(R.id.bLoginCadastrar);
         informacoesApp = (InformacoesApp) getApplicationContext();
+        vinculaElementos();
 
-        bLoginCadastrar.setOnClickListener(view -> {
-            Intent it = new Intent(LoginActivity.this, CadastroActivity.class);
-            startActivity(it);
-        });
+        cliqueBotaoCadastrarNovaConta();
 
-        Thread thread = new Thread(() -> {
-            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-            resultadoConexao = conexaoSocket.criaConexao();
-            runOnUiThread(() -> {
-                if (!resultadoConexao == true) {
-                    Toast.makeText(informacoesApp, "Erro: não foi possível estabelexer a conexão com o servidor.", Toast.LENGTH_SHORT).show();
-                }
-            });
-        });
+        Thread thread = estabeleceConexao();
         thread.start();
 
+        cliqueBotaoLogin();
+
+    }
+
+    private void cliqueBotaoLogin() {
         bLoginEntrar.setOnClickListener(view -> {
             if (!etLoginEmail.getText().toString().equals("")) {
                 if (!etLoginSenha.getText().toString().equals("")) {
@@ -57,24 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     cliente = new Cliente(email, senha);
 
-                    Thread thread1 = new Thread(() -> {
-                        ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                        cliente = conexaoSocket.efetuarLogin(cliente);
-
-                        if (cliente != null) {
-                            // sugiro que o servidor retorne o usuário com todas as informações do banco. Esse objeto pode estar na InformacoesApp e ser usado em futuras necessidades
-                            informacoesApp.setClienteLogado(cliente);
-
-                            Intent it = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(it);
-                        } else {
-                            runOnUiThread(() -> {
-                                Toast.makeText(informacoesApp, "ATENÇÃO: Usuário e senha não conferem!", Toast.LENGTH_SHORT).show();
-                                limpaCampos();
-                            });
-                        }
-
-                    });
+                    Thread thread1 = efetuaLogin();
                     thread1.start();
 
                 } else {
@@ -86,7 +60,56 @@ public class LoginActivity extends AppCompatActivity {
                 etLoginEmail.requestFocus();
             }
         });
+    }
 
+    @NonNull
+    private Thread efetuaLogin() {
+        Thread thread1 = new Thread(() -> {
+            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+            cliente = conexaoSocket.efetuarLogin(cliente);
+
+            if (cliente != null) {
+                informacoesApp.setClienteLogado(cliente);
+
+                Intent it = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(it);
+            } else {
+                runOnUiThread(() -> {
+                    Toast.makeText(informacoesApp, "ATENÇÃO: Usuário e senha não conferem!", Toast.LENGTH_SHORT).show();
+                    limpaCampos();
+                });
+            }
+
+        });
+        return thread1;
+    }
+
+    @NonNull
+    private Thread estabeleceConexao() {
+        Thread thread = new Thread(() -> {
+            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+            resultadoConexao = conexaoSocket.criaConexao();
+            runOnUiThread(() -> {
+                if (!resultadoConexao == true) {
+                    Toast.makeText(informacoesApp, "Erro: não foi possível estabelexer a conexão com o servidor.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+        return thread;
+    }
+
+    private void cliqueBotaoCadastrarNovaConta() {
+        bLoginCadastrar.setOnClickListener(view -> {
+            Intent it = new Intent(LoginActivity.this, CadastroActivity.class);
+            startActivity(it);
+        });
+    }
+
+    private void vinculaElementos() {
+        etLoginEmail = findViewById(R.id.etLoginEmail);
+        etLoginSenha = findViewById(R.id.etLoginSenha);
+        bLoginEntrar = findViewById(R.id.bLoginEntrar);
+        bLoginCadastrar = findViewById(R.id.bLoginCadastrar);
     }
 
     public void limpaCampos() {

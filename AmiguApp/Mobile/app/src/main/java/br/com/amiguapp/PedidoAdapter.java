@@ -46,12 +46,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
 
         // clique no pedido
         if (pedidoOnClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    pedidoOnClickListener.onClickPedido(holder.itemView, holder.getAdapterPosition());
-                }
-            });
+            holder.itemView.setOnClickListener(v ->
+                    pedidoOnClickListener.onClickPedido(holder.itemView, holder.getAdapterPosition()));
         }
     }
 

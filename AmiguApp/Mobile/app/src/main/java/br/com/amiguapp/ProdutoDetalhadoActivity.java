@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -42,8 +42,105 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto_detalhado);
-        searchView = findViewById(R.id.appbarSearchView);
         informacoesApp = (InformacoesApp) getApplicationContext();
+        vinculaElementos();
+
+        cliqueSeta();
+        cliquePerfil();
+        cliqueAlterarEndereco();
+        cliqueHome();
+
+        Intent intent = getIntent();
+        carregaProduto(intent);
+        carregaPedido(intent);
+
+        preencheEndereco();
+
+        cliqueBotaoFazerPedido();
+
+    }
+
+    private void cliqueBotaoFazerPedido() {
+        bProdutoFazerPedido.setOnClickListener(view -> {
+            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("0") && !etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
+                if (!tvProdutoDetalhadoRua.getText().toString().equals("") && !tvProdutoDetalhadoBairro.getText().toString().equals("")
+                        && !tvProdutoDetalhadoComplemento.getText().toString().equals("") && !tvProdutoDetalhadoCep.getText().toString().equals("")) {
+
+                    int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
+                    Produto produto = informacoesApp.getProdutoSelecionado();
+                    Cliente cliente = informacoesApp.getClienteLogado();
+
+                    Encomenda minhaEncomenda = new Encomenda(new Produto(produto.getIdProduto()), new Cliente(cliente.getIdCliente()), quantidade);
+
+                    Thread thread1 = efetuaPedido(minhaEncomenda);
+                    thread1.start();
+
+                } else {
+                    AlertDialog.Builder enderecoVazio = new AlertDialog.Builder(ProdutoDetalhadoActivity.this);
+                    enderecoVazio.setTitle("Atenção");
+                    enderecoVazio.setMessage("Preencha todos os campos do endereço de entrega");
+                    enderecoVazio.setNeutralButton("ok", null);
+                    enderecoVazio.create().show();
+                }
+
+            } else {
+                etProdutoDetalhadoQuantidade.setError("Informe a quantidade");
+                etProdutoDetalhadoQuantidade.requestFocus();
+            }
+        });
+    }
+
+    @NonNull
+    private Thread efetuaPedido(Encomenda minhaEncomenda) {
+        Thread thread1 = new Thread(() -> {
+            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+            msgRecebida = conexaoSocket.inserirEncomenda(minhaEncomenda);
+
+            if (minhaEncomenda != null) {
+                Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
+                startActivity(it);
+            } else {
+                runOnUiThread(() -> Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível realizar o pedido!", Toast.LENGTH_SHORT).show());
+            }
+        });
+        return thread1;
+    }
+
+    private void carregaPedido(Intent intent) {
+        if (intent.hasExtra("pedidoClicado")){
+            final Encomenda minhaEncomenda = (Encomenda) intent.getSerializableExtra("pedidoClicado");
+
+            tvProdutoDetalhadoNomeLoja.setText(minhaEncomenda.getVendedor().getNome());
+            Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);
+            imgProdutoDetalhado.setImageBitmap(bmp);
+            tvProdutoDetalhadoNome.setText(minhaEncomenda.getProduto().getNome());
+            tvProdutoDetalhadoPreco.setText(String.valueOf(PrecoUtil.precoFormat(minhaEncomenda.getProduto().getPreco())));
+            tvProdutoDetalhadoTamanho.setText(String.valueOf(TamanhoUtil.tamanhoFormat(minhaEncomenda.getProduto().getTamanho())));
+            tvProdutoDetalhadoDescricao.setText(minhaEncomenda.getProduto().getDescricao());
+            tvProdutoDetalhadoContato.setText(minhaEncomenda.getVendedor().getTelefone());
+            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
+                etProdutoDetalhadoQuantidade.getText().toString();
+            }
+        }
+    }
+
+    private void carregaProduto(Intent intent) {
+        if (intent.hasExtra("produtoClicado")) {
+            final Produto meuProduto = (Produto) intent.getSerializableExtra("produtoClicado");
+
+            tvProdutoDetalhadoNomeLoja.setText(meuProduto.getVendedor().getNome());
+            Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
+            imgProdutoDetalhado.setImageBitmap(bmp);
+            tvProdutoDetalhadoNome.setText(meuProduto.getNome());
+            tvProdutoDetalhadoPreco.setText(String.valueOf(PrecoUtil.precoFormat(meuProduto.getPreco())));
+            tvProdutoDetalhadoTamanho.setText(String.valueOf(TamanhoUtil.tamanhoFormat(meuProduto.getTamanho())));
+            tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
+            tvProdutoDetalhadoContato.setText(meuProduto.getVendedor().getTelefone());
+        }
+    }
+
+    private void vinculaElementos() {
+        searchView = findViewById(R.id.appbarSearchView);
         tvProdutoDetalhadoNomeLoja = findViewById(R.id.tvProdutoDetalhadoNomeLoja);
         tvProdutoDetalhadoNome = findViewById(R.id.tvProdutoDetalhadoNome);
         tvProdutoDetalhadoPreco = findViewById(R.id.tvProdutoDetalhadoPreco);
@@ -63,83 +160,6 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         appbarIconHome = findViewById(R.id.appbarIconHome);
         rbPagamentoPix = findViewById(R.id.rbPagamentoPix);
         rbPagamentoCartao = findViewById(R.id.rbPagamentoCartao);
-
-        CliqueSeta();
-        CliquePerfil();
-        CliqueAlterarEndereco();
-        CliqueHome();
-
-        Intent intent = getIntent();
-        if (intent.hasExtra("produtoClicado")) {
-            final Produto meuProduto = (Produto) intent.getSerializableExtra("produtoClicado");
-
-            tvProdutoDetalhadoNomeLoja.setText(meuProduto.getVendedor().getNome());
-            Bitmap bmp = BitmapFactory.decodeByteArray(meuProduto.getImagem(), 0, meuProduto.getImagem().length);
-            imgProdutoDetalhado.setImageBitmap(bmp);
-            tvProdutoDetalhadoNome.setText(meuProduto.getNome());
-            tvProdutoDetalhadoPreco.setText(String.valueOf(PrecoUtil.precoFormat(meuProduto.getPreco())));
-            tvProdutoDetalhadoTamanho.setText(String.valueOf(TamanhoUtil.tamanhoFormat(meuProduto.getTamanho())));
-            tvProdutoDetalhadoDescricao.setText(meuProduto.getDescricao());
-            tvProdutoDetalhadoContato.setText(meuProduto.getVendedor().getTelefone());
-        }
-
-        if (intent.hasExtra("pedidoClicado")){
-            final Encomenda minhaEncomenda = (Encomenda) intent.getSerializableExtra("pedidoClicado");
-
-            tvProdutoDetalhadoNomeLoja.setText(minhaEncomenda.getVendedor().getNome());
-            Bitmap bmp = BitmapFactory.decodeByteArray(minhaEncomenda.getProduto().getImagem(), 0, minhaEncomenda.getProduto().getImagem().length);
-            imgProdutoDetalhado.setImageBitmap(bmp);
-            tvProdutoDetalhadoNome.setText(minhaEncomenda.getProduto().getNome());
-            tvProdutoDetalhadoPreco.setText(String.valueOf(PrecoUtil.precoFormat(minhaEncomenda.getProduto().getPreco())));
-            tvProdutoDetalhadoTamanho.setText(String.valueOf(TamanhoUtil.tamanhoFormat(minhaEncomenda.getProduto().getTamanho())));
-            tvProdutoDetalhadoDescricao.setText(minhaEncomenda.getProduto().getDescricao());
-            tvProdutoDetalhadoContato.setText(minhaEncomenda.getVendedor().getTelefone());
-            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
-                etProdutoDetalhadoQuantidade.getText().toString();
-            }
-        }
-
-        informacoesApp = (InformacoesApp) getApplicationContext();
-
-        preencheEndereco();
-
-        bProdutoFazerPedido.setOnClickListener(view -> {
-            if (!etProdutoDetalhadoQuantidade.getText().toString().equals("0") && !etProdutoDetalhadoQuantidade.getText().toString().equals("")) {
-                if (!tvProdutoDetalhadoRua.getText().toString().equals("") && !tvProdutoDetalhadoBairro.getText().toString().equals("")
-                        && !tvProdutoDetalhadoComplemento.getText().toString().equals("") && !tvProdutoDetalhadoCep.getText().toString().equals("")) {
-
-                    int quantidade = Integer.parseInt(etProdutoDetalhadoQuantidade.getText().toString());
-                    Produto produto = informacoesApp.getProdutoSelecionado();
-                    Cliente cliente = informacoesApp.getClienteLogado();
-
-                    Encomenda minhaEncomenda = new Encomenda(new Produto(produto.getIdProduto()), new Cliente(cliente.getIdCliente()), quantidade);
-
-                    Thread thread1 = new Thread(() -> {
-                        ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                        msgRecebida = conexaoSocket.inserirEncomenda(minhaEncomenda);
-
-                        if (minhaEncomenda != null) {
-                            Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
-                            startActivity(it);
-                        } else {
-                            runOnUiThread(() -> Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível realizar o pedido!", Toast.LENGTH_SHORT).show());
-                        }
-                    });
-                    thread1.start();
-                } else {
-                    AlertDialog.Builder enderecoVazio = new AlertDialog.Builder(ProdutoDetalhadoActivity.this);
-                    enderecoVazio.setTitle("Atenção");
-                    enderecoVazio.setMessage("Preencha todos os campos do endereço de entrega");
-                    enderecoVazio.setNeutralButton("ok", null);
-                    enderecoVazio.create().show();
-                }
-
-            } else {
-                etProdutoDetalhadoQuantidade.setError("Informe a quantidade");
-                etProdutoDetalhadoQuantidade.requestFocus();
-            }
-        });
-
     }
 
     @Override
@@ -156,28 +176,28 @@ public class ProdutoDetalhadoActivity extends AppCompatActivity {
         tvProdutoDetalhadoCep.setText(cliente.getCep());
     }
 
-    private void CliqueHome() {
+    private void cliqueHome() {
         appbarIconHome.setOnClickListener(view -> {
             Intent it = new Intent(ProdutoDetalhadoActivity.this, MainActivity.class);
             startActivity(it);
         });
     }
 
-    private void CliqueAlterarEndereco() {
+    private void cliqueAlterarEndereco() {
         bAlterarEndereco.setOnClickListener(view -> {
             Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
             startActivity(it);
         });
     }
 
-    private void CliquePerfil() {
+    private void cliquePerfil() {
         appbarIconPerfil.setOnClickListener(view -> {
             Intent it = new Intent(ProdutoDetalhadoActivity.this, PerfilUsuarioActivity.class);
             startActivity(it);
         });
     }
 
-    private void CliqueSeta() {
+    private void cliqueSeta() {
         appbarIconSeta.setOnClickListener(view -> finish());
     }
 }
