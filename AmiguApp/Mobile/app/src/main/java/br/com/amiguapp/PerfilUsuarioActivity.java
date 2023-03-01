@@ -58,7 +58,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         Thread thread = new Thread(() -> {
             ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
             listaEncomendas = conexaoSocket.listaEncomendas(cliente);
-            listaVendedores = conexaoSocket.listaVendedores();
             if (listaEncomendas != null) {
                 runOnUiThread(() -> {
                     pedidoAdapter = new PedidoAdapter(listaEncomendas, trataCliqueItem);
